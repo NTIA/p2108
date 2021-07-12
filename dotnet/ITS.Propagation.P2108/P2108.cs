@@ -11,6 +11,42 @@ namespace ITS.Propagation
         private const string P2108_x86_DLL_NAME = "p2108_x86.dll";
         private const string P2108_x64_DLL_NAME = "p2108_x64.dll";
 
+        /// <summary>
+        /// Clutter types for Height Gain Terminal Correction Model
+        /// </summary>
+        public enum ClutterType : int
+        {
+            /// <summary>
+            /// Water/sea
+            /// </summary>
+            WaterSea = 1,
+
+            /// <summary>
+            /// Open/rural
+            /// </summary>
+            OpenRural = 2,
+
+            /// <summary>
+            /// Suburban
+            /// </summary>
+            Suburban = 3,
+
+            /// <summary>
+            /// Urban
+            /// </summary>
+            Urban = 4,
+
+            /// <summary>
+            /// Trees/forest
+            /// </summary>
+            TreesForest = 5,
+
+            /// <summary>
+            /// Dense urban
+            /// </summary>
+            DenseUrban = 6
+        }
+
         #region 32-Bit P/Invoke Definitions
 
         [DllImport(P2108_x86_DLL_NAME, CallingConvention = CallingConvention.StdCall, CharSet = CharSet.Ansi, EntryPoint = "AeronauticalStatisticalModel")]
