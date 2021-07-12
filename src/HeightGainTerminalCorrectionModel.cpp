@@ -67,7 +67,7 @@ int HeightGainTerminalCorrectionModel(double f__ghz, double h__meter,
  |        Input:  f__ghz        - Frequency, in GHz
  |                h__meter      - Antenna height, in meters
  |                w_s__meter    - Street width, in meters
- |                R__meter       - Representative clutter height, in meters
+ |                R__meter      - Representative clutter height, in meters
  |
  |      Returns:  error code or SUCCESS
  |
@@ -118,7 +118,7 @@ double Equation_2a(double nu)
  |
  |        Input:  K_h2          - Intermediate parameter
  |                h__meter      - Antenna height, in meters
- |                R__meter       - Representative clutter height, in meters
+ |                R__meter      - Representative clutter height, in meters
  |
  |      Returns:  A_h__db       - Additional loss (clutter loss), in dB
  |
