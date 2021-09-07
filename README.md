@@ -1,6 +1,6 @@
 # Recommendation ITU-R P.2108-0 - U.S. Reference Implementation #
 
-This code repository contains the U.S. Reference Software Implementation of Recommendation ITU-R P.2108. This Recommendation contains three methods for the prediction of cluter loss; a terrestrial end-point clutter correction model, as well as statistical models for both terrestrial and aeronautical/Earth-space paths.  The software implements Section 3 of Annex 1 of the Recommendation.
+This code repository contains the U.S. Reference Software Implementation of Recommendation ITU-R P.2108. This Recommendation contains three methods for the prediction of clutter loss: Height Gain Terminal Correction Model, Terrestrial Statistical Model, Aeronautical Statistical Model.  The software implements Section 3 of Annex 1 of the Recommendation.
 
 ## Height Gain Terminal Correction Model ##
 
@@ -48,7 +48,7 @@ Possible return codes, including the corresponding defined constant name as defi
 
 ## Terrestrial Statistical Model ##
 
-The statistical clutter loss model for terrestrial paths as described in Section 3.2.  This model can be applied for urban and suburban clutter loss modelling for frequencies between 2 to 67 GHz.  This model can be applied to both ends of a path only for paths of at least 1 km.
+The statistical clutter loss model for terrestrial paths as described in Section 3.2.  This model is valid for urban and suburban clutter environments.  For paths between 0.25 and 1 km, this model can only be applied to one end of the path.  For paths greater than 1 km, the model can be applied to both terminals, if desired.
 
 ### Inputs ###
 
@@ -56,13 +56,13 @@ The statistical clutter loss model for terrestrial paths as described in Section
 |-------------------|--------|-------|--------------|--------------|
 | `f__ghz`          | double | GHz   | 2 <= `f__ghz` <= 67 | Frequency |
 | `d__km`           | double | km    | 0.25 <= `d__km` | Path distance |
-| `p`               | double | %     | 0 < `p` < 100 | Percentange of locations |
+| `p`               | double | %     | 0 < `p` < 100 | Percentage of locations clutter loss not exceeded |
  
 ### Outputs ###
 
 | Variable   | Type   | Units | Description |
 |------------|--------|-------|-------------|
-| `L_ctt__db` | double | dB   | Additional loss (clutter loss) |
+| `L_ctt__db` | double | dB   | Clutter loss |
 
 ### Return Codes ###
 
@@ -77,21 +77,21 @@ Possible return codes, including the corresponding defined constant name as defi
 
 ## Aeronautical Statistical Model ##
 
-The Earth-space and aeronautical statistical clutter loss model as described in Section 3.3.  This model is applicable when one end of the path is within man-made clutter and the other end is a satellite, aeroplane, or other platform above the Earth.  This model can be applied for urban and suburban clutter loss modelling for frequencies between 10 to 100 GHz and elevation angles between 0 adn 90 degrees.
+The Earth-space and aeronautical statistical clutter loss model as described in Section 3.3.  This model is applicable when one end of the path is within man-made clutter and the other end is a satellite, aeroplane, or other platform above the Earth.  This model is valid for urban and suburban clutter environments.
 
 ### Inputs ###
 
 | Variable          | Type   | Units | Limits       | Description  |
 |-------------------|--------|-------|--------------|--------------|
 | `f__ghz`          | double | GHz   | 10 <= `f__ghz` <= 100 | Frequency |
-| `theta__deg`      | double | deg   | 0 <= `theta__deg` <= 100 | Elevation angle |
-| `p`               | double | %     | 0 < `p` < 100 | Percentange of locations |
+| `theta__deg`      | double | deg   | 0 <= `theta__deg` <= 90 | Elevation angle |
+| `p`               | double | %     | 0 < `p` < 100 | Percentage of locations clutter loss not exceeded |
  
 ### Outputs ###
 
 | Variable   | Type   | Units | Description |
 |------------|--------|-------|-------------|
-| `L_ces__db` | double | dB    | Additional loss (clutter loss) |
+| `L_ces__db` | double | dB    | Clutter loss |
 
 ### Return Codes ###
 
@@ -106,7 +106,7 @@ Possible return codes, including the corresponding defined constant name as defi
 
 ## Example Values ##
 
-The [Study Group Clutter Excel Workbook](https://www.itu.int/en/ITU-R/study-groups/rsg3/ionotropospheric/Clutter%20and%20BEL%20workbook.xlsx) contain an extensive set of validation example values.
+The [Study Group Clutter Excel Workbook](https://www.itu.int/en/ITU-R/study-groups/rsg3/ionotropospheric/Clutter%20and%20BEL%20workbook.xlsx) contains an extensive set of validation example values.
 
 ## Notes on Code Style ##
 
