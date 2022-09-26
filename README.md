@@ -1,5 +1,7 @@
 # Recommendation ITU-R P.2108-0 - U.S. Reference Implementation #
 
+Persistent Identifier: [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.7114033.svg)](https://doi.org/10.5281/zenodo.7114033)
+
 This code repository contains the U.S. Reference Software Implementation of Recommendation ITU-R P.2108. This Recommendation contains three methods for the prediction of clutter loss: [Height Gain Terminal Correction Model](README.md#height-gain-terminal-correction-model), [Terrestrial Statistical Model](README.md#terrestrial-statistical-model), [Aeronautical Statistical Model](README.md#aeronautical-statistical-model).  The software implements Section 3 of Annex 1 of the Recommendation.
 
 ## Height Gain Terminal Correction Model ##
