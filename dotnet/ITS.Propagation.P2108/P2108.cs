@@ -4,7 +4,7 @@ using System.Runtime.InteropServices;
 namespace ITS.Propagation
 {
     /// <summary>
-    /// Recommendation ITU-R P.2108-0
+    /// Recommendation ITU-R P.2108-1
     /// </summary>
     public static class P2108
     {
