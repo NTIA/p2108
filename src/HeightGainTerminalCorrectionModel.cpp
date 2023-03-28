@@ -78,7 +78,7 @@ int Section3p1_InputValidation(double f__ghz, double h__meter, double w_s__meter
     if (f__ghz < 0.03 || f__ghz > 3)
         return ERROR31__FREQUENCY;
 
-    if (h__meter < 0)
+    if (h__meter <= 0)
         return ERROR31__ANTENNA_HEIGHT;
 
     if (w_s__meter <= 0)
