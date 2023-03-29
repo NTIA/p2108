@@ -120,8 +120,8 @@ namespace ITS.ITU.PSeries
         /// <param name="clutter_type">Clutter type</param>
         /// <param name="A_h__db">Additional loss (clutter loss), in dB</param>
         /// <returns>Error code</returns>
-        public static int HeightGainTerminalCorrectionModel(double f__ghz, double h__meter, double w_s__meter, double R__meter, int clutter_type, out double A_h__db)
-            => HeightGainTerminalCorrectionModel_Invoke(f__ghz, h__meter, w_s__meter, R__meter, clutter_type, out A_h__db);
+        public static int HeightGainTerminalCorrectionModel(double f__ghz, double h__meter, double w_s__meter, double R__meter, ClutterType clutter_type, out double A_h__db)
+            => HeightGainTerminalCorrectionModel_Invoke(f__ghz, h__meter, w_s__meter, R__meter, (int)clutter_type, out A_h__db);
 
         /// <summary>
         /// Statistical clutter loss model for terrestrial paths as described in Section 3.2.
