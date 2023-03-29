@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Runtime.InteropServices;
 
-namespace ITS.Propagation
+namespace ITS.ITU.PSeries
 {
     /// <summary>
     /// Recommendation ITU-R P.2108-1
