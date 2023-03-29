@@ -72,6 +72,10 @@
       <Link>HeightGainTerminalCorrectionModelTestData.csv</Link>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <None Include="..\..\TerrestrialStatisticalModelTestData.csv">
+      <Link>TerrestrialStatisticalModelTestData.csv</Link>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>

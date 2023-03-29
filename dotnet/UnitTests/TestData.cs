@@ -10,7 +10,8 @@ namespace UnitTests
 {
     public class TestData
     {
-        static string[] _heigthGainTestData;
+        static readonly string[] _heigthGainTestData;
+        static readonly string[] _terrestrialStatisticalTestData;
 
         public static IEnumerable<object[]> HeightGainTerminalCorrectionModelTestData
         {
@@ -43,10 +44,38 @@ namespace UnitTests
             }
         }
 
+        public static IEnumerable<object[]> TerrestrialStatisticalModelTestData
+        {
+            get
+            {
+                foreach (var line in _terrestrialStatisticalTestData)
+                {
+                    var parts = line.Split(',');
+
+                    // parse data line
+                    double f__ghz = Convert.ToDouble(parts[0]);
+                    double d__km = Convert.ToDouble(parts[1]);
+                    double p = Convert.ToDouble(parts[2]);
+                    int rtn = Convert.ToInt32(parts[3]);
+                    double L_ctt__db = Convert.ToDouble(parts[4]);
+
+                    yield return new object[]
+                    {
+                        f__ghz,
+                        d__km,
+                        p,
+                        rtn,
+                        L_ctt__db
+                    };
+                }
+            }
+        }
+
         static TestData()
         {
             // load test data from file
             _heigthGainTestData = File.ReadAllLines("HeightGainTerminalCorrectionModelTestData.csv").Skip(1).ToArray();
+            _terrestrialStatisticalTestData = File.ReadAllLines("TerrestrialStatisticalModelTestData.csv").Skip(1).ToArray();
         }
     }
 }

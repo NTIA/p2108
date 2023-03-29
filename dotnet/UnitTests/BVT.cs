@@ -24,5 +24,16 @@ namespace UnitTests
             Assert.Equal(rtn, r);
             Assert.Equal(A_h__db, A__db, EPSILON);
         }
+
+        [Theory]
+        [MemberData(nameof(TestData.TerrestrialStatisticalModelTestData), MemberType = typeof(TestData))]
+        public void TerrestrialStatisticalModelTest(double f__ghz,
+            double d__km, double p, int rtn, double L_ctt__db)
+        {
+            var r = P2108.TerrestrialStatisticalModel(f__ghz, d__km, p, out double L__db);
+
+            Assert.Equal(rtn, r);
+            Assert.Equal(L_ctt__db, L__db, EPSILON);
+        }
     }
 }
