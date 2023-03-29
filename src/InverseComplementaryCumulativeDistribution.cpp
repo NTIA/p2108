@@ -24,7 +24,7 @@ double InverseComplementaryCumulativeDistribution(double q)
     double D_3 = 0.001308;
 
     double x = q;
-    if (q > 50)
+    if (q > 0.5)
         x = 1.0 - x;
 
     double T_x = sqrt(-2.0 * log(x));
@@ -33,7 +33,7 @@ double InverseComplementaryCumulativeDistribution(double q)
 
     double Q_q = T_x - zeta_x;
 
-    if (q > 50)
+    if (q > 0.5)
         Q_q = -Q_q;
 
     return Q_q;
