@@ -68,6 +68,10 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <None Include="..\..\AeronauticalStatisticalModelTestData.csv">
+      <Link>AeronauticalStatisticalModelTestData.csv</Link>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Include="..\..\HeightGainTerminalCorrectionModelTestData.csv">
       <Link>HeightGainTerminalCorrectionModelTestData.csv</Link>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
