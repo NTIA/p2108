@@ -77,9 +77,9 @@ namespace ITS.ITU.PSeries
         private delegate int HeightGainTerminalCorrectionModelDelegate(double f__ghz, double h__meter, double w_s__meter, double R__meter, int clutter_type, out double A_h__db);
         private delegate int TerrestrialStatisticalModelDelegate(double f__ghz, double d__km, double p, out double L_ctt__db);
 
-        private static AeronauticalStatisticalModelDelegate AeronauticalStatisticalModel_Invoke;
-        private static HeightGainTerminalCorrectionModelDelegate HeightGainTerminalCorrectionModel_Invoke;
-        private static TerrestrialStatisticalModelDelegate TerrestrialStatisticalModel_Invoke;
+        private static readonly AeronauticalStatisticalModelDelegate AeronauticalStatisticalModel_Invoke;
+        private static readonly HeightGainTerminalCorrectionModelDelegate HeightGainTerminalCorrectionModel_Invoke;
+        private static readonly TerrestrialStatisticalModelDelegate TerrestrialStatisticalModel_Invoke;
 
         static P2108()
         {
