@@ -27,9 +27,9 @@ int HeightGainTerminalCorrectionModel(double f__ghz, double h__meter,
     if (rtn != SUCCESS)
         return rtn;
 
-    double h_dif__meter = R__meter - h__meter;                      // Equation (2d)
-    double theta_clut__deg = atan(h_dif__meter / w_s__meter);       // Equation (2e)
-    double K_h2 = 21.8 + 6.2 * log10(f__ghz);                       // Equation (2f)
+    double h_dif__meter = R__meter - h__meter;                              // Equation (2d)
+    double theta_clut__deg = atan(h_dif__meter / w_s__meter) * 180.0 / PI;  // Equation (2e)
+    double K_h2 = 21.8 + 6.2 * log10(f__ghz);                               // Equation (2f)
 
     switch (clutter_type)
     {
