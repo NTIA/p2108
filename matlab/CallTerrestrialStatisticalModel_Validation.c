@@ -1,8 +1,8 @@
 #include "mex.h"
 
-CallAeronauticalStatisticalModel_Validation(int nrhs, 
-                                            const mxArray *prhs[], 
-                                            const char* fn_name){
+CallTerrestrialStatisticalModel_Validation(int nrhs, 
+    const mxArray *prhs[], const char* fn_name){
+
     char *err_InvalidNumberOfInputs = ":InvalidNumberOfInputs";
 char *err_InvalidInputType = ":InvalidInputType";
 char *base_name = "MATLAB:P2108:";
@@ -11,7 +11,7 @@ char* msg_start = "Value of '";
 char* msg_end = "' must be a number";
 
     char* input_vars[] = {"f__ghz", 
-                            "theta__deg", 
+                            "d__km", 
                             "p"
                            };
 
@@ -27,11 +27,11 @@ char* msg_end = "' must be a number";
         full_id = mxCalloc(strlen(root_str) + strlen(err_InvalidNumberOfInputs), sizeof(char));
         strcat(full_id, root_str);
         strcat(full_id, err_InvalidNumberOfInputs);
-
+ 
         mexErrMsgIdAndTxt(full_id, 
-                          "Function takes 3 inputs.\n"
-                          "AeronauticalStatisticalModel(double f__ghz, "
-                          "double theta__deg, double p, double* L_ces__db)");
+            "Function takes 3 inputs.\n"
+            "TerrestrialStatisticalModel(double f__ghz, double d__km, "
+            "double p, double* L_ctt__db)");
     }
     else
     {

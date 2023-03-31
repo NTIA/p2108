@@ -1,8 +1,8 @@
 #include "mex.h"
 
-CallAeronauticalStatisticalModel_Validation(int nrhs, 
-                                            const mxArray *prhs[], 
-                                            const char* fn_name){
+CallHeightGainTerminalCorrectionModel_Validation(int nrhs, 
+    const mxArray *prhs[], const char* fn_name){
+
     char *err_InvalidNumberOfInputs = ":InvalidNumberOfInputs";
 char *err_InvalidInputType = ":InvalidInputType";
 char *base_name = "MATLAB:P2108:";
@@ -11,8 +11,10 @@ char* msg_start = "Value of '";
 char* msg_end = "' must be a number";
 
     char* input_vars[] = {"f__ghz", 
-                            "theta__deg", 
-                            "p"
+                            "h__meter", 
+                            "w_s__meter",
+                            "R__meter",
+                            "clutter_type"
                            };
 
     char *root_str, *full_id;
@@ -22,16 +24,17 @@ char* msg_end = "' must be a number";
     strcat(root_str, fn_name);
 
     // validate input arguments
-    if (nrhs != 3+1) { // +1 cause first array element is function name
+    if (nrhs != 5+1) { // +1 cause first array element is function name
         // build complete errID
         full_id = mxCalloc(strlen(root_str) + strlen(err_InvalidNumberOfInputs), sizeof(char));
         strcat(full_id, root_str);
         strcat(full_id, err_InvalidNumberOfInputs);
-
+ 
         mexErrMsgIdAndTxt(full_id, 
-                          "Function takes 3 inputs.\n"
-                          "AeronauticalStatisticalModel(double f__ghz, "
-                          "double theta__deg, double p, double* L_ces__db)");
+            "Function takes 5 inputs.\n"
+            "HeightGainTerminalCorrectionModel(double f__ghz, "
+            "double h__meter, double w_s__meter, double R__meter, "
+            "int clutter_type, double *A_h__db)");
     }
     else
     {

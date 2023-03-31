@@ -32,12 +32,12 @@ void mexFunction(int nlhs, mxArray *plhs[],
     if (strcmp("AeronauticalStatisticalModel", input_buf) == 0) {
         CallAeronauticalStatisticalModel(nlhs, plhs, nrhs, prhs);
     }
-    /*else if (strcmp("HeightGainTerminalCorrectionModel", input_buf) == 0) {
+    else if (strcmp("HeightGainTerminalCorrectionModel", input_buf) == 0) {
         CallHeightGainTerminalCorrectionModel(nlhs, plhs, nrhs, prhs);
     }
     else if (strcmp("TerrestrialStatisticalModel", input_buf) == 0) {
         CallTerrestrialStatisticalModel(nlhs, plhs, nrhs, prhs);
-    }*/
+    }
     else if (strcmp("Version", input_buf) == 0 ||
              strcmp("Info", input_buf) == 0) {
         
