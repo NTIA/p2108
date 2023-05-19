@@ -128,7 +128,7 @@ The .NET support of P.2108 consists of a simple pass-through wrapper around the 
 
 ## References ##
 
- * [Recommendation ITU-R P.2108](https://www.itu.int/rec/R-REC-P.2108-0-201706-I/en)
+ * [Recommendation ITU-R P.2108](https://www.itu.int/rec/R-REC-P.2108/en)
  * [Report ITU-R P.2402](https://www.itu.int/pub/R-REP-P.2402)
 
 ## Contact ##
