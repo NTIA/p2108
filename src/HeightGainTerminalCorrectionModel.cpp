@@ -27,9 +27,15 @@ int HeightGainTerminalCorrectionModel(double f__ghz, double h__meter,
     if (rtn != SUCCESS)
         return rtn;
 
-    double h_dif__meter = R__meter - h__meter;                      // Equation (2d)
-    double theta_clut__deg = atan(h_dif__meter / w_s__meter);       // Equation (2e)
-    double K_h2 = 21.8 + 6.2 * log10(f__ghz);                       // Equation (2f)
+    if (h__meter >= R__meter)
+    {
+        *A_h__db = 0;
+        return SUCCESS;
+    }
+
+    double h_dif__meter = R__meter - h__meter;                              // Equation (2d)
+    double theta_clut__deg = atan(h_dif__meter / w_s__meter) * 180.0 / PI;  // Equation (2e)
+    double K_h2 = 21.8 + 6.2 * log10(f__ghz);                               // Equation (2f)
 
     switch (clutter_type)
     {
@@ -78,7 +84,7 @@ int Section3p1_InputValidation(double f__ghz, double h__meter, double w_s__meter
     if (f__ghz < 0.03 || f__ghz > 3)
         return ERROR31__FREQUENCY;
 
-    if (h__meter < 0)
+    if (h__meter <= 0)
         return ERROR31__ANTENNA_HEIGHT;
 
     if (w_s__meter <= 0)

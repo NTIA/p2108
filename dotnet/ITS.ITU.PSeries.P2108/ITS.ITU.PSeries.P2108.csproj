@@ -7,11 +7,12 @@
     <ProjectGuid>{6AA0C335-F019-4818-97B6-7B32BBE190E4}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>ITS.Propagation</RootNamespace>
-    <AssemblyName>ITS.Propagation.P2108</AssemblyName>
-    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <RootNamespace>ITS.ITU.PSeries</RootNamespace>
+    <AssemblyName>ITS.ITU.PSeries.P2108</AssemblyName>
+    <TargetFrameworkVersion>v4.8.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <Deterministic>true</Deterministic>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -29,7 +30,7 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <DocumentationFile>bin\Release\ITS.Propagation.P2108.xml</DocumentationFile>
+    <DocumentationFile>bin\Release\ITS.ITU.PSeries.P2108.xml</DocumentationFile>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />

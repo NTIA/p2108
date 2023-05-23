@@ -1,0 +1,7 @@
+﻿Instructions for running unit tests
+-----------------------------------
+1. Build C++ code in x64 and x86 configuration.
+2. Rename C++ DLLs with corresponding suffix '_x64' or '_x86', accordingly.  These
+   are the DLL names that .NET class is looking for.
+3. Move C++ DLLs to the Debug directory where the UnitTests project is built.
+4. Use Visual Studio Text Explorer to run the tests.
