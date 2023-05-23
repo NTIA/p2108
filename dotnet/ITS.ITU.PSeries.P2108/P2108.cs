@@ -104,7 +104,7 @@ namespace ITS.ITU.PSeries
         /// </summary>
         /// <param name="f__ghz">Frequency, in GHz</param>
         /// <param name="theta__deg">Elevation angle, in degrees</param>
-        /// <param name="p">Percentange of locations, in %</param>
+        /// <param name="p">Percentage of locations, in %</param>
         /// <param name="L_ces__db">Additional loss (clutter loss), in dB</param>
         /// <returns>Error code</returns>
         public static int AeronauticalStatisticalModel(double f__ghz, double theta__deg, double p, out double L_ces__db)
@@ -128,7 +128,7 @@ namespace ITS.ITU.PSeries
         /// </summary>
         /// <param name="f__ghz">Frequency, in GHz</param>
         /// <param name="d__km">Path distance, in km</param>
-        /// <param name="p">Percentange of locations, in %</param>
+        /// <param name="p">Percentage of locations, in %</param>
         /// <param name="L_ctt__db">Additional loss (clutter loss), in dB</param>
         /// <returns>Error code</returns>
         public static int TerrestrialStatisticalModel(double f__ghz, double d__km, double p, out double L_ctt__db)

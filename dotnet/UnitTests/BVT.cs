@@ -33,7 +33,7 @@ namespace UnitTests
         /// Tests for Sec 3.2 Terrestrial Statistical clutter model
         /// </summary><param name="f__ghz">Frequency, in GHz</param>
         /// <param name="d__km">Path distance, in km</param>
-        /// <param name="p">Percentange of locations, in %</param>
+        /// <param name="p">Percentage of locations, in %</param>
         /// <param name="rtn">Return code</param>
         /// <param name="L_ctt__db">Additional loss (clutter loss), in dB</param>
         [Theory]
@@ -52,7 +52,7 @@ namespace UnitTests
         /// </summary>
         /// <param name="f__ghz">Frequency, in GHz</param>
         /// <param name="theta__deg">Elevation angle, in degrees</param>
-        /// <param name="p">Percentange of locations, in %</param>
+        /// <param name="p">Percentage of locations, in %</param>
         /// <param name="rtn">Return code</param>
         /// <param name="L_ces__db">Additional loss (clutter loss), in dB</param>
         [Theory]

@@ -11,7 +11,7 @@
  |
  |        Input:  f__ghz        - Frequency, in GHz
  |                theta__deg    - Elevation angle, in degrees
- |                p             - Percentange of locations, in %
+ |                p             - Percentage of locations, in %
  |
  |       Output:  L_ces__db     - Additional loss (clutter loss), in dB
  |
@@ -45,7 +45,7 @@ int AeronauticalStatisticalModel(double f__ghz, double theta__deg, double p,
  |
  |        Input:  f__ghz        - Frequency, in GHz
  |                theta__deg    - Elevation angle, in degrees
- |                p             - Percentange of locations, in %
+ |                p             - Percentage of locations, in %
  |
  |      Returns:  error code or SUCCESS
  |
