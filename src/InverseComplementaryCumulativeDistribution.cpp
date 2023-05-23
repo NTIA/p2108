@@ -16,7 +16,7 @@
  *===========================================================================*/
 double InverseComplementaryCumulativeDistribution(double q)
 {
-    double C_0 = 2.515516;
+    double C_0 = 2.515517;
     double C_1 = 0.802853;
     double C_2 = 0.010328;
     double D_1 = 1.432788;

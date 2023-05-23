@@ -9,7 +9,7 @@
  |
  |        Input:  f__ghz        - Frequency, in GHz
  |                d__km         - Path distance, in km
- |                p             - Percentange of locations, in %
+ |                p             - Percentage of locations, in %
  |
  |       Output:  L_ctt__db     - Additional loss (clutter loss), in dB
  |
@@ -40,7 +40,7 @@ int TerrestrialStatisticalModel(double f__ghz, double d__km, double p, double* L
  |
  |        Input:  f__ghz        - Frequency, in GHz
  |                d__km         - Path distance, in km
- |                p             - Percentange of locations, in %
+ |                p             - Percentage of locations, in %
  |
  |      Returns:  L_ctt__db     - Clutter loss, in dB
  |
@@ -74,7 +74,7 @@ double TerrestrialStatisticalModelHelper(double f__ghz, double d__km, double p)
  |
  |        Input:  f__ghz        - Frequency, in GHz
  |                d__km         - Path distance, in km
- |                p             - Percentange of locations, in %
+ |                p             - Percentage of locations, in %
  |
  |      Returns:  error code or SUCCESS
  |

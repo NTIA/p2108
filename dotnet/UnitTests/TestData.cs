@@ -8,7 +8,7 @@ namespace UnitTests
 {
     public class TestData
     {
-        static readonly string[] _heigthGainTestData;
+        static readonly string[] _heightGainTestData;
         static readonly string[] _terrestrialStatisticalTestData;
         static readonly string[] _aeronauticalStatisticalTestData;
 
@@ -16,7 +16,7 @@ namespace UnitTests
         {
             get
             {
-                foreach (var line  in _heigthGainTestData)
+                foreach (var line  in _heightGainTestData)
                 {
                     var parts = line.Split(',');
 
@@ -100,7 +100,7 @@ namespace UnitTests
         static TestData()
         {
             // load test data from file
-            _heigthGainTestData = File.ReadAllLines("HeightGainTerminalCorrectionModelTestData.csv").Skip(1).ToArray();
+            _heightGainTestData = File.ReadAllLines("HeightGainTerminalCorrectionModelTestData.csv").Skip(1).ToArray();
             _terrestrialStatisticalTestData = File.ReadAllLines("TerrestrialStatisticalModelTestData.csv").Skip(1).ToArray();
             _aeronauticalStatisticalTestData = File.ReadAllLines("AeronauticalStatisticalModelTestData.csv").Skip(1).ToArray();
         }
