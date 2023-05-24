@@ -1,4 +1,4 @@
-% copy ITM C++ files for building
+% copy C++ files for building
 copyfile ../include/*.h include/
 copyfile ../src/*.cpp src/
 
