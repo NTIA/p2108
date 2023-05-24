@@ -4,9 +4,23 @@
 extern int TerrestrialStatisticalModel(double f__ghz, double d__km, 
     double p, double* L_ctt__db);
 
-void CallTerrestrialStatisticalModel(int nlhs, mxArray *plhs[], int nrhs, 
-    const mxArray *prhs[]) {
-
+/*=========================================================================
+ |
+ |  Description:  Control the calling of the terrestrial statistical 
+ |                clutter model
+ |
+ |        Input:  nrhs      - Number of input arguments
+ |                prhs      - Array of pointers to input arguments
+ |
+ |       Output:  nlhs      - Number of output arguments
+ |                plhs      - Array of pointers to output arguments
+ |
+ |      Returns:  [void]
+ |
+ *=======================================================================*/
+void CallTerrestrialStatisticalModel(int nlhs, mxArray *plhs[], 
+                                     int nrhs, const mxArray *prhs[])
+{
     // validate inputs
     CallTerrestrialStatisticalModel_Validation(
         nrhs, 

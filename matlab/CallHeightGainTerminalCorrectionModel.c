@@ -4,8 +4,23 @@
 extern int HeightGainTerminalCorrectionModel(double f__ghz, double h__meter, 
     double w_s__meter, double R__meter, int clutter_type, double *A_h__db);
 
-void CallHeightGainTerminalCorrectionModel(int nlhs, mxArray *plhs[], int nrhs, 
-                                      const mxArray *prhs[]) {
+/*=========================================================================
+ |
+ |  Description:  Control the calling of the height gain terminal 
+ |                correction clutter model
+ |
+ |        Input:  nrhs      - Number of input arguments
+ |                prhs      - Array of pointers to input arguments
+ |
+ |       Output:  nlhs      - Number of output arguments
+ |                plhs      - Array of pointers to output arguments
+ |
+ |      Returns:  [void]
+ |
+ *=======================================================================*/
+void CallHeightGainTerminalCorrectionModel(int nlhs, mxArray *plhs[], 
+                                           int nrhs, const mxArray *prhs[])
+{
     // validate inputs
     CallHeightGainTerminalCorrectionModel_Validation(
         nrhs, 

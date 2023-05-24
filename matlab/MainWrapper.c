@@ -1,5 +1,18 @@
 #include "mex.h"
 
+/*=========================================================================
+ |
+ |  Description:  Main entry function for MATLAB
+ |
+ |        Input:  nrhs      - Number of input arguments
+ |                prhs      - Array of pointers to input arguments
+ |
+ |       Output:  nlhs      - Number of output arguments
+ |                plhs      - Array of pointers to output arguments
+ |
+ |      Returns:  [void]
+ |
+ *=======================================================================*/
 void mexFunction(int nlhs, mxArray *plhs[],
                  int nrhs, const mxArray *prhs[])
 {
@@ -14,21 +27,22 @@ void mexFunction(int nlhs, mxArray *plhs[],
       mexErrMsgIdAndTxt( "MATLAB:revord:maxlhs",
               "Too many output arguments.");*/
 
-    /* Verify the first input argument is a string and a row vector */
+    // verify the first input argument is a string and a row vector
     if (mxIsChar(prhs[0]) != 1)
-      mexErrMsgIdAndTxt( "MATLAB:P2108:inputNotString", "First input must be function name (string).");
-    if (mxGetM(prhs[0])!=1)
-      mexErrMsgIdAndTxt( "MATLAB:P2108:inputNotVector", "First input must be a row vector.");
+      mexErrMsgIdAndTxt("MATLAB:P2108:InputNotString", "First input must be function name (string).");
+    if (mxGetM(prhs[0]) != 1)
+      mexErrMsgIdAndTxt("MATLAB:P2108:InputNotVector", "First input must be a row vector.");
     
-    /* get the length of the input string */
+    // get the length of the input string
     buflen = (mxGetM(prhs[0]) * mxGetN(prhs[0])) + 1;
 
-    /* allocate memory for output string */
-    output_buf=mxCalloc(buflen, sizeof(char));
+    // allocate memory for output string
+    output_buf = mxCalloc(buflen, sizeof(char));
 
-    /* copy the string data from prhs[0] into a C string input_ buf.    */
+    // copy the string data from prhs[0] into a C string input_buf
     input_buf = mxArrayToString(prhs[0]);
 
+    // decide action being requested by the caller
     if (strcmp("AeronauticalStatisticalModel", input_buf) == 0) {
         CallAeronauticalStatisticalModel(nlhs, plhs, nrhs, prhs);
     }
@@ -46,12 +60,9 @@ void mexFunction(int nlhs, mxArray *plhs[],
         mexPrintf("Version 1.0.0\n");
     }
     else {
-    
-        // TODO: Error: Unknown Function
+        mexErrMsgIdAndTxt("MATLAB:P2108:UnKnownFunction", "Unknown function name.");
     }
 
-    
     mxFree(input_buf);
     return;
 }
-

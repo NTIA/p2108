@@ -4,8 +4,23 @@
 extern int AeronauticalStatisticalModel(double f__ghz, double theta__deg, 
                                         double p, double* L_ces__db);
 
-void CallAeronauticalStatisticalModel(int nlhs, mxArray *plhs[], int nrhs, 
-                                      const mxArray *prhs[]) {
+/*=========================================================================
+ |
+ |  Description:  Control the calling of the areonautical statistical
+ |                clutter model
+ |
+ |        Input:  nrhs      - Number of input arguments
+ |                prhs      - Array of pointers to input arguments
+ |
+ |       Output:  nlhs      - Number of output arguments
+ |                plhs      - Array of pointers to output arguments
+ |
+ |      Returns:  [void]
+ |
+ *=======================================================================*/
+void CallAeronauticalStatisticalModel(int nlhs, mxArray *plhs[], 
+                                      int nrhs, const mxArray *prhs[])
+{
     // validate inputs
     CallAeronauticalStatisticalModel_Validation(
         nrhs, 
