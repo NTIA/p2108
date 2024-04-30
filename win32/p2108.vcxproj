@@ -25,9 +25,9 @@
     <ClCompile Include="..\src\TerrestrialStatisticalModel.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\include\Consts.h" />
-    <ClInclude Include="..\include\Errors.h" />
-    <ClInclude Include="..\include\P2108.h" />
+    <ClInclude Include="..\include\ITS.ITU.PSeries.P2108\Consts.h" />
+    <ClInclude Include="..\include\ITS.ITU.PSeries.P2108\Errors.h" />
+    <ClInclude Include="..\include\ITS.ITU.PSeries.P2108\P2108.h" />
     <ClInclude Include="resource.h" />
   </ItemGroup>
   <ItemGroup>
