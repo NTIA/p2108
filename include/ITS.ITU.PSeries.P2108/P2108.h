@@ -1,8 +1,16 @@
-#include "math.h"
-
+#include <cmath>  // For atan, fmin, log10, pow, sqrt, tan,
 #define DLLEXPORT extern "C" __declspec(dllexport)
 
 #define PI      3.1415926535897932384
+
+// Bring some commonly-used mathematical functions into the global namespace
+// This makes long equations a bit more readable while avoiding total namespace chaos.
+using std::atan;
+using std::fmin;
+using std::log10;
+using std::pow;
+using std::sqrt;
+using std::tan;
 
 ///////////////////////////////////////////////
 // FUNCTIONS
