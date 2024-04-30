@@ -1,3 +1,5 @@
+#ifndef _P2108_ERRORS_
+#define _P2108_ERRORS_
 
 ///////////////////////////////////////////////
 // GENERAL
@@ -30,3 +32,5 @@
 #define ERROR33__FREQUENCY                      3300
 #define ERROR33__THETA                          3301
 #define ERROR33__PERCENTAGE                     3302
+
+#endif

@@ -1,3 +1,5 @@
+#ifndef _P2108_CONSTS_
+#define _P2108_CONSTS_
 
 ///////////////////////////////////////////////
 // CONSTANTS
@@ -19,3 +21,4 @@
 #define DEFAULT_CLUTTER_HEIGHT__TREES_FOREST    15
 #define DEFAULT_CLUTTER_HEIGHT__DENSE_URBAN     20
 
+#endif

@@ -1,3 +1,6 @@
+#ifndef _P2108_
+#define _P2108_
+
 #include <cmath>  // For atan, fmin, log10, pow, sqrt, tan,
 #define DLLEXPORT extern "C" __declspec(dllexport)
 
@@ -34,3 +37,5 @@ int Section3p1_InputValidation(double f__ghz, double h__meter, double w_s__meter
 int Section3p2_InputValidation(double f__ghz, double d__km, double p);
 int Section3p3_InputValidation(double f__ghz, double theta__deg, double p);
 double TerrestrialStatisticalModelHelper(double f__ghz, double d__km, double p);
+
+#endif
