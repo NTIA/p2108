@@ -1,5 +1,5 @@
-#ifndef _P2108_
-#define _P2108_
+#ifndef __ITS_ITU_PSERIES_P2108__
+#define __ITS_ITU_PSERIES_P2108__
 
 #include <cmath>  // For atan, fmin, log10, pow, sqrt, tan,
 #define DLLEXPORT extern "C" __declspec(dllexport)

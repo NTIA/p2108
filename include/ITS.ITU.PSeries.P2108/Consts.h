@@ -1,5 +1,5 @@
-#ifndef _P2108_CONSTS_
-#define _P2108_CONSTS_
+#ifndef __ITS_ITU_PSERIES_P2108_CONSTS__
+#define __ITS_ITU_PSERIES_P2108_CONSTS__
 
 ///////////////////////////////////////////////
 // CONSTANTS

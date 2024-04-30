@@ -1,5 +1,5 @@
-#ifndef _P2108_ERRORS_
-#define _P2108_ERRORS_
+#ifndef __ITS_ITU_PSERIES_P2108_ERRORS__
+#define __ITS_ITU_PSERIES_P2108_ERRORS__
 
 ///////////////////////////////////////////////
 // GENERAL
