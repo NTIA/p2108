@@ -1,5 +1,5 @@
-#include "../include/P2108.h"
-#include "../include/Errors.h"
+#include "../include/ITS.ITU.PSeries.P2108/P2108.h"
+#include "../include/ITS.ITU.PSeries.P2108/Errors.h"
 
 /*=============================================================================
  |
