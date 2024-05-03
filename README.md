@@ -26,7 +26,8 @@ This model can be applied to both transmitting and receiving ends of the path.
 | `R__meter`     | double | meter | 0 < `R__meter`       | Representative clutter height |
 | `clutter_type` | int    |       | enum                 | Clutter type <ul><li>1 = Water/sea</li><li>2 = Open/rural</li><li>3 = Suburban</li><li>4 = Urban</li><li>5 = Trees/forest</li><li>6 = Dense urban</li></ul> |
 
-Where site-specific values for the representative clutter height are not available, the following default values are recommended.
+Where site-specific values for the representative clutter height are not available,
+the following default values are recommended.
 
 | Clutter Type | `R__meter` |
 |--------------|:----------:|
@@ -144,15 +145,15 @@ as a primary reference.
 ### C++ Software ###
 
 The software is designed to be built into a DLL (or corresponding library for
-non-Windows systems).  The source code can be built for any OS that supports the
-standard C++ libraries.  A Visual Studio 2019 project file is provided for Windows
-users to support the build process and configuration.
+non-Windows systems). A CMake build configuration is provided for cross-platform
+builds, which can be carried out nominally by:
 
-### C#/.NET Wrapper Software ###
-
-The .NET support of P.2108 consists of a simple pass-through wrapper around the
-native DLL.  It is compiled to target .NET Framework 4.7.2.  Distribution and
-updates are provided through the published [NuGet package](https://github.com/NTIA/p2108/packages).
+```cmd
+# From the cloned repository
+mkdir build
+cmake -S . -B build
+cmake --build build
+```
 
 ## References ##
 
