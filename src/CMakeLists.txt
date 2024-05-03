@@ -4,7 +4,7 @@ set(LIB_NAME "P2108")
 # Create the library. Include header files so IDEs find them.
 add_library(
     ${LIB_NAME} SHARED
-    "AeroNauticalStatisticalModel.cpp"
+    "AeronauticalStatisticalModel.cpp"
     "HeightGainTerminalCorrectionModel.cpp"
     "InverseComplementaryCumulativeDistribution.cpp"
     "TerrestrialStatisticalModel.cpp"
