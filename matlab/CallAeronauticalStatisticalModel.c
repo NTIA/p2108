@@ -6,7 +6,7 @@ extern int AeronauticalStatisticalModel(double f__ghz, double theta__deg,
 
 /*=========================================================================
  |
- |  Description:  Control the calling of the areonautical statistical
+ |  Description:  Control the calling of the aeronautical statistical
  |                clutter model
  |
  |        Input:  nrhs      - Number of input arguments
