@@ -162,4 +162,4 @@ are provided through the published [NuGet package](https://github.com/NTIA/p2108
 
 ## Contact ##
 
-For questions, contact Billy Kozma, (303) 497-6082, <wkozma@ntia.gov>
+For questions, contact Billy Kozma, <wkozma@ntia.gov>
