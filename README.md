@@ -126,7 +126,7 @@ in [`Errors.h`](include/Errors.h):
 
 ## Example Values ##
 
-The [Study Group Clutter Excel Workbook](https://www.itu.int/en/ITU-R/study-groups/rsg3/ionotropospheric/Clutter%20and%20BEL%20workbook.xlsx)
+The [Study Group Clutter Excel Workbook](https://www.itu.int/en/ITU-R/study-groups/rsg3/ionotropospheric/Clutter%20and%20BEL%20workbook_V2.xlsx)
 contains an extensive set of validation example values.
 
 ## Notes on Code Style ##
