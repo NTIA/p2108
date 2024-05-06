@@ -7,11 +7,11 @@
         }
     ],
 
-    "title": "Recommendation ITU-R P.2108-0, Release 0.0",
+    "title": "Recommendation ITU-R P.2108-1, Release 1.0",
 
     "upload_type": "software",
 
-    "version": "0.0.0",
+    "version": "1.0.0",
 
-    "keywords": ["Study Group 3", "ITU-R", "P2108"]
+    "keywords": ["Study Group 3", "ITU-R", "P2108", "clutter", "propagation"]
 }
