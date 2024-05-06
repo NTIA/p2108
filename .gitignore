@@ -17,6 +17,8 @@ Thumbs.db
 **/bin
 **/Debug/
 **/Release/
+**/dotnet/packages
+**/dotnet/nuget
 *.tlog
 *.obj
 *.log

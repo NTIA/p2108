@@ -1,10 +1,10 @@
 ﻿using System;
 using System.Runtime.InteropServices;
 
-namespace ITS.Propagation
+namespace ITS.ITU.PSeries
 {
     /// <summary>
-    /// Recommendation ITU-R P.2108-0
+    /// Recommendation ITU-R P.2108-1
     /// </summary>
     public static class P2108
     {
@@ -77,9 +77,9 @@ namespace ITS.Propagation
         private delegate int HeightGainTerminalCorrectionModelDelegate(double f__ghz, double h__meter, double w_s__meter, double R__meter, int clutter_type, out double A_h__db);
         private delegate int TerrestrialStatisticalModelDelegate(double f__ghz, double d__km, double p, out double L_ctt__db);
 
-        private static AeronauticalStatisticalModelDelegate AeronauticalStatisticalModel_Invoke;
-        private static HeightGainTerminalCorrectionModelDelegate HeightGainTerminalCorrectionModel_Invoke;
-        private static TerrestrialStatisticalModelDelegate TerrestrialStatisticalModel_Invoke;
+        private static readonly AeronauticalStatisticalModelDelegate AeronauticalStatisticalModel_Invoke;
+        private static readonly HeightGainTerminalCorrectionModelDelegate HeightGainTerminalCorrectionModel_Invoke;
+        private static readonly TerrestrialStatisticalModelDelegate TerrestrialStatisticalModel_Invoke;
 
         static P2108()
         {
@@ -104,7 +104,7 @@ namespace ITS.Propagation
         /// </summary>
         /// <param name="f__ghz">Frequency, in GHz</param>
         /// <param name="theta__deg">Elevation angle, in degrees</param>
-        /// <param name="p">Percentange of locations, in %</param>
+        /// <param name="p">Percentage of locations, in %</param>
         /// <param name="L_ces__db">Additional loss (clutter loss), in dB</param>
         /// <returns>Error code</returns>
         public static int AeronauticalStatisticalModel(double f__ghz, double theta__deg, double p, out double L_ces__db)
@@ -120,15 +120,15 @@ namespace ITS.Propagation
         /// <param name="clutter_type">Clutter type</param>
         /// <param name="A_h__db">Additional loss (clutter loss), in dB</param>
         /// <returns>Error code</returns>
-        public static int HeightGainTerminalCorrectionModel(double f__ghz, double h__meter, double w_s__meter, double R__meter, int clutter_type, out double A_h__db)
-            => HeightGainTerminalCorrectionModel_Invoke(f__ghz, h__meter, w_s__meter, R__meter, clutter_type, out A_h__db);
+        public static int HeightGainTerminalCorrectionModel(double f__ghz, double h__meter, double w_s__meter, double R__meter, ClutterType clutter_type, out double A_h__db)
+            => HeightGainTerminalCorrectionModel_Invoke(f__ghz, h__meter, w_s__meter, R__meter, (int)clutter_type, out A_h__db);
 
         /// <summary>
         /// Statistical clutter loss model for terrestrial paths as described in Section 3.2.
         /// </summary>
         /// <param name="f__ghz">Frequency, in GHz</param>
         /// <param name="d__km">Path distance, in km</param>
-        /// <param name="p">Percentange of locations, in %</param>
+        /// <param name="p">Percentage of locations, in %</param>
         /// <param name="L_ctt__db">Additional loss (clutter loss), in dB</param>
         /// <returns>Error code</returns>
         public static int TerrestrialStatisticalModel(double f__ghz, double d__km, double p, out double L_ctt__db)
