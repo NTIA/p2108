@@ -162,4 +162,4 @@ cmake --build build
 
 ## Contact ##
 
-For questions, contact Billy Kozma, (303) 497-6082, <wkozma@ntia.gov>
+For questions, contact Billy Kozma, <wkozma@ntia.gov>
