@@ -5,13 +5,9 @@
 
 // Define cross-platform EXPORTED
 #ifdef _WIN32
-#   ifdef P2108_EXPORTS
-#       define EXPORTED extern "C" __declspec(dllexport)
-#   else
-#       define EXPORTED extern "C" __declspec(dllimport)
-#   endif
+#   define EXPORTED extern "C" __declspec(dllexport)
 #else
-#   define EXPORTED
+#   define EXPORTED extern "C"
 #endif
 
 #define PI      3.1415926535897932384
