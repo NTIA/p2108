@@ -1,4 +1,4 @@
-# Recommendation ITU-R P.2108-0 - U.S. Reference Implementation #
+# Recommendation ITU-R P.2108-1 - U.S. Reference Implementation #
 
 Persistent Identifier: [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.7114033.svg)](https://doi.org/10.5281/zenodo.7114033)
 
@@ -11,10 +11,10 @@ The software implements Section 3 of Annex 1 of the Recommendation.
 
 ## Height Gain Terminal Correction Model ##
 
-The height gain terminal correction model is described in Section 3.1.  This
-end-point clutter method gives the median loss due to different terminal
-surroundings for terrestrial paths for frequencies between 0.3 to 3 GHz.
-This model can be applied to both transmitting and receiving ends of the path.
+The height gain terminal correction model is described in Section 3.1.
+This end-point clutter method gives the median loss due to different terminal
+surroundings for terrestrial paths for frequencies between 0.3 to 3 GHz. This
+model can be applied to both transmitting and receiving ends of the path.
 
 ### Inputs (Height Gain Terminal Correction Model) ###
 
@@ -24,7 +24,7 @@ This model can be applied to both transmitting and receiving ends of the path.
 | `h__meter`     | double | meter | 0 <= `h__meter`      | Antenna height                |
 | `w_s__meter`   | double | meter | 0 < `w_s__meter`     | Street width                  |
 | `R__meter`     | double | meter | 0 < `R__meter`       | Representative clutter height |
-| `clutter_type` | int    |       | enum                 | Clutter type <ul><li>1 = Water/sea</li><li>2 = Open/rural</li><li>3 = Suburban</li><li>4 = Urban</li><li>5 = Trees/forest</li><li>6 = Dense urban</li></ul> |
+| `clutter_type` | int    |       |                      | Clutter type <ul><li>1 = Water/sea</li><li>2 = Open/rural</li><li>3 = Suburban</li><li>4 = Urban</li><li>5 = Trees/forest</li><li>6 = Dense urban</li></ul> |
 
 Where site-specific values for the representative clutter height are not available,
 the following default values are recommended.
@@ -61,9 +61,9 @@ defined in [`Errors.h`](include/ITS.ITU.PSeries.P2108/Errors.h):
 ## Terrestrial Statistical Model ##
 
 The statistical clutter loss model for terrestrial paths as described in Section
-3.2.  This model is valid for urban and suburban clutter environments.  For paths
-between 0.25 and 1 km, this model can only be applied to one end of the path. For
-paths greater than 1 km, the model can be applied to both terminals, if desired.
+3.2. This model is valid for urban and suburban clutter environments. For paths
+between 0.25 and 1 km, this model can only be applied to one end of the path.
+For paths greater than 1 km, the model can be applied to both terminals, if desired.
 
 ### Inputs (Terrestrial Statistical Model) ###
 
@@ -94,9 +94,9 @@ defined in [`Errors.h`](include/ITS.ITU.PSeries.P2108/Errors.h):
 ## Aeronautical Statistical Model ##
 
 The Earth-space and aeronautical statistical clutter loss model as described in
-Section 3.3.  This model is applicable when one end of the path is within man-made
+Section 3.3. This model is applicable when one end of the path is within man-made
 clutter and the other end is a satellite, aeroplane, or other platform above the
-Earth.  This model is valid for urban and suburban clutter environments.
+Earth. This model is valid for urban and suburban clutter environments.
 
 ### Inputs (Aeronautical Statistical Model) ###
 
@@ -104,7 +104,7 @@ Earth.  This model is valid for urban and suburban clutter environments.
 |--------------|--------|-------|-------------------------|-----------------|
 | `f__ghz`     | double | GHz   | 10 <= `f__ghz` <= 100   | Frequency       |
 | `theta__deg` | double | deg   | 0 <= `theta__deg` <= 90 | Elevation angle |
-| `p`          | double | %     | 0 < `p` < 100           | Percentage of locations clutter loss not exceeded |
+| `p`          | double | %     | 0 < `p` < 100 | Percentage of locations clutter loss not exceeded |
 
 ### Outputs (Aeronautical Statistical Model) ###
 
@@ -114,8 +114,8 @@ Earth.  This model is valid for urban and suburban clutter environments.
 
 ### Return Codes (Aeronautical Statistical Model) ###
 
-Possible return codes, including the corresponding defined constant name as
-defined in [`Errors.h`](include/ITS.ITU.PSeries.P2108/Errors.h):
+Possible return codes, including the corresponding defined constant name as defined
+in [`Errors.h`](include/ITS.ITU.PSeries.P2108/Errors.h):
 
 | Value | Const Name            | Description                                              |
 |-------|-----------------------|----------------------------------------------------------|
@@ -126,17 +126,17 @@ defined in [`Errors.h`](include/ITS.ITU.PSeries.P2108/Errors.h):
 
 ## Example Values ##
 
-The [Study Group Clutter Excel Workbook](https://www.itu.int/en/ITU-R/study-groups/rsg3/ionotropospheric/Clutter%20and%20BEL%20workbook.xlsx)
+The [Study Group Clutter Excel Workbook](https://www.itu.int/en/ITU-R/study-groups/rsg3/ionotropospheric/Clutter%20and%20BEL%20workbook_V2.xlsx)
 contains an extensive set of validation example values.
 
 ## Notes on Code Style ##
 
 * In general, variables follow the naming convention in which a single underscore
 denotes a subscript (pseudo-LaTeX format), where a double underscore is followed
-by the units, i.e. h_1__meter.
+by the units, i.e. `h_1__meter`.
 * Variables are named to match their corresponding mathematical variables in the
 underlying Recommendation text.
-* Wherever possible, equation numbers are provided.  It is assumed that a user
+* Wherever possible, equation numbers are provided. It is assumed that a user
 reviewing this source code would have a copy of the Recommendation's text available
 as a primary reference.
 
@@ -157,7 +157,7 @@ cmake --build build
 
 ## References ##
 
-* [Recommendation ITU-R P.2108](https://www.itu.int/rec/R-REC-P.2108-0-201706-I/en)
+* [Recommendation ITU-R P.2108](https://www.itu.int/rec/R-REC-P.2108/en)
 * [Report ITU-R P.2402](https://www.itu.int/pub/R-REP-P.2402)
 
 ## Contact ##
