@@ -1,4 +1,4 @@
-# Recommendation ITU-R P.2108-0 - U.S. Reference Implementation #
+# Recommendation ITU-R P.2108-1 - U.S. Reference Implementation #
 
 Persistent Identifier: [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.7114033.svg)](https://doi.org/10.5281/zenodo.7114033)
 
@@ -104,7 +104,7 @@ Earth. This model is valid for urban and suburban clutter environments.
 |--------------|--------|-------|-------------------------|-----------------|
 | `f__ghz`     | double | GHz   | 10 <= `f__ghz` <= 100   | Frequency       |
 | `theta__deg` | double | deg   | 0 <= `theta__deg` <= 90 | Elevation angle |
-| `p`               | double | %     | 0 < `p` < 100 | Percentage of locations clutter loss not exceeded |
+| `p`          | double | %     | 0 < `p` < 100 | Percentage of locations clutter loss not exceeded |
 
 ### Outputs (Aeronautical Statistical Model) ###
 
@@ -136,7 +136,7 @@ denotes a subscript (pseudo-LaTeX format), where a double underscore is followed
 by the units, i.e. `h_1__meter`.
 * Variables are named to match their corresponding mathematical variables in the
 underlying Recommendation text.
-* Wherever possible, equation numbers are provided.  It is assumed that a user
+* Wherever possible, equation numbers are provided. It is assumed that a user
 reviewing this source code would have a copy of the Recommendation's text available
 as a primary reference.
 
@@ -152,12 +152,12 @@ users to support the build process and configuration.
 ### C#/.NET Wrapper Software ###
 
 The .NET support of P.2108 consists of a simple pass-through wrapper around the
-native DLL.  It is compiled to target .NET Framework 4.7.2. Distribution and updates
+native DLL. It is compiled to target .NET Framework 4.8.1. Distribution and updates
 are provided through the published [NuGet package](https://github.com/NTIA/p2108/packages).
 
 ## References ##
 
-* [Recommendation ITU-R P.2108](https://www.itu.int/rec/R-REC-P.2108-0-201706-I/en)
+* [Recommendation ITU-R P.2108](https://www.itu.int/rec/R-REC-P.2108/en)
 * [Report ITU-R P.2402](https://www.itu.int/pub/R-REP-P.2402)
 
 ## Contact ##
