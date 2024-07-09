@@ -46,6 +46,3 @@ else ()
         RELEASE_POSTFIX "x64"
     )
 endif ()
-
-# Configuration-dependent compile options
-# TODO
