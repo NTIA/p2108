@@ -3,6 +3,11 @@
 */
 #include "ITS.ITU.PSeries.P2108/P2108.h"
 
+namespace ITS {
+namespace ITU {
+namespace PSeries {
+namespace P2108 {
+
 /*******************************************************************************
  * Statistical clutter loss model for terrestrial paths as described in
  * Section 3.2.
@@ -85,3 +90,5 @@ int Section3p2_InputValidation(double f__ghz, double d__km, double p)
 
     return SUCCESS;
 }
+
+} } } } // End namespace ITS::ITU::PSeries::P2108

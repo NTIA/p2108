@@ -4,6 +4,11 @@
 #include <stdexcept>
 #include "ITS.ITU.PSeries.P2108/P2108.h"
 
+namespace ITS {
+namespace ITU {
+namespace PSeries {
+namespace P2108 {
+
 /*******************************************************************************
  * Compute the inverse complementary cumulative distribution function
  * approximation as described in Recommendation ITU-R P.1057.
@@ -44,3 +49,5 @@ double InverseComplementaryCumulativeDistribution(double q)
 
     return Q_q;
 }
+
+} } } } // End namespace ITS::ITU::PSeries::P2108

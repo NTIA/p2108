@@ -4,6 +4,11 @@
 #ifndef __ITS_ITU_PSERIES_P2108_ERRORS__
 #define __ITS_ITU_PSERIES_P2108_ERRORS__
 
+namespace ITS {
+namespace ITU {
+namespace PSeries {
+namespace P2108 {
+
 ////////////////////////////////////////////////////////////////////////////////
 // General Return Codes
 #define SUCCESS                  0    /**< Successful execution */
@@ -27,5 +32,7 @@
 #define ERROR33__FREQUENCY       3300 /**< Frequency must be between 10 and 100 GHz, inclusive */
 #define ERROR33__THETA           3301 /**< Elevation angle must be between 0 and 100 GHz, inclusive */
 #define ERROR33__PERCENTAGE      3302 /**< Percentage must be between 0 and 100, inclusive */
+
+} } } } // End namespace ITS::ITU::PSeries::P2108
 
 #endif

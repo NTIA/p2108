@@ -3,6 +3,11 @@
 */
 #include "ITS.ITU.PSeries.P2108/P2108.h"
 
+namespace ITS {
+namespace ITU {
+namespace PSeries {
+namespace P2108 {
+
 /*******************************************************************************
  * The Earth-space and aeronautical statistical clutter loss model as described
  * in Section 3.3.
@@ -83,3 +88,5 @@ double cot(double x)
 {
     return 1 / tan(x);
 }
+
+} } } } // End namespace ITS::ITU::PSeries::P2108

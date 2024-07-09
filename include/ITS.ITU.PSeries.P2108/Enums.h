@@ -4,6 +4,11 @@
 #ifndef __ITS_ITU_PSERIES_P2108_ENUMS__
 #define __ITS_ITU_PSERIES_P2108_ENUMS__
 
+namespace ITS {
+namespace ITU {
+namespace PSeries {
+namespace P2108 {
+
 /** Clutter type enum, based on Table 3 in Section 3.1 */
 enum class ClutterType {
     WATER_SEA = 1,     /**< Water/sea clutter type */
@@ -29,5 +34,7 @@ enum class RepresentativeClutterHeight {
     TREES_FOREST = 15,  /**< @f$ R @f$ for the trees/forest clutter type */
     DENSE_URBAN = 20,   /**< @f$ R @f$ for the dense urban clutter type */
 };
+
+} } } } // End namespace ITS::ITU::PSeries::P2108
 
 #endif

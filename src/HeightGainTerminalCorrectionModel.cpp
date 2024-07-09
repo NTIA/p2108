@@ -3,6 +3,11 @@
 */
 #include "ITS.ITU.PSeries.P2108/P2108.h"
 
+namespace ITS {
+namespace ITU {
+namespace PSeries {
+namespace P2108 {
+
 /*******************************************************************************
  * Height gain terminal correction model as described in Section 3.1.
  * 
@@ -123,3 +128,5 @@ double Equation_2b(double K_h2, double h__meter, double R__meter)
 
     return A_h__db;
 }
+
+} } } } // End namespace ITS::ITU::PSeries::P2108

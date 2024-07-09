@@ -8,6 +8,11 @@
 #include "Enums.h"
 #include "Errors.h"
 
+namespace ITS {
+namespace ITU {
+namespace PSeries {
+namespace P2108 {
+
 // Define cross-platform EXPORTED
 #ifndef DOXYGEN_SHOULD_SKIP
 #   ifdef _WIN32
@@ -50,4 +55,7 @@ int Section3p1_InputValidation(double f__ghz, double h__meter, double w_s__meter
 int Section3p2_InputValidation(double f__ghz, double d__km, double p);
 int Section3p3_InputValidation(double f__ghz, double theta__deg, double p);
 double TerrestrialStatisticalModelHelper(double f__ghz, double d__km, double p);
+
+} } } } // End namespace ITS::ITU::PSeries::P2108
+
 #endif
