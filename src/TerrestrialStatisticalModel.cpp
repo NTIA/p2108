@@ -1,21 +1,20 @@
-#include "../include/P2108.h"
-#include "../include/Errors.h"
+/** @file TerrestrialStatisticalModel.cpp
+ * Implements the model from ITU-R P.2108 Section 3.2.
+*/
+#include "ITS.ITU.PSeries.P2108/P2108.h"
 
-/*=============================================================================
- |
- |  Description:  Statistical clutter loss model for terrestrial paths as
- |                described in Section 3.2.  This model can be applied
- |                for urban and suburban clutter loss modelling.
- |
- |        Input:  f__ghz        - Frequency, in GHz
- |                d__km         - Path distance, in km
- |                p             - Percentage of locations, in %
- |
- |       Output:  L_ctt__db     - Additional loss (clutter loss), in dB
- |
- |      Returns:  error         - Error code
- |
- *===========================================================================*/
+/*******************************************************************************
+ * Statistical clutter loss model for terrestrial paths as described in
+ * Section 3.2.
+ * 
+ * This model can be applied for urban and suburban clutter loss modelling.
+ * 
+ * @param[in]  f__ghz     Frequency, in GHz
+ * @param[in]  d__km      Path distance, in km
+ * @param[in]  p          Percentage of locations, in %
+ * @param[out] L_ctt__db  Additional loss (clutter loss), in dB
+ * @return                Return code
+ ******************************************************************************/
 int TerrestrialStatisticalModel(double f__ghz, double d__km, double p, double* L_ctt__db)
 {
     int rtn = Section3p2_InputValidation(f__ghz, d__km, p);
@@ -34,17 +33,14 @@ int TerrestrialStatisticalModel(double f__ghz, double d__km, double p, double* L
     return SUCCESS;
 }
 
-/*=============================================================================
- |
- |  Description:  Compute the clutter loss
- |
- |        Input:  f__ghz        - Frequency, in GHz
- |                d__km         - Path distance, in km
- |                p             - Percentage of locations, in %
- |
- |      Returns:  L_ctt__db     - Clutter loss, in dB
- |
- *===========================================================================*/
+/*******************************************************************************
+ * Compute the clutter loss
+ * 
+ * @param[in] f__ghz  Frequency, in GHz
+ * @param[in] d__km   Path distance, in km
+ * @param[in] p       Percentage of locations, in %
+ * @return            Clutter loss, in dB
+ ******************************************************************************/
 double TerrestrialStatisticalModelHelper(double f__ghz, double d__km, double p)
 {
     // Equations 4a and 4b
@@ -67,18 +63,15 @@ double TerrestrialStatisticalModelHelper(double f__ghz, double d__km, double p)
     return L_ctt__db;
 }
 
-/*=============================================================================
- |
- |  Description:  Input validation for the statistical clutter loss model
- |                for terrestrial paths (Section 3.2).
- |
- |        Input:  f__ghz        - Frequency, in GHz
- |                d__km         - Path distance, in km
- |                p             - Percentage of locations, in %
- |
- |      Returns:  error code or SUCCESS
- |
- *===========================================================================*/
+/*******************************************************************************
+ * Input validation for the statistical clutter loss model for terrestrial paths
+ * (Section 3.2).
+ * 
+ * @param[in] f__ghz  Frequency, in GHz
+ * @param[in] d__km   Path distance, in km
+ * @param[in] p       Percentage of locations, in %
+ * @return            Return code
+ ******************************************************************************/
 int Section3p2_InputValidation(double f__ghz, double d__km, double p)
 {
     if (f__ghz < 0.5 || f__ghz > 67)

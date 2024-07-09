@@ -1,27 +1,25 @@
-#include "../include/P2108.h"
-#include "../include/Errors.h"
-#include "../include/Consts.h"
+/** @file HeightGainTerminalCorrectionModel.cpp
+ * Implements the model from ITU-R P.2108 Section 3.1.
+*/
+#include "ITS.ITU.PSeries.P2108/P2108.h"
 
-/*=============================================================================
- |
- |  Description:  Height gain terminal correction model as described in
- |                Section 3.1.  This method gives the median loss due to 
- |                different terminal surroundings.  This model can be
- |                applied to both transmitting and receiving ends of the path.
- |
- |        Input:  f__ghz        - Frequency, in GHz
- |                h__meter      - Antenna height, in meters
- |                w_s__meter    - Street width, in meters
- |                R__meter      - Representative clutter height, in meters
- |                clutter_type  - Clutter type
- |
- |       Output:  A_h__db       - Additional loss (clutter loss), in dB
- |
- |      Returns:  error         - Error code
- |
- *===========================================================================*/
+/*******************************************************************************
+ * Height gain terminal correction model as described in Section 3.1.
+ * 
+ * This method gives the median loss due to different terminal surroundings.
+ * This model can be applied to both transmitting and receiving ends of the
+ * path.
+ *
+ * @param[in]  f__ghz        Frequency, in GHz
+ * @param[in]  h__meter      Antenna height, in meters
+ * @param[in]  w_s__meter    Street width, in meters
+ * @param[in]  R__meter      Representative clutter height, in meters
+ * @param[in]  clutter_type  Clutter type
+ * @param[out] A_h__db       Additional loss (clutter loss), in dB
+ * @return                   Return code
+ ******************************************************************************/
 int HeightGainTerminalCorrectionModel(double f__ghz, double h__meter, 
-    double w_s__meter, double R__meter, int clutter_type, double *A_h__db)
+    double w_s__meter, double R__meter, ClutterType clutter_type, double *A_h__db)
 {
     int rtn = Section3p1_InputValidation(f__ghz, h__meter, w_s__meter, R__meter);
     if (rtn != SUCCESS)
@@ -39,15 +37,15 @@ int HeightGainTerminalCorrectionModel(double f__ghz, double h__meter,
 
     switch (clutter_type)
     {
-    case CLUTTER_TYPE__WATER_SEA:
-    case CLUTTER_TYPE__OPEN_RURAL:
+    case ClutterType::WATER_SEA:
+    case ClutterType::OPEN_RURAL:
         *A_h__db = Equation_2b(K_h2, h__meter, R__meter);
         break;
         
-    case CLUTTER_TYPE__SUBURBAN:
-    case CLUTTER_TYPE__URBAN:
-    case CLUTTER_TYPE__TREES_FOREST:
-    case CLUTTER_TYPE__DENSE_URBAN:
+    case ClutterType::SUBURBAN:
+    case ClutterType::URBAN:
+    case ClutterType::TREES_FOREST:
+    case ClutterType::DENSE_URBAN:
     {
         double K_nu = 0.342 * sqrt(f__ghz);                         // Equation (2g)
         double nu = K_nu * sqrt(h_dif__meter * theta_clut__deg);    // Equation (2c)
@@ -62,22 +60,18 @@ int HeightGainTerminalCorrectionModel(double f__ghz, double h__meter,
     return SUCCESS;
 }
 
-/*=============================================================================
- |
- |  Description:  Input validation for the height gain terminal correction
- |                model (Section 3.1).
- |                Note: Input parameter 'clutter_type' is validated in
- |                the main function's switch statement through the use
- |                of default to simplify code structure.
- |
- |        Input:  f__ghz        - Frequency, in GHz
- |                h__meter      - Antenna height, in meters
- |                w_s__meter    - Street width, in meters
- |                R__meter      - Representative clutter height, in meters
- |
- |      Returns:  error code or SUCCESS
- |
- *===========================================================================*/
+/*******************************************************************************
+ * Input validation for the height gain terminal correction model (Section 3.1).
+ * 
+ * Note: Input parameter 'clutter_type' is validated in the main function's
+ * switch statement through the use of default to simplify code structure.
+ *
+ * @param[in] f__ghz      Frequency, in GHz
+ * @param[in] h__meter    Antenna height, in meters
+ * @param[in] w_s__meter  Street width, in meters
+ * @param[in] R__meter    Representative clutter height, in meters
+ * @return                Return code
+ ******************************************************************************/
 int Section3p1_InputValidation(double f__ghz, double h__meter, double w_s__meter, 
     double R__meter)
 {
@@ -96,15 +90,12 @@ int Section3p1_InputValidation(double f__ghz, double h__meter, double w_s__meter
     return SUCCESS;
 }
 
-/*=============================================================================
- |
- |  Description:  Equation (2a) of Section 3.1
- |
- |        Input:  nu            - Dimensionless diffraction parameter
- |
- |      Returns:  A_h__db       - Additional loss (clutter loss), in dB
- |
- *===========================================================================*/
+/*******************************************************************************
+ * Equation (2a) of Section 3.1
+ *
+ * @param[in] nu  Dimensionless diffraction parameter
+ * @return        Additional loss (clutter loss), in dB
+ ******************************************************************************/
 double Equation_2a(double nu)
 {
     double J_nu__db;
@@ -118,17 +109,14 @@ double Equation_2a(double nu)
     return A_h__db;
 }
 
-/*=============================================================================
- |
- |  Description:  Equation (2b) of Section 3.1
- |
- |        Input:  K_h2          - Intermediate parameter
- |                h__meter      - Antenna height, in meters
- |                R__meter      - Representative clutter height, in meters
- |
- |      Returns:  A_h__db       - Additional loss (clutter loss), in dB
- |
- *===========================================================================*/
+/*******************************************************************************
+ * Equation (2b) of Section 3.1
+ *
+ * @param[in] K_h2      Intermediate parameter
+ * @param[in] h__meter  Antenna height, in meters
+ * @param[in] R__meter  Representative clutter height, in meters
+ * @return              Additional loss (clutter loss), in dB
+ ******************************************************************************/
 double Equation_2b(double K_h2, double h__meter, double R__meter)
 {
     double A_h__db = -K_h2 * log10(h__meter / R__meter);
