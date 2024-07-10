@@ -1,6 +1,6 @@
 /** @file TerrestrialStatisticalModel.cpp
  * Implements the model from ITU-R P.2108 Section 3.2.
-*/
+ */
 #include "ITS.ITU.PSeries.P2108/P2108.h"
 
 namespace ITS {
@@ -11,17 +11,18 @@ namespace P2108 {
 /*******************************************************************************
  * Statistical clutter loss model for terrestrial paths as described in
  * Section 3.2.
- * 
+ *
  * This model can be applied for urban and suburban clutter loss modelling.
- * 
+ *
  * @param[in]  f__ghz     Frequency, in GHz
  * @param[in]  d__km      Path distance, in km
  * @param[in]  p          Percentage of locations, in %
  * @param[out] L_ctt__db  Additional loss (clutter loss), in dB
  * @return                Return code
  ******************************************************************************/
-int TerrestrialStatisticalModel(double f__ghz, double d__km, double p, double* L_ctt__db)
-{
+int TerrestrialStatisticalModel(
+    double f__ghz, double d__km, double p, double *L_ctt__db
+) {
     int rtn = Section3p2_InputValidation(f__ghz, d__km, p);
     if (rtn != SUCCESS)
         return rtn;
@@ -40,29 +41,32 @@ int TerrestrialStatisticalModel(double f__ghz, double d__km, double p, double* L
 
 /*******************************************************************************
  * Compute the clutter loss
- * 
+ *
  * @param[in] f__ghz  Frequency, in GHz
  * @param[in] d__km   Path distance, in km
  * @param[in] p       Percentage of locations, in %
  * @return            Clutter loss, in dB
  ******************************************************************************/
-double TerrestrialStatisticalModelHelper(double f__ghz, double d__km, double p)
-{
+double
+    TerrestrialStatisticalModelHelper(double f__ghz, double d__km, double p) {
     // Equations 4a and 4b
     double sigma_l__db = 4;
-    double L_l__db = -2 * log10(pow(10, -5 * log10(f__ghz) - 12.5) + pow(10, -16.5));
+    double L_l__db
+        = -2 * log10(pow(10, -5 * log10(f__ghz) - 12.5) + pow(10, -16.5));
 
     // Equations 5a and 5b
     double sigma_s__db = 6;
     double L_s__db = 32.98 + 23.9 * log10(d__km) + 3 * log10(f__ghz);
 
     // Equation 3b
-    double numerator = pow(sigma_l__db, 2) * pow(10, -0.2 * L_l__db) + pow(sigma_s__db, 2) * pow(10, -0.2 * L_s__db);
+    double numerator = pow(sigma_l__db, 2) * pow(10, -0.2 * L_l__db)
+                     + pow(sigma_s__db, 2) * pow(10, -0.2 * L_s__db);
     double denominator = pow(10, -0.2 * L_l__db) + pow(10, -0.2 * L_s__db);
     double sigma_cb__db = sqrt(numerator / denominator);
 
     // Equation 3a
-    double L_ctt__db = -5 * log10(pow(10, -0.2 * L_l__db) + pow(10, -0.2 * L_s__db))
+    double L_ctt__db
+        = -5 * log10(pow(10, -0.2 * L_l__db) + pow(10, -0.2 * L_s__db))
         - sigma_cb__db * InverseComplementaryCumulativeDistribution(p / 100);
 
     return L_ctt__db;
@@ -71,14 +75,13 @@ double TerrestrialStatisticalModelHelper(double f__ghz, double d__km, double p)
 /*******************************************************************************
  * Input validation for the statistical clutter loss model for terrestrial paths
  * (Section 3.2).
- * 
+ *
  * @param[in] f__ghz  Frequency, in GHz
  * @param[in] d__km   Path distance, in km
  * @param[in] p       Percentage of locations, in %
  * @return            Return code
  ******************************************************************************/
-int Section3p2_InputValidation(double f__ghz, double d__km, double p)
-{
+int Section3p2_InputValidation(double f__ghz, double d__km, double p) {
     if (f__ghz < 0.5 || f__ghz > 67)
         return ERROR32__FREQUENCY;
 
@@ -91,4 +94,7 @@ int Section3p2_InputValidation(double f__ghz, double d__km, double p)
     return SUCCESS;
 }
 
-} } } } // End namespace ITS::ITU::PSeries::P2108
+}  // namespace P2108
+}  // namespace PSeries
+}  // namespace ITU
+}  // namespace ITS

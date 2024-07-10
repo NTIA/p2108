@@ -4,8 +4,8 @@
 #include "ITS.ITU.PSeries.P2108/P2108.h"
 
 #include <gtest/gtest.h>
-#include <vector>
 #include <string>
+#include <vector>
 
 using namespace ITS::ITU::PSeries::P2108;
 
@@ -38,10 +38,13 @@ struct TerrestrialStatisticalModelTestData {
     double L_ctt__db;
 };
 
-std::vector<AeronauticalStatisticalModelTestData> readAeronauticalStatisticalModelTestData(const std::string& filename);
+std::vector<AeronauticalStatisticalModelTestData>
+    readAeronauticalStatisticalModelTestData(const std::string &filename);
 
-std::vector<HeightGainTerminalCorrectionModelTestData> readHeightGainTerminalCorrectionModelTestData(const std::string& filename);
+std::vector<HeightGainTerminalCorrectionModelTestData>
+    readHeightGainTerminalCorrectionModelTestData(const std::string &filename);
 
-std::vector<TerrestrialStatisticalModelTestData> readTerrestrialStatisticalModelTestData(const std::string &filename);
+std::vector<TerrestrialStatisticalModelTestData>
+    readTerrestrialStatisticalModelTestData(const std::string &filename);
 
 #endif
