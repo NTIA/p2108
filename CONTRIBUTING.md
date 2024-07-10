@@ -91,6 +91,9 @@ underlying text, when applicable.
 - Wherever possible, equation numbers are provided. It is assumed that a user
 reviewing this source code would have a copy of the relevant text available
 as a primary reference.
+- A `.clang-format` file is included in the root of this repository. Most IDEs
+support this type of file, which can be used to apply uniform code styling to
+C++ source and header files.
 
 ## Project Structure and CMake
 
