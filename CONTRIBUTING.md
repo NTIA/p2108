@@ -210,8 +210,58 @@ double doubleTheInput(double x)
 
 ### Python Wrappers
 
-The Python wrapper code is documented in the [Sphinx](https://sphinx-rtd-tutorial.readthedocs.io/en/latest/docstrings.html) format.
+The Python wrapper code is documented in the [Sphinx](https://sphinx-rtd-tutorial.readthedocs.io/en/latest/docstrings.html)
+format. It is recommended to include docstrings for all primary functions, classes,
+or structures provided by the Python wrapper. Further, function signatures should
+include [type annotation](https://docs.python.org/3/library/typing.html) for inputs
+and returned values. Inline or other comments should be included to explain other
+variables or functionalities of the code. Below is an example showing the recommended
+documentation format.
+
+```python
+
+CONSTANT_EXPOSED_BY_MODULE = 42  # A brief comment could explain what this is
+
+def double_the_input(x: float) -> float:
+  """This is a brief description of the function.
+
+  This is an optional, longer description of the function.
+  It can span multiple lines.
+
+  :param x: The input value, and its expected units.
+  :return: The result y = 2*x
+  """
+  return 2 * x
+```
 
 ### C#/.NET Wrappers
 
-### MATLAB Wrappers
+In C#/.NET, documentation comments are written in XML format and are used to
+generate documentation through tools like Visual Studio. Use `<summary>` tags to
+provide brief descriptions of classes, constants, functions, etc. Functions should
+include `<param>` and `<returns>` elements for all inputs and outputs. An example
+of this documentation style is shown below.
+
+```csharp
+/// <summary>
+/// Represents a class that contains constants and methods related to calculations.
+/// </summary>
+public class CalculationUtils
+{
+    /// <summary>
+    /// A constant value exposed by the module.
+    /// </summary>
+    public const int CONSTANT_EXPOSED_BY_MODULE = 42;
+
+    /// <summary>
+    /// Doubles the input value.
+    /// </summary>
+    /// <param name="x">The input value to be doubled.</param>
+    /// <returns>The doubled value of the input.</returns>
+    public double DoubleTheInput(double x)
+    {
+        // Brief comment explaining what this function does.
+        return 2 * x;
+    }
+}
+```
