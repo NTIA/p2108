@@ -12,7 +12,12 @@ namespace P2108 {
  * Statistical clutter loss model for terrestrial paths as described in
  * Section 3.2.
  *
- * This model can be applied for urban and suburban clutter loss modelling.
+ * This model can be applied for urban and suburban clutter loss modeling.
+ * 
+ * Frequency range: @f$ 0.5 \leq f \leq 67 @f$ (GHz)\n
+ * Path distance range: @f$ 0.25 \leq d @f$ (km) (must be @f$ \geq 1 @f$ to apply
+ * the correction at both ends of the path)\n
+ * Percentage locations range: @f$0 < p < 100 @f$ (%)
  *
  * @param[in]  f__ghz     Frequency, in GHz
  * @param[in]  d__km      Path distance, in km

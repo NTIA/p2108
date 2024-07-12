@@ -14,6 +14,11 @@ namespace P2108 {
  * This method gives the median loss due to different terminal surroundings.
  * This model can be applied to both transmitting and receiving ends of the
  * path.
+ * 
+ * Frequency range: @f$ 0.03 \leq f \leq 3 @f$ (GHz)\n
+ * Antenna height range: @f$ 0 \leq h @f$ (m)\n
+ * Street width range: @f$ 0 < w_s @f$ (m)\n
+ * Representative clutter height range: @f$ 0 < R @f$ (m)
  *
  * @param[in]  f__ghz        Frequency, in GHz
  * @param[in]  h__meter      Antenna height, in meters
