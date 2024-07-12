@@ -91,9 +91,13 @@ underlying text, when applicable.
 - Wherever possible, equation numbers are provided. It is assumed that a user
 reviewing this source code would have a copy of the relevant text available
 as a primary reference.
-- A `.clang-format` file is included in the root of this repository. Most IDEs
-support this type of file, which can be used to apply uniform code styling to
-C++ source and header files.
+- _For base/C++ repositories_, a `.clang-format` file is included in the root directory.
+Most IDEs support this type of file, which can and should be used to apply uniform
+code styling to C++ source and header files.
+- _For Python wrapper repositories_, a `.pre-commit-config.yaml` file is included
+in the root directory. This file implements multiple hooks for the [pre-commit](https://pre-commit.com/)
+tool, which apply automated formatting to files when they are commited to Git.
+It is recommended to use this tool to autoformat Python code when checked in.
 
 ## Project Structure and CMake
 
@@ -176,11 +180,7 @@ pull request!
 
 ## Documenting Code
 
-**Note:** the following section refers to C++ "base" PropLib libraries _only_. For
-other languages, it is recommended to follow best and common practices for documenting
-code in that particular language. It is further recommended that checked-in code
-meets the same general documentation requirements outlined below, even if there
-is no automated documentation check which must pass before code can be checked in.
+### C++ Base Libraries
 
 The C++ source code is documented with Doxygen. A GitHub Action is configured to
 build and deploy the documentation using GitHub Pages. This action will ensure
@@ -207,3 +207,11 @@ double doubleTheInput(double x)
     return 2 * x;
 }
 ```
+
+### Python Wrappers
+
+The Python wrapper code is documented in the [Sphinx](https://sphinx-rtd-tutorial.readthedocs.io/en/latest/docstrings.html) format.
+
+### C#/.NET Wrappers
+
+### MATLAB Wrappers
