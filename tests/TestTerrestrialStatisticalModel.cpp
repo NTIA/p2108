@@ -22,7 +22,7 @@ TEST_F(TerrestrialStatisticalModelTest, TestTerrestrialStatisticalModel) {
     int rtn;
     for (const auto &data : testData) {
         rtn = TerrestrialStatisticalModel(
-            data.f__ghz, data.d__km, data.p, &L_ctt__db
+            data.f__ghz, data.d__km, data.p, L_ctt__db
         );
         EXPECT_EQ(rtn, data.rtn);
         if (rtn == SUCCESS) {

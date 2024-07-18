@@ -1,5 +1,5 @@
 # NTIA/ITS C++ Clang-Format Style Options
-# Updated 7/10/2024
+# Updated 7/16/2024
 ---
 AccessModifierOffset: -4
 AlignAfterOpenBracket: BlockIndent
@@ -75,7 +75,7 @@ ObjCBreakBeforeNestedBlockParam: true
 ObjCSpaceAfterProperty: true
 ObjCSpaceBeforeProtocolList: true
 PointerAlignment: Right
-ReflowComments: true
+ReflowComments: false
 SortIncludes: true
 SortUsingDeclarations: true
 SpaceAfterCStyleCast: false

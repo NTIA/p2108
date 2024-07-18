@@ -37,11 +37,6 @@ option(BUILD_32BIT "Build project for x86/32-bit instead of x64/64-bit" OFF)
 set(CMAKE_CXX_STANDARD 11)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
-# If not specified, fall back to Debug build type
-if (NOT CMAKE_BUILD_TYPE)
-    set(CMAKE_BUILD_TYPE "Debug")
-endif ()
-
 ##########################################
 ## BUILD/RUN
 ##########################################

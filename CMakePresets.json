@@ -10,11 +10,8 @@
             "name": "proplib-config-base",
             "hidden": true,
             "description": "Base configuration preset for ITS PropLib libraries",
-            "binaryDir": "${sourceDir}/bin/${presetName}",
+            "binaryDir": "${sourceDir}/build/${presetName}",
             "cacheVariables": {
-                "CMAKE_ARCHIVE_OUTPUT_DIRECTORY": "${sourceDir}/bin",
-                "CMAKE_LIBRARY_OUTPUT_DIRECTORY": "${sourceDir}/bin",
-                "CMAKE_RUNTIME_OUTPUT_DIRECTORY": "${sourceDir}/bin",
                 "CMAKE_BUILD_RPATH_USE_ORIGIN": "ON",
                 "DOCS_ONLY": "OFF",
                 "BUILD_32BIT": "OFF",
@@ -93,6 +90,7 @@
             "name": "proplib-build-release-base",
             "hidden": true,
             "inherits": "proplib-build-base",
+            "configuration": "Release",
             "description": "Base 'Release' build preset for ITS PropLib libraries",
             "cleanFirst": true
         },
@@ -100,6 +98,7 @@
             "name": "proplib-build-debug-base",
             "hidden": true,
             "inherits": "proplib-build-base",
+            "configuration": "Debug",
             "description": "Base 'Debug' build preset for ITS PropLib libraries",
             "verbose": true
         },
