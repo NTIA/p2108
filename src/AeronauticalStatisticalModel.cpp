@@ -30,7 +30,7 @@ int AeronauticalStatisticalModel(
     const double f__ghz,
     const double theta__deg,
     const double p,
-    double *L_ces__db
+    double &L_ces__db
 ) {
     int rtn = Section3p3_InputValidation(f__ghz, theta__deg, p);
     if (rtn != SUCCESS)
@@ -46,7 +46,7 @@ int AeronauticalStatisticalModel(
     const double part4
         = 0.6 * InverseComplementaryCumulativeDistribution(p / 100);
 
-    *L_ces__db = pow(-K_1 * part1 * cot(part2), part3) - 1 - part4;
+    L_ces__db = pow(-K_1 * part1 * cot(part2), part3) - 1 - part4;
 
     return SUCCESS;
 }

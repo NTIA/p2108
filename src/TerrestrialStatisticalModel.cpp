@@ -26,7 +26,7 @@ namespace P2108 {
  * @return                Return code
  ******************************************************************************/
 int TerrestrialStatisticalModel(
-    const double f__ghz, const double d__km, const double p, double *L_ctt__db
+    const double f__ghz, const double d__km, const double p, double &L_ctt__db
 ) {
     int rtn = Section3p2_InputValidation(f__ghz, d__km, p);
     if (rtn != SUCCESS)
@@ -41,7 +41,7 @@ int TerrestrialStatisticalModel(
         = TerrestrialStatisticalModelHelper(f__ghz, d__km, p);
 
     // "clutter loss must not exceed a maximum value given by [Equation 6]"
-    *L_ctt__db = fmin(L_ctt_2km__db, L_ctt_d__db);
+    L_ctt__db = fmin(L_ctt_2km__db, L_ctt_d__db);
 
     return SUCCESS;
 }

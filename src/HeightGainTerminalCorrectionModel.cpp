@@ -34,7 +34,7 @@ int HeightGainTerminalCorrectionModel(
     const double w_s__meter,
     const double R__meter,
     const ClutterType clutter_type,
-    double *A_h__db
+    double &A_h__db
 ) {
     int rtn
         = Section3p1_InputValidation(f__ghz, h__meter, w_s__meter, R__meter);
@@ -42,7 +42,7 @@ int HeightGainTerminalCorrectionModel(
         return rtn;
 
     if (h__meter >= R__meter) {
-        *A_h__db = 0;
+        A_h__db = 0;
         return SUCCESS;
     }
 
@@ -54,7 +54,7 @@ int HeightGainTerminalCorrectionModel(
     switch (clutter_type) {
         case ClutterType::WATER_SEA:
         case ClutterType::OPEN_RURAL:
-            *A_h__db = Equation_2b(K_h2, h__meter, R__meter);
+            A_h__db = Equation_2b(K_h2, h__meter, R__meter);
             break;
 
         case ClutterType::SUBURBAN:
@@ -67,7 +67,7 @@ int HeightGainTerminalCorrectionModel(
                     = K_nu
                     * sqrt(h_dif__meter * theta_clut__deg);  // Equation (2c)
 
-                *A_h__db = Equation_2a(nu);
+                A_h__db = Equation_2a(nu);
                 break;
             }
         default:

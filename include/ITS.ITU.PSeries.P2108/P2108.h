@@ -43,10 +43,10 @@ EXPORTED int AeronauticalStatisticalModel(
     const double f__ghz,
     const double theta__deg,
     const double p,
-    double *L_ces__db
+    double &L_ces__db
 );
 EXPORTED int TerrestrialStatisticalModel(
-    const double f__ghz, const double d__km, const double p, double *L_ctt__db
+    const double f__ghz, const double d__km, const double p, double &L_ctt__db
 );
 EXPORTED int HeightGainTerminalCorrectionModel(
     const double f__ghz,
@@ -54,7 +54,7 @@ EXPORTED int HeightGainTerminalCorrectionModel(
     const double w_s__meter,
     const double R__meter,
     const ClutterType clutter_type,
-    double *A_h__db
+    double &A_h__db
 );
 
 ////////////////////////////////////////////////////////////////////////////////

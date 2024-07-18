@@ -31,7 +31,7 @@ TEST_F(
             data.w_s__meter,
             data.R__meter,
             data.clutter_type,
-            &A_h__db
+            A_h__db
         );
         EXPECT_EQ(rtn, data.rtn);
         if (rtn == SUCCESS) {

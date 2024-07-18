@@ -22,7 +22,7 @@ TEST_F(AeronauticalStatisticalModelTest, TestAeronauticalStatisticalModel) {
     int rtn;
     for (const auto &data : testData) {
         rtn = AeronauticalStatisticalModel(
-            data.f__ghz, data.theta__deg, data.p, &L_ces__db
+            data.f__ghz, data.theta__deg, data.p, L_ces__db
         );
         EXPECT_EQ(rtn, data.rtn);
         if (rtn == SUCCESS) {
