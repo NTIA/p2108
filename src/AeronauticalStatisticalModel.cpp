@@ -27,19 +27,24 @@ namespace P2108 {
  * @return                 Return code
  ******************************************************************************/
 int AeronauticalStatisticalModel(
-    double f__ghz, double theta__deg, double p, double *L_ces__db
+    const double f__ghz,
+    const double theta__deg,
+    const double p,
+    double *L_ces__db
 ) {
     int rtn = Section3p3_InputValidation(f__ghz, theta__deg, p);
     if (rtn != SUCCESS)
         return rtn;
 
-    double A_1 = 0.05;
-    double K_1 = 93 * pow(f__ghz, 0.175);
+    const double A_1 = 0.05;
+    const double K_1 = 93 * pow(f__ghz, 0.175);
 
-    double part1 = log(1 - p / 100.0);
-    double part2 = A_1 * (1 - theta__deg / 90.0) + PI * theta__deg / 180.0;
-    double part3 = 0.5 * (90.0 - theta__deg) / 90.0;
-    double part4 = 0.6 * InverseComplementaryCumulativeDistribution(p / 100);
+    const double part1 = log(1 - p / 100.0);
+    const double part2
+        = A_1 * (1 - theta__deg / 90.0) + PI * theta__deg / 180.0;
+    const double part3 = 0.5 * (90.0 - theta__deg) / 90.0;
+    const double part4
+        = 0.6 * InverseComplementaryCumulativeDistribution(p / 100);
 
     *L_ces__db = pow(-K_1 * part1 * cot(part2), part3) - 1 - part4;
 
@@ -62,7 +67,9 @@ int AeronauticalStatisticalModel(
  * @param[in] p           Percentage of locations, in %
  * @return                Return code
  ******************************************************************************/
-int Section3p3_InputValidation(double f__ghz, double theta__deg, double p) {
+int Section3p3_InputValidation(
+    const double f__ghz, const double theta__deg, const double p
+) {
     if (f__ghz < 10 || f__ghz > 100)
         return ERROR33__FREQUENCY;
 
@@ -83,7 +90,7 @@ int Section3p3_InputValidation(double f__ghz, double theta__deg, double p) {
  * @param[in] x  Argument, in radians
  * @return       Cotangent of the argument, @f$ \cot(x) @f$
  ******************************************************************************/
-double cot(double x) {
+double cot(const double x) {
     return 1 / tan(x);
 }
 

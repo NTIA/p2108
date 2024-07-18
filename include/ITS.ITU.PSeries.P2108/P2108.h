@@ -40,32 +40,46 @@ using std::tan;
 ////////////////////////////////////////////////////////////////////////////////
 // Public Functions
 EXPORTED int AeronauticalStatisticalModel(
-    double f__ghz, double theta__deg, double p, double *L_ces__db
+    const double f__ghz,
+    const double theta__deg,
+    const double p,
+    double *L_ces__db
 );
 EXPORTED int TerrestrialStatisticalModel(
-    double f__ghz, double d__km, double p, double *L_ctt__db
+    const double f__ghz, const double d__km, const double p, double *L_ctt__db
 );
 EXPORTED int HeightGainTerminalCorrectionModel(
-    double f__ghz,
-    double h__meter,
-    double w_s__meter,
-    double R__meter,
-    ClutterType clutter_type,
+    const double f__ghz,
+    const double h__meter,
+    const double w_s__meter,
+    const double R__meter,
+    const ClutterType clutter_type,
     double *A_h__db
 );
 
 ////////////////////////////////////////////////////////////////////////////////
 // Private Functions
-double cot(double x);
-double InverseComplementaryCumulativeDistribution(double q);
-double Equation_2a(double nu);
-double Equation_2b(double K_h2, double h__meter, double R__meter);
-int Section3p1_InputValidation(
-    double f__ghz, double h__meter, double w_s__meter, double R__meter
+double cot(const double x);
+double InverseComplementaryCumulativeDistribution(const double q);
+double Equation_2a(const double nu);
+double Equation_2b(
+    const double K_h2, const double h__meter, const double R__meter
 );
-int Section3p2_InputValidation(double f__ghz, double d__km, double p);
-int Section3p3_InputValidation(double f__ghz, double theta__deg, double p);
-double TerrestrialStatisticalModelHelper(double f__ghz, double d__km, double p);
+int Section3p1_InputValidation(
+    const double f__ghz,
+    const double h__meter,
+    const double w_s__meter,
+    const double R__meter
+);
+int Section3p2_InputValidation(
+    const double f__ghz, const double d__km, const double p
+);
+int Section3p3_InputValidation(
+    const double f__ghz, const double theta__deg, const double p
+);
+double TerrestrialStatisticalModelHelper(
+    const double f__ghz, const double d__km, const double p
+);
 
 }  // namespace P2108
 }  // namespace PSeries

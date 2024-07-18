@@ -14,7 +14,7 @@ namespace P2108 {
  * This method gives the median loss due to different terminal surroundings.
  * This model can be applied to both transmitting and receiving ends of the
  * path.
- * 
+ *
  * Frequency range: @f$ 0.03 \leq f \leq 3 @f$ (GHz)\n
  * Antenna height range: @f$ 0 \leq h @f$ (m)\n
  * Street width range: @f$ 0 < w_s @f$ (m)\n
@@ -29,11 +29,11 @@ namespace P2108 {
  * @return                   Return code
  ******************************************************************************/
 int HeightGainTerminalCorrectionModel(
-    double f__ghz,
-    double h__meter,
-    double w_s__meter,
-    double R__meter,
-    ClutterType clutter_type,
+    const double f__ghz,
+    const double h__meter,
+    const double w_s__meter,
+    const double R__meter,
+    const ClutterType clutter_type,
     double *A_h__db
 ) {
     int rtn
@@ -46,10 +46,10 @@ int HeightGainTerminalCorrectionModel(
         return SUCCESS;
     }
 
-    double h_dif__meter = R__meter - h__meter;  // Equation (2d)
-    double theta_clut__deg
+    const double h_dif__meter = R__meter - h__meter;  // Equation (2d)
+    const double theta_clut__deg
         = atan(h_dif__meter / w_s__meter) * 180.0 / PI;  // Equation (2e)
-    double K_h2 = 21.8 + 6.2 * log10(f__ghz);            // Equation (2f)
+    const double K_h2 = 21.8 + 6.2 * log10(f__ghz);      // Equation (2f)
 
     switch (clutter_type) {
         case ClutterType::WATER_SEA:
@@ -90,7 +90,10 @@ int HeightGainTerminalCorrectionModel(
  * @return                Return code
  ******************************************************************************/
 int Section3p1_InputValidation(
-    double f__ghz, double h__meter, double w_s__meter, double R__meter
+    const double f__ghz,
+    const double h__meter,
+    const double w_s__meter,
+    const double R__meter
 ) {
     if (f__ghz < 0.03 || f__ghz > 3)
         return ERROR31__FREQUENCY;
@@ -113,14 +116,14 @@ int Section3p1_InputValidation(
  * @param[in] nu  Dimensionless diffraction parameter
  * @return        Additional loss (clutter loss), in dB
  ******************************************************************************/
-double Equation_2a(double nu) {
+double Equation_2a(const double nu) {
     double J_nu__db;
     if (nu <= -0.78)
         J_nu__db = 0;
     else
         J_nu__db = 6.9 + 20 * log10(sqrt(pow(nu - 0.1, 2) + 1) + nu - 0.1);
 
-    double A_h__db = J_nu__db - 6.03;
+    const double A_h__db = J_nu__db - 6.03;
 
     return A_h__db;
 }
@@ -133,8 +136,10 @@ double Equation_2a(double nu) {
  * @param[in] R__meter  Representative clutter height, in meters
  * @return              Additional loss (clutter loss), in dB
  ******************************************************************************/
-double Equation_2b(double K_h2, double h__meter, double R__meter) {
-    double A_h__db = -K_h2 * log10(h__meter / R__meter);
+double Equation_2b(
+    const double K_h2, const double h__meter, const double R__meter
+) {
+    const double A_h__db = -K_h2 * log10(h__meter / R__meter);
 
     return A_h__db;
 }
