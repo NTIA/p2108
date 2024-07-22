@@ -1,5 +1,5 @@
 /** @file Errors.h
- * Contains return codes used by this software.
+ * Contains return codes used by this software
  */
 #ifndef __ITS_ITU_PSERIES_P2108_ERRORS__
 #define __ITS_ITU_PSERIES_P2108_ERRORS__
