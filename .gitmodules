@@ -5,3 +5,7 @@
 	path = extern/googletest
 	url = https://github.com/google/googletest
 	branch = v1.12.x
+[submodule "wrap/dotnet"]
+	path = wrap/dotnet
+	url = https://github.com/NTIA/p2108-dotnet
+	branch = crossplatform
