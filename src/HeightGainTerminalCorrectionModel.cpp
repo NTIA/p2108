@@ -36,7 +36,7 @@ int HeightGainTerminalCorrectionModel(
     const ClutterType clutter_type,
     double &A_h__db
 ) {
-    int rtn
+    const int rtn
         = Section3p1_InputValidation(f__ghz, h__meter, w_s__meter, R__meter);
     if (rtn != SUCCESS)
         return rtn;
@@ -62,8 +62,8 @@ int HeightGainTerminalCorrectionModel(
         case ClutterType::TREES_FOREST:
         case ClutterType::DENSE_URBAN:
             {
-                double K_nu = 0.342 * sqrt(f__ghz);  // Equation (2g)
-                double nu
+                const double K_nu = 0.342 * sqrt(f__ghz);  // Equation (2g)
+                const double nu
                     = K_nu
                     * sqrt(h_dif__meter * theta_clut__deg);  // Equation (2c)
 
