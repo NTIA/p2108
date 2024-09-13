@@ -27,12 +27,12 @@ double InverseComplementaryCumulativeDistribution(const double q) {
     }
 
     // Constants from Abramowitz & Stegun 26.2.23
-    const double C_0 = 2.515517;
-    const double C_1 = 0.802853;
-    const double C_2 = 0.010328;
-    const double D_1 = 1.432788;
-    const double D_2 = 0.189269;
-    const double D_3 = 0.001308;
+    constexpr double C_0 = 2.515517;
+    constexpr double C_1 = 0.802853;
+    constexpr double C_2 = 0.010328;
+    constexpr double D_1 = 1.432788;
+    constexpr double D_2 = 0.189269;
+    constexpr double D_3 = 0.001308;
 
     double x = q;
     if (q > 0.5)
