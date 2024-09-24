@@ -7,22 +7,21 @@ type: software
 authors:
   - given-names: William
     family-names: Kozma
-    name-suffix: Jr
+    name-suffix: Jr.
     email: wkozma@ntia.gov
     affiliation: >-
       U.S. Department of Commerce, National
       Telecommunications and Information Administration,
       Institute for Telecommunication Sciences
-    orcid: 'https://orcid.org/0000-0002-7417-4009'
-  - given-names: Anthony
+    orcid: '0000-0002-7417-4009'
+  - given-names: Anthony W.
     family-names: Romaniello
-    name-particle: W.
     email: aromaniello@ntia.gov
     affiliation: >-
       U.S. Department of Commerce, National
       Telecommunications and Information Administration,
       Institute for Telecommunication Sciences
-    orcid: 'https://orcid.org/0000-0001-8437-6504'
+    orcid: '0000-0001-8437-6504'
   - name: >-
       U.S. Department of Commerce, National
       Telecommunications and Information Administration,
