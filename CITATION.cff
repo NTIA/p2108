@@ -12,7 +12,7 @@ authors:
       U.S. Department of Commerce, National
       Telecommunications and Information Administration,
       Institute for Telecommunication Sciences
-    orcid: '0000-0002-7417-4009'
+    orcid: 'https://orcid.org/0000-0002-7417-4009'
     email: wkozma@ntia.gov
   - family-names: Romaniello
     given-names: Anthony W.
@@ -20,7 +20,7 @@ authors:
       U.S. Department of Commerce, National
       Telecommunications and Information Administration,
       Institute for Telecommunication Sciences
-    orcid: '0000-0001-8437-6504'
+    orcid: 'https://orcid.org/0000-0001-8437-6504'
     email: aromaniello@ntia.gov
   - name: >-
       U.S. Department of Commerce, National
