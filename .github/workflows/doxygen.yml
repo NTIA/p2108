@@ -34,6 +34,7 @@ jobs:
             version: "1.11.0"
 
         - name: Setup GitHub Pages
+          if: ${{ github.event_name == 'release' }}
           id: pages
           uses: actions/configure-pages@v5
 
