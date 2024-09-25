@@ -8,9 +8,9 @@
 <!-- [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.7114033.svg)](https://doi.org/10.5281/zenodo.7114033) -->
 
 [gh-actions-test-link]: https://github.com/NTIA/p2108/actions/workflows/ctest.yml
-[gh-actions-test-badge]: https://github.com/NTIA/p2108/actions/workflows/ctest.yml/badge.svg
+[gh-actions-test-badge]: https://github.com/NTIA/p2108/actions/workflows/ctest.yml/badge.svg?branch=main
 [gh-actions-docs-link]: https://github.com/NTIA/p2108/actions/workflows/doxygen.yml
-[gh-actions-docs-badge]: https://github.com/NTIA/p2108/actions/workflows/doxygen.yml/badge.svg
+[gh-actions-docs-badge]: https://github.com/NTIA/p2108/actions/workflows/doxygen.yml/badge.svg?branch=main
 
 This code repository contains the U.S. Reference Software Implementation of
 Recommendation ITU-R P.2108. This Recommendation contains three methods for the
