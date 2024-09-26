@@ -21,7 +21,7 @@ BasedOnStyle: WebKit
 BinPackArguments: false
 BinPackParameters: false
 BitFieldColonSpacing: After
-BraceWrapping: 
+BraceWrapping:
   AfterCaseLabel: false
   AfterClass: false
   AfterControlStatement: false
@@ -48,7 +48,7 @@ BreakConstructorInitializers: AfterColon
 BreakStringLiterals: true
 ColumnLimit: 80
 CompactNamespaces: false
-ConstructorInitializerIndentWidth : 4
+ConstructorInitializerIndentWidth: 4
 ContinuationIndentWidth: 4
 Cpp11BracedListStyle: true
 DerivePointerAlignment: false
@@ -101,4 +101,3 @@ SpacesInSquareBrackets: false
 Standard: c++14
 TabWidth: 4
 UseTab: Never
-...
