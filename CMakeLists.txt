@@ -6,7 +6,7 @@
 cmake_minimum_required(VERSION 3.14 FATAL_ERROR)
 
 ###########################################
-## PROJECT METADATA AND CONFIGURATION
+## PROJECT METADATA
 ###########################################
 set(LIB_NAME "P2108")                 # Name of library/target
 set(LIB_NAMESPACE "ITS.ITU.PSeries")  # Namespace for the named library
@@ -18,11 +18,16 @@ project(
     LANGUAGES "CXX"
 )
 
-# Configure wrapper locations
+###########################################
+## SPECIFY MULTI-LANGUAGE WRAPPERS
+###########################################
 set(DOTNET_WRAPPER_DIR "${PROJECT_SOURCE_DIR}/wrap/dotnet")
 set(MATLAB_WRAPPER_DIR "${PROJECT_SOURCE_DIR}/wrap/matlab")
 set(PYTHON_WRAPPER_DIR "${PROJECT_SOURCE_DIR}/wrap/python")
 
+###########################################
+## CMAKE OPTIONS AND DEFAULTS
+###########################################
 # Define options. Defaults to: compile 64-bit library, build docs, run tests
 option(BUILD_DOCS "Generate documentation with Doxygen" ON)
 option(DOCS_ONLY "Skip all steps except generating documentation" OFF)
