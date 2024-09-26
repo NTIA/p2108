@@ -61,7 +61,7 @@ In order to do either, ensure the required submodules are cloned by running:
 # From this repository's root directory
 git submodule init extern/googletest           # Required to run tests
 git submodule init extern/doxygen-awesome-css  # Required to build docs
-git submodule update
+git submodule update                           # Clones the initialized submodules
 ```
 
 ## Running Tests ##

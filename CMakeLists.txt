@@ -52,7 +52,8 @@ if (NOT DOCS_ONLY)
         else ()
             message(SEND_ERROR
                 "Unable to build tests. GoogleTest submodule is missing. "
-                "Run `git submodule init extern/googletest` and try again."
+                "Run `git submodule init extern/googletest` then "
+                "`git submodule update` and try again."
             )
         endif()
     endif ()
