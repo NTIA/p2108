@@ -26,8 +26,8 @@ std::vector<AeronauticalStatisticalModelTestData>
     std::string dataDir = getDataDirectory();
     std::ifstream file(dataDir + filename);
     std::string line;
-    AeronauticalStatisticalModelTestData
-        d;   // struct to store data from a single line of CSV
+    // struct to store data from a single line of CSV:
+    AeronauticalStatisticalModelTestData d;
     char c;  // single-character representing the comma (delimiter)
     while (std::getline(file, line)) {
         std::istringstream iss(line);
@@ -45,8 +45,8 @@ std::vector<HeightGainTerminalCorrectionModelTestData>
     std::string dataDir = getDataDirectory();
     std::ifstream file(dataDir + filename);
     std::string line;
-    HeightGainTerminalCorrectionModelTestData
-        d;   // struct to store data from a single line of CSV
+    // struct to store data from a single line of CSV:
+    HeightGainTerminalCorrectionModelTestData d;
     char c;  // single-character representing the comma (delimiter)
     int clutter_type_value;
     while (std::getline(file, line)) {
@@ -68,8 +68,8 @@ std::vector<TerrestrialStatisticalModelTestData>
     std::string dataDir = getDataDirectory();
     std::ifstream file(dataDir + filename);
     std::string line;
-    TerrestrialStatisticalModelTestData
-        d;   // struct to store data from a single line of CSV
+    // struct to store data from a single line of CSV:
+    TerrestrialStatisticalModelTestData d;
     char c;  // single-character representing the comma (delimiter)
     while (std::getline(file, line)) {
         std::istringstream iss(line);

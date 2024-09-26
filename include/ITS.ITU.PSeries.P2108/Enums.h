@@ -1,5 +1,5 @@
 /** @file Enums.h
- * Enumerated types used by this software.
+ * Enumerated types used by this software
  */
 #ifndef __ITS_ITU_PSERIES_P2108_ENUMS__
 #define __ITS_ITU_PSERIES_P2108_ENUMS__
