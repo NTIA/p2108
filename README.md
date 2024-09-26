@@ -1,16 +1,20 @@
 # Recommendation ITU-R P.2108 - U.S. Reference Implementation #
 
 <!-- TODO on v1.0 release created: add updated DOI badge -->
-[![GitHub Actions Unit Tests Status][gh-actions-test-badge]][gh-actions-test-link]
+[![Unit Tests Status][gh-actions-test-badge]][gh-actions-test-link]
 [![C++ API Reference][gh-actions-docs-badge]][gh-actions-docs-link]
-![GitHub Release](https://img.shields.io/github/v/release/NTIA/P2108)
-![GitHub Issues](https://img.shields.io/github/issues/NTIA/P2108)
-<!-- [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.7114033.svg)](https://doi.org/10.5281/zenodo.7114033) -->
+![GitHub Release][gh-releases-badge]
+![GitHub Issues][gh-issues-badge]
+<!-- [![DOI][doi-badge]][doi-link] -->
 
 [gh-actions-test-link]: https://github.com/NTIA/p2108/actions/workflows/ctest.yml
 [gh-actions-test-badge]: https://github.com/NTIA/p2108/actions/workflows/ctest.yml/badge.svg?branch=main
 [gh-actions-docs-link]: https://github.com/NTIA/p2108/actions/workflows/doxygen.yml
 [gh-actions-docs-badge]: https://github.com/NTIA/p2108/actions/workflows/doxygen.yml/badge.svg?branch=main
+[gh-releases-badge]: https://img.shields.io/github/v/release/NTIA/P2108
+[gh-issues-badge]: https://img.shields.io/github/issues/NTIA/P2108
+<!-- [doi-badge]: https://zenodo.org/badge/DOI/10.5281/zenodo.7114033.svg -->
+<!-- [doi-link]: https://doi.org/10.5281/zenodo.7114033 -->
 
 This code repository contains the U.S. Reference Software Implementation of
 Recommendation ITU-R P.2108. This Recommendation contains three methods for the
