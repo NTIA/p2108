@@ -4,16 +4,16 @@
 
 // Test fixture for the unit tests
 class HeightGainTerminalCorrectionModelTest: public ::testing::Test {
-protected:
-    void SetUp() override {
-        // Load test data from CSV
-        testData = readHeightGainTerminalCorrectionModelTestData(
-            "HeightGainTerminalCorrectionModelTestData.csv"
-        );
-    }
+    protected:
+        void SetUp() override {
+            // Load test data from CSV
+            testData = readHeightGainTerminalCorrectionModelTestData(
+                "HeightGainTerminalCorrectionModelTestData.csv"
+            );
+        }
 
-    // Vector to hold test data
-    std::vector<HeightGainTerminalCorrectionModelTestData> testData;
+        // Vector to hold test data
+        std::vector<HeightGainTerminalCorrectionModelTestData> testData;
 };
 
 // Test case to verify the HeightGainTerminalCorrectionModel function

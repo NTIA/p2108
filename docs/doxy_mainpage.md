@@ -27,6 +27,6 @@ e.g. classes, functions, etc.
 
 This site is generated with [Doxygen](https://www.doxygen.nl/), which is configured
 in the source project using [CMake](https://cmake.org/). The documentation is generated
-by default when building the project in its debug configuration. Additionally, the
-documentation can be generated without compiling the source project by using the
-`DOCS_ONLY` CMake option.
+by default when building the project in its release configuration. Additionally,
+the documentation can be generated without compiling the source project by using
+the `DOCS_ONLY` CMake option.

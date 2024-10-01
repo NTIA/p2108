@@ -2,16 +2,16 @@
 
 // Test fixture for the unit tests
 class AeronauticalStatisticalModelTest: public ::testing::Test {
-protected:
-    void SetUp() override {
-        // Load test data from CSV
-        testData = readAeronauticalStatisticalModelTestData(
-            "AeronauticalStatisticalModelTestData.csv"
-        );
-    }
+    protected:
+        void SetUp() override {
+            // Load test data from CSV
+            testData = readAeronauticalStatisticalModelTestData(
+                "AeronauticalStatisticalModelTestData.csv"
+            );
+        }
 
-    // Vector to hold test data
-    std::vector<AeronauticalStatisticalModelTestData> testData;
+        // Vector to hold test data
+        std::vector<AeronauticalStatisticalModelTestData> testData;
 };
 
 // Test case to verify the AeronauticalStatisticalModel function

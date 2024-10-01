@@ -2,16 +2,16 @@
 
 // Test fixture for the unit tests
 class TerrestrialStatisticalModelTest: public ::testing::Test {
-protected:
-    void SetUp() override {
-        // Load test data from CSV
-        testData = readTerrestrialStatisticalModelTestData(
-            "TerrestrialStatisticalModelTestData.csv"
-        );
-    }
+    protected:
+        void SetUp() override {
+            // Load test data from CSV
+            testData = readTerrestrialStatisticalModelTestData(
+                "TerrestrialStatisticalModelTestData.csv"
+            );
+        }
 
-    // Vector to hold test data
-    std::vector<TerrestrialStatisticalModelTestData> testData;
+        // Vector to hold test data
+        std::vector<TerrestrialStatisticalModelTestData> testData;
 };
 
 // Test case to verify the TerrestrialStatisticalModel function
