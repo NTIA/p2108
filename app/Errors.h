@@ -3,9 +3,6 @@
  */
 #pragma once
 
-// TODO-TEMPLATE: If needed, include existing return codes defined by the library
-// #include "<TODO-TEMPLATE>/Errors.h"
-
 // clang-format off
 
 // Define "SUCCESS" macro if not imported already
@@ -20,6 +17,14 @@
 
 /** Input File Parsing Errors (1100-1199) */
 #define     DRVRERR__PARSE                          1100
+#define     DRVRERR__PARSE_FREQ                     1101
+#define     DRVRERR__PARSE_THETA                    1102
+#define     DRVRERR__PARSE_PERCENTAGE               1103
+#define     DRVRERR__PARSE_HEIGHT                   1104
+#define     DRVRERR__PARSE_STREET_WIDTH             1105
+#define     DRVRERR__PARSE_REPR_HEIGHT              1106
+#define     DRVRERR__PARSE_CLUTTER_TYPE             1107
+#define     DRVRERR__PARSE_PATH_DIST                1108
 
 // TODO-TEMPLATE: Add driver error codes and document them in app/README.md
 

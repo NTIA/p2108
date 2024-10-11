@@ -1,0 +1,5 @@
+f__ghz,1.5
+h__meter,2
+w_s__meter,27
+R__meter,15
+clutter_type,4

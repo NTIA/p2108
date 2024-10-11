@@ -4,10 +4,8 @@
 #pragma once
 
 #include "Errors.h"
+#include "ITS.ITU.PSeries.P2108/P2108.h"
 #include "Structs.h"
-
-// TODO-TEMPLATE: Include your library's main interface header
-// #include "ITS.<YOUR_NAMESPACE>/<YOUR_LIBRARY>.h"
 
 #include <algorithm>  // for transform
 #include <cctype>     // for tolower
@@ -17,6 +15,7 @@
 #include <iomanip>    // for setw
 #include <iostream>   // for cerr, cout
 #include <string>     // for string, stoi, stod
+#include <vector>     // for vector
 
 /////////////////////////////
 // Macros
@@ -25,8 +24,7 @@
 #define PRINT << std::endl << std::left << std::setw(25) <<
 #define SETW13 << std::setw(13) <<
 
-// TODO-TEMPLATE: use the namespace of your library
-// using namespace ITS::YourLibraryNamespace::YourLibraryName;
+using namespace ITS::ITU::PSeries::P2108;
 
 /////////////////////////////
 // Functions
@@ -36,6 +34,10 @@ void Help();
 void Version();
 int ValidateInputs(const DrvrParams &params);
 int Validate_RequiredErrMsgHelper(const char *opt, int err);
+
+// Reporting
+void PrintClutterTypeLabel(std::ofstream &fp, const ClutterType clutter_type);
+void PrintLabel(std::ofstream &fp, const char *lbl);
 
 // Utils
 int ParseInteger(const char *str, int &value);

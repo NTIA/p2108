@@ -3,14 +3,18 @@
 ###########################################
 set(DRIVER_NAME "${LIB_NAME}Driver")
 set(DRIVER_VERSION ${PROJECT_VERSION}) # May be set manually instead
-## TODO-TEMPLATE: Include source AND header files here. Do not include
-## source/header files already included in `add_library()` in `src/CMakeLists.txt`
 add_executable(
     ${DRIVER_NAME}
-    "main.cpp"
+    "AeronauticalStatisticalModel.cpp"
     "Driver.h"
     "Errors.h"
+    "HeightGainTerminalCorrectionModel.cpp"
+    "Labels.h"
+    "main.cpp"
+    "Reporting.cpp"
     "Structs.h"
+    "Tags.h"
+    "TerrestrialStatisticalModel.cpp"
     "Utils.cpp"
 )
 

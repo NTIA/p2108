@@ -1,4 +1,4 @@
-# Command-line Driver #
+# Command-line Driver # TODO
 
 This document explains the use of the included command-line driver. This is a
 supplemental software tool to allow a user to call the compiled propagation library
@@ -41,14 +41,16 @@ Input arguments are not case sensitive and do not have to be specified in a cert
 order. A generic example of calling the command-line driver on Windows is:
 
 ```cmd
-<Driver>.exe -i <input_file> -t <terrain_file> -o <output_file>
+<Driver>.exe -i <input_file> -o <output_file>
 ```
 
 ### Examples ###
 
-| Input File                | Terrain File                                        | Output File                 | Arguments                                          |
-|---------------------------|-----------------------------------------------------|-----------------------------|----------------------------------------------------|
-| [`in.txt`](./data/in.txt) | [`terrain_profile.txt`](./data/terrain_profile.txt) | [`out.txt`](./data/out.txt) | `-i in.txt -t terrain_profile.txt -o out.txt -dbg` |
+| Input File                          | Output File                         | Arguments                       |
+|-------------------------------------|-------------------------------------|---------------------------------|
+| [`i_asm.txt`](./data/i_asm.txt)     | [`o_asm.txt`](./data/o_asm.txt)     | `-i i_asm.txt -o o_asm.txt`     |
+| [`i_hgtcm.txt`](./data/i_hgtcm.txt) | [`o_hgtcm.txt`](./data/o_hgtcm.txt) | `-i i_hgtcm.txt -o o_hgtcm.txt` |
+| [`i_tsm.txt`](./data/i_tsm.txt)     | [`o_tsm.txt`](./data/o_tsm.txt)     | `-i i_tsm.txt -o o_tsm.txt`     |
 
 ## Command-line Driver Errors ##
 
