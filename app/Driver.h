@@ -35,6 +35,33 @@ void Version();
 int ValidateInputs(const DrvrParams &params);
 int Validate_RequiredErrMsgHelper(const char *opt, int err);
 
+// Aeronautical Statistical Model
+int CallAeronauticalStatisticalModel(
+    const DrvrParams &params,
+    ASMParams &asm_params,
+    std::vector<double> &L_ces__db
+);
+int ParseASMInputFile(const std::string &in_file, ASMParams &asm_params);
+void WriteASMInputs(std::ofstream &fp, const ASMParams &params);
+
+// Height Gain Terminal Correction Model
+int CallHeightGainTerminalCorrectionModel(
+    const DrvrParams &params,
+    HGTCParams &hgtc_params,
+    std::vector<double> &A_h__db
+);
+int ParseHGTCInputFile(const std::string &in_file, HGTCParams &hgtc_params);
+void WriteHGTCInputs(std::ofstream &fp, const HGTCParams &params);
+
+// Terrestrial Statistical Model
+int CallTerrestrialStatisticalModel(
+    const DrvrParams &params,
+    TSMParams &tsm_params,
+    std::vector<double> &L_ctt__db
+);
+int ParseTSMInputFile(const std::string &in_file, TSMParams &tsm_params);
+void WriteTSMInputs(std::ofstream &fp, const TSMParams &params);
+
 // Reporting
 void PrintClutterTypeLabel(std::ofstream &fp, const ClutterType clutter_type);
 void PrintLabel(std::ofstream &fp, const char *lbl);
