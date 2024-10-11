@@ -13,7 +13,7 @@
  * @param[out] A_h__db      Additional loss (clutter loss), in dB
  * @return                  Return code
  ******************************************************************************/
-int CallAeronauticalStatisticalModel(
+int CallHeightGainTerminalCorrectionModel(
     const DrvrParams &params,
     HGTCParams &hgtc_params,
     std::vector<double> &A_h__db
@@ -111,7 +111,7 @@ int ParseHGTCInputFile(const std::string &in_file, HGTCParams &hgtc_params) {
  * @param[in] fp           Output stream, a text file open for writing
  * @param[in] hgtc_params  HGTC input parameter struct
  ******************************************************************************/
-void WriteASMInputs(std::ofstream &fp, const HGTCParams &params) {
+void WriteHGTCInputs(std::ofstream &fp, const HGTCParams &params) {
     fp PRINT TAG__FREQ SETW13 params.f__ghz << UNITS__GHZ;
     fp PRINT TAG__HEIGHT SETW13 params.h__meter << UNITS__METER;
     fp PRINT TAG__STREET_WIDTH SETW13 params.w_s__meter << UNITS__METER;
