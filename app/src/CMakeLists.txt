@@ -4,15 +4,20 @@
 set(DRIVER_NAME "${LIB_NAME}Driver")
 set(DRIVER_VERSION ${PROJECT_VERSION}) # May be set manually instead
 set(DRIVER_HEADERS "${PROJECT_SOURCE_DIR}/app/include")
-## TODO-TEMPLATE: Include source AND header files here. Do not include
-## source/header files already included in `add_library()` in `src/CMakeLists.txt`
+
 add_executable(
     ${DRIVER_NAME}
-    "main.cpp"
+    "AeronauticalStatisticalModel.cpp"
     "DriverUtils.cpp"
+    "HeightGainTerminalCorrectionModel.cpp"
+    "main.cpp"
+    "Reporting.cpp"
+    "TerrestrialStatisticalModel.cpp"
     "${DRIVER_HEADERS}/Driver.h"
     "${DRIVER_HEADERS}/Errors.h"
+    "${DRIVER_HEADERS}/Labels.h"
     "${DRIVER_HEADERS}/Structs.h"
+    "${DRIVER_HEADERS}/Tags.h"
 )
 
 # Link the library to the executable
