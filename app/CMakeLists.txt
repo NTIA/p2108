@@ -7,6 +7,7 @@ add_executable(
     ${DRIVER_NAME}
     "AeronauticalStatisticalModel.cpp"
     "Driver.h"
+    "DriverUtils.cpp"
     "Errors.h"
     "HeightGainTerminalCorrectionModel.cpp"
     "Labels.h"
@@ -15,7 +16,6 @@ add_executable(
     "Structs.h"
     "Tags.h"
     "TerrestrialStatisticalModel.cpp"
-    "Utils.cpp"
 )
 
 # Link the library to the executable
@@ -52,3 +52,7 @@ else ()
     )
 endif ()
 
+# Build and run driver tests
+if (RUN_DRIVER_TESTS)
+    add_subdirectory(tests)
+endif()

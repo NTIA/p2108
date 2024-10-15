@@ -13,7 +13,7 @@
 #include <ctime>     // for localtime_s, localtime_r, time, time_t, tm, strftime
 #include <fstream>   // for ifstream, ofstream
 #include <iomanip>   // for setw
-#include <iostream>  // for cerr, cout
+#include <iostream>  // for cerr, cout, ostream
 #include <string>    // for string, stoi, stod
 #include <vector>
 
@@ -28,12 +28,9 @@ using namespace ITS::ITU::PSeries::P2108;
 
 /////////////////////////////
 // Functions
-
 int ParseArguments(int argc, char **argv, DrvrParams &params);
 void Help();
-void Version();
 int ValidateInputs(const DrvrParams &params);
-int Validate_RequiredErrMsgHelper(const char *opt, int err);
 
 // Aeronautical Statistical Model
 int CallAeronauticalStatisticalModel(
@@ -67,8 +64,10 @@ void PrintClutterTypeLabel(std::ofstream &fp, const ClutterType clutter_type);
 void PrintErrorMsgLabel(std::ofstream &fp, const int err);
 void PrintLabel(std::ofstream &fp, const char *lbl);
 
-// Utils
-int ParseInteger(const char *str, int &value);
-int ParseDouble(const char *str, double &value);
-int ParsingErrorHelper(int err, const char *msg);
+// Driver Utils
+void Version(std::ostream &os = std::cout);
+int Validate_RequiredErrMsgHelper(const std::string &opt, const int err);
+int ParseInteger(const std::string &str, int &value);
+int ParseDouble(const std::string &str, double &value);
+int ParsingErrorHelper(const int err, const std::string &msg);
 std::string GetDatetimeString();

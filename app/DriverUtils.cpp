@@ -1,7 +1,35 @@
-/** @file Utils.cpp
- * Implements utility functions for parsing driver inputs from text
+/** @file DriverUtils.cpp
+ * Implements various model-agnostic utility functions for the driver
  */
 #include "Driver.h"
+
+/*******************************************************************************
+ * Print version information to the specified output stream 
+ * 
+ * @param[in] os  Output stream for writing; defaults to `std::cout`
+ ******************************************************************************/
+void Version(std::ostream &os = std::cout) {
+    os << std::setfill('*') << std::setw(55) << "" << std::endl;
+    os << "Institute for Telecommunication Sciences - Boulder, CO" << std::endl;
+    os << "\tDriver Version: " << DRIVER_VERSION << std::endl;
+    os << "\t" << LIBRARY_NAME << " Version: " << LIBRARY_VERSION << std::endl;
+    os << "Time: " << GetDatetimeString() << std::endl;
+    os << std::setfill('*') << std::setw(55) << "" << std::endl;
+}
+
+/*******************************************************************************
+ * Helper function to format and print error messages encountered during
+ * validation of input parameters
+ * 
+ * @param[in] opt  Command flag in error
+ * @param[in] err  Error code
+ * @return         Return code
+ ******************************************************************************/
+int Validate_RequiredErrMsgHelper(const std::string &opt, const int err) {
+    std::cerr << "Driver Error " << err << ": Option \"" << opt
+              << "\" is required but was not provided" << std::endl;
+    return err;
+}
 
 /*******************************************************************************
  * Parse an integer value read from the input parameter file
@@ -10,19 +38,19 @@
  * @param[out] value  Input file value converted to int
  * @return            Return code
  ******************************************************************************/
-int ParseInteger(const char *str, int &value) {
-    size_t t;
-
+int ParseInteger(const std::string &str, int &value) {
     try {
-        value = std::stoi(str, &t, 10);
+        size_t pos;
+        value = std::stoi(str, &pos, 10);
+
+        // Verify the entire string was parsed
+        if (pos != str.size()) {
+            return DRVRERR__PARSE;
+        }
     } catch (...) {
         // error parsing the input string value
         return DRVRERR__PARSE;
-    }
-
-    // verify the entire string was parsed, and a trailing char wasn't omitted
-    if (std::strlen(str) != t)
-        return DRVRERR__PARSE;
+    };
 
     return SUCCESS;
 }
@@ -34,7 +62,7 @@ int ParseInteger(const char *str, int &value) {
  * @param[out] value  Input file value converted to double
  * @return            Return code
  ******************************************************************************/
-int ParseDouble(const char *str, double &value) {
+int ParseDouble(const std::string &str, double &value) {
     try {
         value = std::stod(str);
     } catch (...) {
@@ -52,7 +80,7 @@ int ParseDouble(const char *str, double &value) {
  * @param[in] msg  Error message
  * @return         Error code from input param
  ******************************************************************************/
-int ParsingErrorHelper(int err, const char *msg) {
+int ParsingErrorHelper(const int err, const std::string &msg) {
     std::cerr << "Driver Error " << err << ": Unable to parse '" << msg
               << "' value." << std::endl;
     return err;
