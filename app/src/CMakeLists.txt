@@ -20,6 +20,9 @@ add_executable(
     "${DRIVER_HEADERS}/Tags.h"
 )
 
+# Add the include directory
+target_include_directories(${DRIVER_NAME} PUBLIC "${DRIVER_HEADERS}")
+
 # Link the library to the executable
 target_link_libraries(${DRIVER_NAME} ${LIB_NAME})
 

@@ -29,7 +29,7 @@ using namespace ITS::ITU::PSeries::P2108;
 /////////////////////////////
 // Functions
 int ParseArguments(int argc, char **argv, DrvrParams &params);
-void Help();
+void Help(std::ostream &os = std::cout);
 int ValidateInputs(const DrvrParams &params);
 
 // Aeronautical Statistical Model
