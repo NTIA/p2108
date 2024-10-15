@@ -64,6 +64,7 @@ void WriteTSMInputs(std::ofstream &fp, const TSMParams &params);
 
 // Reporting
 void PrintClutterTypeLabel(std::ofstream &fp, const ClutterType clutter_type);
+void PrintErrorMsgLabel(std::ofstream &fp, const int err);
 void PrintLabel(std::ofstream &fp, const char *lbl);
 
 // Utils

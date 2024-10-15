@@ -1,0 +1,15 @@
+Model                    P2108
+Model Variant            Aeronautical Statistical Model
+Library Version          v1.0.0
+Driver Version           v1.0.0
+Date Generated           Fri Oct 11 15:51:57 2024
+Input Arguments          -i .\i_asm.txt -o .\o_asm.txt -model ASM 
+
+Inputs
+f__ghz                   10           (gigahertz)
+theta__deg               10.5         (degrees)
+p                        45           (%)
+
+Results
+Return Code              0            [Success - No Errors]
+Clutter loss             12.4         (dB)

@@ -11,7 +11,7 @@
 #define TAG__PERCENTAGE         "p"
 #define TAG__HEIGHT             "h__meter"
 #define TAG__STREET_WIDTH       "w_s__meter"
-#define TAG__REPR_HEIGHT        "R__meter"
+#define TAG__REPR_HEIGHT        "r__meter"
 #define TAG__CLUTTER_TYPE       "clutter_type"
 #define TAG__PATH_DIST          "d__km"
 
@@ -21,5 +21,6 @@
 #define UNITS__PERCENT          "(%)"
 #define UNITS__METER            "(meters)"
 #define UNITS__KM               "(kilometers)"
+#define UNITS__DB               "(dB)"
 
 // clang-format on

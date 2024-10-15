@@ -31,5 +31,6 @@
 /** Validation Errors (1200-1299) */
 #define     DRVRERR__VALIDATION_IN_FILE             1202
 #define     DRVRERR__VALIDATION_OUT_FILE            1203
+#define     DRVRERR__VALIDATION_MODEL               1204
 
 // clang-format on
