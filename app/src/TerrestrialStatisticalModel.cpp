@@ -56,19 +56,17 @@ int ParseTSMInputFile(const std::string &in_file, TSMParams &tsm_params) {
         });
 
         if (key.compare(TAG__FREQ) == 0) {
-            if (ParseDouble(value.c_str(), tsm_params.f__ghz)
-                == DRVRERR__PARSE) {
+            if (ParseDouble(value, tsm_params.f__ghz) == DRVRERR__PARSE) {
                 return ParsingErrorHelper(DRVRERR__PARSE_FREQ, TAG__FREQ);
             }
         } else if (key.compare(TAG__PATH_DIST) == 0) {
-            if (ParseDouble(value.c_str(), tsm_params.d__km)
-                == DRVRERR__PARSE) {
+            if (ParseDouble(value, tsm_params.d__km) == DRVRERR__PARSE) {
                 return ParsingErrorHelper(
                     DRVRERR__PARSE_PATH_DIST, TAG__PATH_DIST
                 );
             }
         } else if (key.compare(TAG__PERCENTAGE) == 0) {
-            if (ParseDouble(value.c_str(), tsm_params.p) == DRVRERR__PARSE) {
+            if (ParseDouble(value, tsm_params.p) == DRVRERR__PARSE) {
                 return ParsingErrorHelper(
                     DRVRERR__PARSE_PERCENTAGE, TAG__PERCENTAGE
                 );

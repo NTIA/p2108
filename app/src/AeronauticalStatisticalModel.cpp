@@ -56,17 +56,15 @@ int ParseASMInputFile(const std::string &in_file, ASMParams &asm_params) {
         });
 
         if (key.compare(TAG__FREQ) == 0) {
-            if (ParseDouble(value.c_str(), asm_params.f__ghz)
-                == DRVRERR__PARSE) {
+            if (ParseDouble(value, asm_params.f__ghz) == DRVRERR__PARSE) {
                 return ParsingErrorHelper(DRVRERR__PARSE_FREQ, TAG__FREQ);
             }
         } else if (key.compare(TAG__THETA) == 0) {
-            if (ParseDouble(value.c_str(), asm_params.theta__deg)
-                == DRVRERR__PARSE) {
+            if (ParseDouble(value, asm_params.theta__deg) == DRVRERR__PARSE) {
                 return ParsingErrorHelper(DRVRERR__PARSE_THETA, TAG__THETA);
             }
         } else if (key.compare(TAG__PERCENTAGE) == 0) {
-            if (ParseDouble(value.c_str(), asm_params.p) == DRVRERR__PARSE) {
+            if (ParseDouble(value, asm_params.p) == DRVRERR__PARSE) {
                 return ParsingErrorHelper(
                     DRVRERR__PARSE_PERCENTAGE, TAG__PERCENTAGE
                 );

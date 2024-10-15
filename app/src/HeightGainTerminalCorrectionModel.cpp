@@ -61,33 +61,28 @@ int ParseHGTCInputFile(const std::string &in_file, HGTCParams &hgtc_params) {
         });
 
         if (key.compare(TAG__FREQ) == 0) {
-            if (ParseDouble(value.c_str(), hgtc_params.f__ghz)
-                == DRVRERR__PARSE) {
+            if (ParseDouble(value, hgtc_params.f__ghz) == DRVRERR__PARSE) {
                 return ParsingErrorHelper(DRVRERR__PARSE_FREQ, TAG__FREQ);
             }
         } else if (key.compare(TAG__HEIGHT) == 0) {
-            if (ParseDouble(value.c_str(), hgtc_params.h__meter)
-                == DRVRERR__PARSE) {
+            if (ParseDouble(value, hgtc_params.h__meter) == DRVRERR__PARSE) {
                 return ParsingErrorHelper(DRVRERR__PARSE_HEIGHT, TAG__HEIGHT);
             }
         } else if (key.compare(TAG__STREET_WIDTH) == 0) {
-            if (ParseDouble(value.c_str(), hgtc_params.w_s__meter)
-                == DRVRERR__PARSE) {
+            if (ParseDouble(value, hgtc_params.w_s__meter) == DRVRERR__PARSE) {
                 return ParsingErrorHelper(
                     DRVRERR__PARSE_STREET_WIDTH, TAG__STREET_WIDTH
                 );
             }
         } else if (key.compare(TAG__REPR_HEIGHT) == 0) {
-            if (ParseDouble(value.c_str(), hgtc_params.R__meter)
-                == DRVRERR__PARSE) {
+            if (ParseDouble(value, hgtc_params.R__meter) == DRVRERR__PARSE) {
                 return ParsingErrorHelper(
                     DRVRERR__PARSE_REPR_HEIGHT, TAG__REPR_HEIGHT
                 );
             }
         } else if (key.compare(TAG__CLUTTER_TYPE) == 0) {
             int clutter_type_int;
-            if (ParseInteger(value.c_str(), clutter_type_int)
-                == DRVRERR__PARSE) {
+            if (ParseInteger(value, clutter_type_int) == DRVRERR__PARSE) {
                 return ParsingErrorHelper(
                     DRVRERR__PARSE_CLUTTER_TYPE, TAG__CLUTTER_TYPE
                 );
