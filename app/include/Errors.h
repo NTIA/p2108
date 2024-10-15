@@ -26,8 +26,6 @@
 #define     DRVRERR__PARSE_CLUTTER_TYPE             1107
 #define     DRVRERR__PARSE_PATH_DIST                1108
 
-// TODO-TEMPLATE: Add driver error codes and document them in app/README.md
-
 /** Validation Errors (1200-1299) */
 #define     DRVRERR__VALIDATION_IN_FILE             1202
 #define     DRVRERR__VALIDATION_OUT_FILE            1203

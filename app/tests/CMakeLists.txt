@@ -3,7 +3,6 @@
 ############################################
 set(DRIVER_TEST_NAME "Test${LIB_NAME}Driver")
 
-## TODO-TEMPLATE: Include source AND header files for tests here.
 add_executable(
     ${DRIVER_TEST_NAME}
     "TestDriverUtils.cpp"
