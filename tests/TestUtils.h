@@ -1,5 +1,4 @@
-#ifndef __ITS_ITU_PSERIES_P2108_TEST_UTILS_H__
-#define __ITS_ITU_PSERIES_P2108_TEST_UTILS_H__
+#pragma once
 
 #include "ITS.ITU.PSeries.P2108/P2108.h"
 
@@ -46,5 +45,3 @@ std::vector<HeightGainTerminalCorrectionModelTestData>
 
 std::vector<TerrestrialStatisticalModelTestData>
     readTerrestrialStatisticalModelTestData(const std::string &filename);
-
-#endif
