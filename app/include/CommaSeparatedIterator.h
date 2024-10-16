@@ -1,3 +1,6 @@
+/** @file CommaSeparatedIterator.h
+ * Iterator class for reading comma-delimited input text streams.
+ */
 #pragma once
 
 #include <algorithm>  // for transform
