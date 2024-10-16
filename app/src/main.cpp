@@ -36,17 +36,25 @@ int main(int argc, char **argv) {
 
     switch (params.model) {
         case P2108Model::HGTCM:
-            rtn = CallHeightGainTerminalCorrectionModel(
-                params, hgtc_params, loss__db
-            );
+            rtn = ParseHGTCInputFile(params.in_file, hgtc_params);
+            if (rtn != SUCCESS) {
+                return rtn;
+            }
+            rtn = CallHeightGainTerminalCorrectionModel(hgtc_params, loss__db);
             break;
         case P2108Model::TSM:
-            rtn = CallTerrestrialStatisticalModel(params, tsm_params, loss__db);
+            rtn = ParseTSMInputFile(params.in_file, tsm_params);
+            if (rtn != SUCCESS) {
+                return rtn;
+            }
+            rtn = CallTerrestrialStatisticalModel(tsm_params, loss__db);
             break;
         case P2108Model::ASM:
-            rtn = CallAeronauticalStatisticalModel(
-                params, asm_params, loss__db
-            );
+            rtn = ParseASMInputFile(params.in_file, asm_params);
+            if (rtn != SUCCESS) {
+                return rtn;
+            }
+            rtn = CallAeronauticalStatisticalModel(asm_params, loss__db);
             break;
         default:
             rtn = DRVRERR__VALIDATION_MODEL;
