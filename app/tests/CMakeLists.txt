@@ -20,10 +20,8 @@ target_include_directories(
 # Link the library to the executable
 target_link_libraries(${DRIVER_TEST_NAME} ${LIB_NAME})
 
-# Make driver executable location available to source
-add_definitions(-DDRIVER_LOCATION="${PROJECT_SOURCE_DIR}/bin")
+# Make driver executable name available to source
 add_definitions(-DDRIVER_NAME="${DRIVER_NAME}")
-add_definitions(-DDRIVER_DATA_LOCATION="${PROJECT_SOURCE_DIR}/app/data")
 
 set_target_properties(
     ${DRIVER_TEST_NAME} PROPERTIES
