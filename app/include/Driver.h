@@ -8,14 +8,10 @@
 #include "ITS.ITU.PSeries.P2108/P2108.h"
 #include "Structs.h"
 
-#include <algorithm>  // for transform
-#include <cctype>     // for tolower
-#include <cstring>    // for strlen
-#include <ctime>     // for localtime_s, localtime_r, time, time_t, tm, strftime
-#include <fstream>   // for ifstream, ofstream
-#include <iomanip>   // for setw
-#include <iostream>  // for cerr, cout, ostream
-#include <string>    // for string, stoi, stod
+#include <fstream>   // for std::ifstream, std::ofstream
+#include <iomanip>   // for std::setw
+#include <iostream>  // for std::cerr, std::cout, std::ostream
+#include <string>    // for std::string, std::stoi, std::stod
 #include <tuple>     // for std::tie
 #include <vector>
 
