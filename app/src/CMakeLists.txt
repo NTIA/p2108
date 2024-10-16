@@ -1,18 +1,17 @@
 ###########################################
 ## BUILD THE DRIVER
 ###########################################
-set(DRIVER_NAME "${LIB_NAME}Driver")
-set(DRIVER_VERSION ${PROJECT_VERSION}) # May be set manually instead
-set(DRIVER_HEADERS "${PROJECT_SOURCE_DIR}/app/include")
-
+# Driver name set in CMakeLists.txt one level above this one.
 add_executable(
     ${DRIVER_NAME}
     "AeronauticalStatisticalModel.cpp"
+    "CommaSeparatedIterator.cpp"
     "DriverUtils.cpp"
     "HeightGainTerminalCorrectionModel.cpp"
     "main.cpp"
     "Reporting.cpp"
     "TerrestrialStatisticalModel.cpp"
+    "${DRIVER_HEADERS}/CommaSeparatedIterator.h"
     "${DRIVER_HEADERS}/Driver.h"
     "${DRIVER_HEADERS}/Errors.h"
     "${DRIVER_HEADERS}/Labels.h"
@@ -46,13 +45,13 @@ set_target_properties(
 if (BUILD_32BIT)
     set_target_properties(
         ${DRIVER_NAME} PROPERTIES
-        DEBUG_POSTFIX "x86"
-        RELEASE_POSTFIX "x86"
+        DEBUG_POSTFIX "_x86"
+        RELEASE_POSTFIX "_x86"
     )
 else ()
     set_target_properties(
         ${DRIVER_NAME} PROPERTIES
-        DEBUG_POSTFIX "x64"
-        RELEASE_POSTFIX "x64"
+        DEBUG_POSTFIX "_x64"
+        RELEASE_POSTFIX "_x64"
     )
 endif ()

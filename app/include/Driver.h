@@ -3,6 +3,7 @@
  */
 #pragma once
 
+#include "CommaSeparatedIterator.h"
 #include "Errors.h"
 #include "ITS.ITU.PSeries.P2108/P2108.h"
 #include "Structs.h"
@@ -15,6 +16,7 @@
 #include <iomanip>   // for setw
 #include <iostream>  // for cerr, cout, ostream
 #include <string>    // for string, stoi, stod
+#include <tuple>     // for std::tie
 #include <vector>
 
 /////////////////////////////
@@ -34,27 +36,21 @@ int ValidateInputs(const DrvrParams &params);
 
 // Aeronautical Statistical Model
 int CallAeronauticalStatisticalModel(
-    const DrvrParams &params,
-    ASMParams &asm_params,
-    std::vector<double> &L_ces__db
+    ASMParams &asm_params, std::vector<double> &L_ces__db
 );
 int ParseASMInputFile(const std::string &in_file, ASMParams &asm_params);
 void WriteASMInputs(std::ofstream &fp, const ASMParams &params);
 
 // Height Gain Terminal Correction Model
 int CallHeightGainTerminalCorrectionModel(
-    const DrvrParams &params,
-    HGTCParams &hgtc_params,
-    std::vector<double> &A_h__db
+    HGTCParams &hgtc_params, std::vector<double> &A_h__db
 );
 int ParseHGTCInputFile(const std::string &in_file, HGTCParams &hgtc_params);
 void WriteHGTCInputs(std::ofstream &fp, const HGTCParams &params);
 
 // Terrestrial Statistical Model
 int CallTerrestrialStatisticalModel(
-    const DrvrParams &params,
-    TSMParams &tsm_params,
-    std::vector<double> &L_ctt__db
+    TSMParams &tsm_params, std::vector<double> &L_ctt__db
 );
 int ParseTSMInputFile(const std::string &in_file, TSMParams &tsm_params);
 void WriteTSMInputs(std::ofstream &fp, const TSMParams &params);

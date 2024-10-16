@@ -8,22 +8,14 @@
 /*******************************************************************************
  * Top-level control function for Height Gain Terminal Correction Model
  * 
- * @param[in]  params       Driver input parameter struct
  * @param[out] hgtc_params  Height Gain Terminal Correction Model input struct
  * @param[out] A_h__db      Additional loss (clutter loss), in dB
  * @return                  Return code
  ******************************************************************************/
 int CallHeightGainTerminalCorrectionModel(
-    const DrvrParams &params,
-    HGTCParams &hgtc_params,
-    std::vector<double> &A_h__db
+    HGTCParams &hgtc_params, std::vector<double> &A_h__db
 ) {
-    // Parse input file and populate hgtc_params struct
-    int rtn = ParseHGTCInputFile(params.in_file, hgtc_params);
-    if (rtn != SUCCESS) {
-        return rtn;
-    }
-
+    int rtn;
     double A_h;
     rtn = HeightGainTerminalCorrectionModel(
         hgtc_params.f__ghz,
@@ -39,27 +31,17 @@ int CallHeightGainTerminalCorrectionModel(
 }
 
 /*******************************************************************************
- * Parse Height Gain Terminal Correction Model input parameter file
+ * Parse input stream (file or string stream) to HGTC parameter struct.
  * 
- * @param[in]  in_file      Path to HGTC input parameter file
+ * @param[in]  stream       Path to ASM input parameter file
  * @param[out] hgtc_params  HGTC input parameter struct
  * @return                  Return code
  ******************************************************************************/
-int ParseHGTCInputFile(const std::string &in_file, HGTCParams &hgtc_params) {
-    std::ifstream file;
-    file.open(in_file.c_str());
-    std::string line;
-
-    while (std::getline(file, line)) {
-        size_t i = line.find(",");
-
-        std::string key = line.substr(0, i);
-        std::string value = line.substr(i + 1);
-
-        std::transform(key.begin(), key.end(), key.begin(), [](const char c) {
-            return static_cast<char>(std::tolower(c));
-        });
-
+int ParseHGTCInputStream(std::istream &stream, HGTCParams &hgtc_params) {
+    CommaSeparatedIterator it(stream);
+    std::string key, value;
+    while (it) {
+        std::tie(key, value) = *it;
         if (key.compare(TAG__FREQ) == 0) {
             if (ParseDouble(value, hgtc_params.f__ghz) == DRVRERR__PARSE) {
                 return ParsingErrorHelper(DRVRERR__PARSE_FREQ, TAG__FREQ);
@@ -95,9 +77,25 @@ int ParseHGTCInputFile(const std::string &in_file, HGTCParams &hgtc_params) {
                       << std::endl;
             return DRVRERR__PARSE;
         }
+        ++it;
     }
-    file.close();
     return SUCCESS;
+}
+
+/*******************************************************************************
+ * Parse Height Gain Terminal Correction Model input parameter file
+ * 
+ * @param[in]  in_file      Path to HGTC input parameter file
+ * @param[out] hgtc_params  HGTC input parameter struct
+ * @return                  Return code
+ ******************************************************************************/
+int ParseHGTCInputFile(const std::string &in_file, HGTCParams &hgtc_params) {
+    std::ifstream file(in_file);
+    if (!file) {
+        std::cerr << "Failed to open file " << in_file << std::endl;
+        return DRVRERR__OPENING_INPUT_FILE;
+    }
+    return ParseHGTCInputStream(file, hgtc_params);
 }
 
 /*******************************************************************************

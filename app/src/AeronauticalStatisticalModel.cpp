@@ -8,22 +8,14 @@
 /*******************************************************************************
  * Top-level control function for Aeronautical Statistical Model operation
  * 
- * @param[in]  params      Driver input parameter struct
  * @param[out] asm_params  Aeronautical Statistical Model input parameter struct
  * @param[out] L_ces__db   Basic transmission loss, in dB
  * @return                 Return code
  ******************************************************************************/
 int CallAeronauticalStatisticalModel(
-    const DrvrParams &params,
-    ASMParams &asm_params,
-    std::vector<double> &L_ces__db
+    ASMParams &asm_params, std::vector<double> &L_ces__db
 ) {
-    // Parse input file and populate asm_params struct
-    int rtn = ParseASMInputFile(params.in_file, asm_params);
-    if (rtn != SUCCESS) {
-        return rtn;
-    }
-
+    int rtn;
     double L_ces;
     rtn = AeronauticalStatisticalModel(
         asm_params.f__ghz, asm_params.theta__deg, asm_params.p, L_ces
@@ -34,27 +26,17 @@ int CallAeronauticalStatisticalModel(
 }
 
 /*******************************************************************************
- * Parse Aeronautical Statistical Model input parameter file
+ * Parse input stream (file or string stream) to ASM parameter struct.
  * 
- * @param[in]  in_file     Path to ASM input parameter file
+ * @param[in]  stream      Path to ASM input parameter file
  * @param[out] asm_params  ASM input parameter struct
  * @return                 Return code
  ******************************************************************************/
-int ParseASMInputFile(const std::string &in_file, ASMParams &asm_params) {
-    std::ifstream file;
-    file.open(in_file.c_str());
-    std::string line;
-
-    while (std::getline(file, line)) {
-        size_t i = line.find(",");
-
-        std::string key = line.substr(0, i);
-        std::string value = line.substr(i + 1);
-
-        std::transform(key.begin(), key.end(), key.begin(), [](const char c) {
-            return static_cast<char>(std::tolower(c));
-        });
-
+int ParseASMInputStream(std::istream &stream, ASMParams &asm_params) {
+    CommaSeparatedIterator it(stream);
+    std::string key, value;
+    while (it) {
+        std::tie(key, value) = *it;
         if (key.compare(TAG__FREQ) == 0) {
             if (ParseDouble(value, asm_params.f__ghz) == DRVRERR__PARSE) {
                 return ParsingErrorHelper(DRVRERR__PARSE_FREQ, TAG__FREQ);
@@ -75,9 +57,25 @@ int ParseASMInputFile(const std::string &in_file, ASMParams &asm_params) {
                       << std::endl;
             return DRVRERR__PARSE;
         }
+        ++it;
     }
-    file.close();
     return SUCCESS;
+}
+
+/*******************************************************************************
+ * Parse Aeronautical Statistical Model input parameter file
+ * 
+ * @param[in]  in_file     Path to ASM input parameter file
+ * @param[out] asm_params  ASM input parameter struct
+ * @return                 Return code
+ ******************************************************************************/
+int ParseASMInputFile(const std::string &in_file, ASMParams &asm_params) {
+    std::ifstream file(in_file);
+    if (!file) {
+        std::cerr << "Failed to open file " << in_file << std::endl;
+        return DRVRERR__OPENING_INPUT_FILE;
+    }
+    return ParseASMInputStream(file, asm_params);
 }
 
 /*******************************************************************************

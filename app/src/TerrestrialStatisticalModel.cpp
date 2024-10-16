@@ -8,22 +8,14 @@
 /*******************************************************************************
  * Top-level control function for Terrestrial Statistical Model operation
  * 
- * @param[in]  params      Driver input parameter struct
  * @param[out] tsm_params  Terrestrial Statistical Model input parameter struct
  * @param[out] L_ctt__db   Additional loss (clutter loss), in dB
  * @return                 Return code
  ******************************************************************************/
 int CallTerrestrialStatisticalModel(
-    const DrvrParams &params,
-    TSMParams &tsm_params,
-    std::vector<double> &L_ctt__db
+    TSMParams &tsm_params, std::vector<double> &L_ctt__db
 ) {
-    // Parse input file and populate tsm_params struct
-    int rtn = ParseTSMInputFile(params.in_file, tsm_params);
-    if (rtn != SUCCESS) {
-        return rtn;
-    }
-
+    int rtn;
     double L_ctt;
     rtn = TerrestrialStatisticalModel(
         tsm_params.f__ghz, tsm_params.d__km, tsm_params.p, L_ctt
@@ -34,27 +26,17 @@ int CallTerrestrialStatisticalModel(
 }
 
 /*******************************************************************************
- * Parse Terrestrial Statistical Model input parameter file
+ * Parse input stream (file or string stream) to TSM parameter struct.
  * 
- * @param[in]  in_file     Path to TSM input parameter file
+ * @param[in]  stream      Path to TSM input parameter file
  * @param[out] tsm_params  TSM input parameter struct
  * @return                 Return code
  ******************************************************************************/
-int ParseTSMInputFile(const std::string &in_file, TSMParams &tsm_params) {
-    std::ifstream file;
-    file.open(in_file.c_str());
-    std::string line;
-
-    while (std::getline(file, line)) {
-        size_t i = line.find(",");
-
-        std::string key = line.substr(0, i);
-        std::string value = line.substr(i + 1);
-
-        std::transform(key.begin(), key.end(), key.begin(), [](const char c) {
-            return static_cast<char>(std::tolower(c));
-        });
-
+int ParseTSMInputStream(std::istream &stream, TSMParams &tsm_params) {
+    CommaSeparatedIterator it(stream);
+    std::string key, value;
+    while (it) {
+        std::tie(key, value) = *it;
         if (key.compare(TAG__FREQ) == 0) {
             if (ParseDouble(value, tsm_params.f__ghz) == DRVRERR__PARSE) {
                 return ParsingErrorHelper(DRVRERR__PARSE_FREQ, TAG__FREQ);
@@ -77,9 +59,25 @@ int ParseTSMInputFile(const std::string &in_file, TSMParams &tsm_params) {
                       << std::endl;
             return DRVRERR__PARSE;
         }
+        ++it;
     }
-    file.close();
     return SUCCESS;
+}
+
+/*******************************************************************************
+ * Parse Terrestrial Statistical Model input parameter file
+ * 
+ * @param[in]  in_file     Path to TSM input parameter file
+ * @param[out] tsm_params  TSM input parameter struct
+ * @return                 Return code
+ ******************************************************************************/
+int ParseTSMInputFile(const std::string &in_file, TSMParams &tsm_params) {
+    std::ifstream file(in_file);
+    if (!file) {
+        std::cerr << "Failed to open file " << in_file << std::endl;
+        return DRVRERR__OPENING_INPUT_FILE;
+    }
+    return ParseTSMInputStream(file, tsm_params);
 }
 
 /*******************************************************************************
