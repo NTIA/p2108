@@ -6,9 +6,9 @@ add_executable(
     ${DRIVER_NAME}
     "AeronauticalStatisticalModel.cpp"
     "CommaSeparatedIterator.cpp"
+    "Driver.cpp"
     "DriverUtils.cpp"
     "HeightGainTerminalCorrectionModel.cpp"
-    "main.cpp"
     "Reporting.cpp"
     "TerrestrialStatisticalModel.cpp"
     "${DRIVER_HEADERS}/CommaSeparatedIterator.h"

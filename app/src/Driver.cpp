@@ -1,4 +1,4 @@
-/** @file main.cpp
+/** @file Driver.cpp
  * Implements the main function of the executable, and other high-level functions
  */
 #include "Driver.h"
@@ -65,9 +65,8 @@ int main(int argc, char **argv) {
         return rtn;
 
     // Print results to file
-    std::ofstream fp;
-    fp.open(params.out_file.c_str());
-    if (!fp.is_open()) {
+    std::ofstream fp(params.out_file);
+    if (!fp) {
         std::cerr << "Error opening output file. Exiting." << std::endl;
         return DRVRERR__OPENING_OUTPUT_FILE;
     }
