@@ -9,6 +9,8 @@ int main() {
 
 #ifdef _WIN32
     executable += ".exe";
+#else
+    executable = "./" + executable;
 #endif
 
     std::string command;
