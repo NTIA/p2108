@@ -15,7 +15,7 @@ add_executable(
 target_include_directories(
     ${DRIVER_TEST_NAME} PUBLIC
     "${DRIVER_HEADERS}"
-    "${PROJECT_SOURCE_DIR}/app/tests/"
+    "${PROJECT_SOURCE_DIR}/app/tests"
 )
 
 # Link the library to the executable

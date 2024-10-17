@@ -36,7 +36,9 @@ int ParseInteger(const std::string &str) {
 
         // Verify the entire string was parsed
         if (pos != str.size()) {
-            throw std::invalid_argument("Input string contains non-numeric characters");
+            throw std::invalid_argument(
+                "Input string contains non-numeric characters"
+            );
         }
     } catch (...) {
         // error parsing the input string value
