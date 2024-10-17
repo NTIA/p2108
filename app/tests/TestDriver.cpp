@@ -19,6 +19,9 @@ int main() {
         {"-i", "i_hgtcm.txt", "-o", "o_hgtcm.txt", "-model", "HGTCM", "0"},
         {"-i", "i_tsm.txt", "-o", "o_tsm.txt", "-model", "TSM", "0"},
         {"-i", "i_asm.txt", "-o", "o_asm.txt", "-model", "ASM", "0"},
+        {"-k", "INVALIDOPTION", "1003"},
+        {"-i", "i_hgtcm.txt", "-o", "o_hgtcm.txt", "-model", "INVALID", "1204"},
+        {"-i", "INVALID", "-o", "out.txt", "-model", "ASM", "1006"}
     };
 
     int expected_rtn;
@@ -28,6 +31,13 @@ int main() {
         args.pop_back();
         command = executable + " " + joinArguments(args);
         std::cout << "Running command: " << command << std::endl;
+        // Suppress stdout when executable is called:
+#ifdef _WIN32
+        command += " > nul";
+#else
+        command += " > /dev/null";
+#endif
+        command += " 2>&1";  // Also suppress stderr
         rtn = std::system(command.c_str());
         if (rtn != expected_rtn) {
             std::cout << "[FAILURE] Returned " << rtn << ", expected "
