@@ -11,6 +11,7 @@
 #include <fstream>   // for std::ifstream, std::ofstream
 #include <iomanip>   // for std::setw
 #include <iostream>  // for std::cerr, std::cout, std::ostream
+#include <ostream>   // for std::endl
 #include <string>    // for std::string, std::stoi, std::stod
 #include <tuple>     // for std::tie
 #include <vector>
