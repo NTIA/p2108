@@ -5,8 +5,10 @@ set(DRIVER_TEST_NAME "Test${DRIVER_NAME}")
 
 add_executable(
     ${DRIVER_TEST_NAME}
+    "TempTextFile.cpp"
     "TestDriver.cpp"
     "TestDriverUtils.cpp"
+    "TempTextFile.h"
     "TestDriver.h"
     "${DRIVER_HEADERS}/Driver.h"
 )
