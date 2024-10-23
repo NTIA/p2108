@@ -25,14 +25,15 @@ target_include_directories(
 # Link the library to the executable
 target_link_libraries(${DRIVER_TEST_NAME} ${LIB_NAME})
 
-# Make driver executable name available to source
+# Make driver executable name and location available to source
 add_definitions(-DDRIVER_NAME="${DRIVER_NAME}")
+add_definitions(-DDRIVER_LOCATION="${DRIVER_EXE_DIR}/${CMAKE_BUILD_TYPE}")
 
 set_target_properties(
     ${DRIVER_TEST_NAME} PROPERTIES
-    LIBRARY_OUTPUT_DIRECTORY "${PROJECT_SOURCE_DIR}/bin"
-    ARCHIVE_OUTPUT_DIRECTORY "${PROJECT_SOURCE_DIR}/bin"
-    RUNTIME_OUTPUT_DIRECTORY "${PROJECT_SOURCE_DIR}/bin"
+    LIBRARY_OUTPUT_DIRECTORY ${DRIVER_EXE_DIR}
+    ARCHIVE_OUTPUT_DIRECTORY ${DRIVER_EXE_DIR}
+    RUNTIME_OUTPUT_DIRECTORY ${DRIVER_EXE_DIR}
 )
 
 ###########################################

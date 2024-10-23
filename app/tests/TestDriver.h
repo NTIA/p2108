@@ -3,8 +3,9 @@
 #include "Driver.h"
 #include "TempTextFile.h"
 
-#include <cstdio>   // for std::remove
-#include <cstdlib>  // for std::system
+#include <algorithm>  // for std::replace
+#include <cstdio>     // for std::remove
+#include <cstdlib>    // for std::system
 #include <gtest/gtest.h>
 #include <iostream>  // for std::cout, std::endl
 #include <string>    // for std::string
@@ -13,8 +14,10 @@ class DriverTest: public ::testing::Test {
     protected:
         void SetUp() override {
             // Get the name of the executable to test
-            executable = std::string(DRIVER_NAME);
+            executable = std::string(DRIVER_LOCATION);
+            executable += "/" + std::string(DRIVER_NAME);
 #ifdef _WIN32
+            std::replace(executable.begin(), executable.end(), '/', '\\');
             executable += ".exe";
 #else
             executable = "./" + executable;
@@ -55,6 +58,7 @@ class DriverTest: public ::testing::Test {
             const std::string &outFile
         ) {
             std::string cmd = BuildCommand(inFile, model, outFile);
+            std::cerr << "Running: " << cmd << std::endl;
             int rtn = std::system(cmd.c_str());
             return rtn;
         }
