@@ -12,6 +12,7 @@
 
 /** Primary Return Codes (1000-1099) */
 #define     DRVR__RETURN_SUCCESS                    1000
+#define     DRVRERR__MISSING_OPTION                 1002
 #define     DRVRERR__INVALID_OPTION                 1003
 #define     DRVRERR__OPENING_INPUT_FILE             1006
 #define     DRVRERR__OPENING_OUTPUT_FILE            1007

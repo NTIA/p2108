@@ -6,6 +6,8 @@
 #include "Labels.h"
 #include "Tags.h"
 
+#include <algorithm>  // for std::find
+
 /*******************************************************************************
  * Main function of the driver executable
  ******************************************************************************/
@@ -17,14 +19,14 @@ int main(int argc, char **argv) {
     rtn = ParseArguments(argc, argv, params);
     if (rtn == DRVR__RETURN_SUCCESS)
         return SUCCESS;
-    if (rtn) {
+    if (rtn != SUCCESS) {
         Help();
         return rtn;
     }
 
-    // validate command line inputs
+    // Ensure required options were provided
     rtn = ValidateInputs(params);
-    if (rtn) {
+    if (rtn != SUCCESS) {
         Help();
         return rtn;
     }
@@ -131,12 +133,38 @@ int main(int argc, char **argv) {
  * @return             Return code
  ******************************************************************************/
 int ParseArguments(int argc, char **argv, DrvrParams &params) {
-    for (int i = 1; i < argc; i++) {
-        std::string arg(argv[i]);
-        std::transform(arg.begin(), arg.end(), arg.begin(), [](const char c) {
-            return static_cast<char>(std::tolower(c));
-        });
+    const std::vector<std::string> validArgs
+        = {"-i", "-o", "-model", "-h", "--help", "-v", "--version"};
 
+    for (int i = 1; i < argc; i++) {
+        // Parse arg to lowercase string
+        std::string arg(argv[i]);
+        StringToLower(arg);
+
+        // Check if provided flag is valid
+        if (std::find(validArgs.begin(), validArgs.end(), arg)
+            == validArgs.end()) {
+            // Invalid argument provided
+            std::cerr << "Unknown option: " << argv[i] << std::endl;
+            return DRVRERR__INVALID_OPTION;
+        }
+
+        // Handle simple flags which don't have values
+        if (arg == "-v" || arg == "--version") {
+            Version();
+            return DRVR__RETURN_SUCCESS;
+        } else if (arg == "-h" || arg == "--help") {
+            Help();
+            return DRVR__RETURN_SUCCESS;
+        }
+
+        // Check if end of arguments reached or next argument is another flag
+        if (i + 1 >= argc || argv[i + 1][0] == '-') {
+            std::cerr << "Error: no value given for " << arg << std::endl;
+            return DRVRERR__MISSING_OPTION;
+        }
+
+        // Match valid flags and store specified values in params
         if (arg == "-i") {
             params.in_file = argv[i + 1];
             i++;
@@ -145,31 +173,15 @@ int ParseArguments(int argc, char **argv, DrvrParams &params) {
             i++;
         } else if (arg == "-model") {
             std::string argval(argv[i + 1]);
-            std::transform(
-                argval.begin(),
-                argval.end(),
-                argval.begin(),
-                [](const char c) { return static_cast<char>(std::tolower(c)); }
-            );
+            StringToLower(argval);
             if (argval == "asm") {
                 params.model = P2108Model::ASM;
             } else if (argval == "hgtcm") {
                 params.model = P2108Model::HGTCM;
             } else if (argval == "tsm") {
                 params.model = P2108Model::TSM;
-            } else {
-                params.model = P2108Model::NOT_SET;
             }
             i++;
-        } else if (arg == "-v") {
-            Version();
-            return DRVR__RETURN_SUCCESS;
-        } else if (arg == "-h") {
-            Help();
-            return DRVR__RETURN_SUCCESS;
-        } else {
-            std::cerr << "Unknown option: " << argv[i] << std::endl;
-            return DRVRERR__INVALID_OPTION;
         }
     }
 
@@ -187,6 +199,8 @@ void Help(std::ostream &os) {
     os << "\t-i      :: Input file name" << std::endl;
     os << "\t-o      :: Output file name" << std::endl;
     os << "\t-model  :: Model to run [HGTCM, TSM, ASM]" << std::endl;
+    os << "\t -h     :: Display this help message" << std::endl;
+    os << "\t -v     :: Display program version information" << std::endl;
     os << std::endl << "Examples:" << std::endl;
     os << "\t[WINDOWS] " << DRIVER_NAME
        << ".exe -i inputs.txt -o results.txt -model ASM" << std::endl;
@@ -205,15 +219,16 @@ void Help(std::ostream &os) {
  * @return            Return code
  ******************************************************************************/
 int ValidateInputs(const DrvrParams &params) {
-    if (params.in_file.length() == 0)
+    DrvrParams not_set;
+    if (params.in_file == not_set.in_file)
         return Validate_RequiredErrMsgHelper("-i", DRVRERR__VALIDATION_IN_FILE);
 
-    if (params.out_file.length() == 0)
+    if (params.out_file == not_set.out_file)
         return Validate_RequiredErrMsgHelper(
             "-o", DRVRERR__VALIDATION_OUT_FILE
         );
 
-    if (params.model == P2108Model::NOT_SET)
+    if (params.model == not_set.model)
         return Validate_RequiredErrMsgHelper(
             "-model", DRVRERR__VALIDATION_MODEL
         );

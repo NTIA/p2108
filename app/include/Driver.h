@@ -64,3 +64,4 @@ int ParseInteger(const std::string &str, int &value);
 int ParseDouble(const std::string &str, double &value);
 int ParsingErrorHelper(const int err, const std::string &msg);
 std::string GetDatetimeString();
+void StringToLower(std::string &str);

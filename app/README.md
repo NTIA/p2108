@@ -66,6 +66,7 @@ driver implements the following return codes.
 | Value | Const Name                     | Description                                |
 |-------|--------------------------------|--------------------------------------------|
 | 1000  | `DRVR__RETURN_SUCCESS`         | Successful execution                       |
+| 1002  | `DRVRERR__MISSING_OPTION`      | An input flag was given without a value    |
 | 1003  | `DRVRERR__INVALID_OPTION`      | Unknown option specified                   |
 | 1007  | `DRVRERR__OPENING_OUTPUT_FILE` | Failed to open the output file for writing |
 
@@ -87,3 +88,4 @@ which may include, e.g., parameter out-of-range errors.
 |-------|------------------------------------|---------------------------------------|
 | 1202  | `DRVRERR__VALIDATION_IN_FILE`      | Input parameter file is not specified |
 | 1203  | `DRVRERR__VALIDATION_OUT_FILE`     | Output file is not specified          |
+| 1204  | `DRVRERR__VALIDATION_MODEL`        | Model is not specified                |
