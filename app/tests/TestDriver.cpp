@@ -1,54 +1,60 @@
-/** @file TestDriver.cpp
- * The main entrypoint for the TestDriver executable
- */
 #include "TestDriver.h"
 
-int main() {
-    // Driver executable needs to be in the same directory as this executable
-    std::string executable = std::string(DRIVER_NAME);
 
-#ifdef _WIN32
-    executable += ".exe";
-#else
-    executable = "./" + executable;
-#endif
+TEST_F(DriverTest, MissingOptionError1) {
+    // Test case: missing option between two provided flags
+    std::string cmd = executable + " -i -o out.txt";
+    SuppressOutputs(cmd);
+    int rtn = std::system(cmd.c_str());
+    EXPECT_EQ(rtn, DRVRERR__MISSING_OPTION);
+}
 
-    std::string command;
-    int rtn;
+TEST_F(DriverTest, MissingOptionError2) {
+    // Test case: missing option at the end of command
+    std::string cmd = executable + " -i";
+    SuppressOutputs(cmd);
+    int rtn = std::system(cmd.c_str());
+    EXPECT_EQ(rtn, DRVRERR__MISSING_OPTION);
+}
 
-    // Input files must exist in the directory of this executable
-    std::vector<std::vector<std::string>> argSet = {
-        {"-i", "i_hgtcm.txt", "-o", "o_hgtcm.txt", "-model", "HGTCM", "0"},
-        {"-i", "i_tsm.txt", "-o", "o_tsm.txt", "-model", "TSM", "0"},
-        {"-i", "i_asm.txt", "-o", "o_asm.txt", "-model", "ASM", "0"},
-        {"-k", "INVALIDOPTION", "1003"},
-        {"-i", "i_hgtcm.txt", "-o", "o_hgtcm.txt", "-model", "INVALID", "1204"},
-        {"-i", "INVALID", "-o", "out.txt", "-model", "ASM", "1006"}
-    };
+TEST_F(DriverTest, InvalidOptionError) {
+    std::string cmd = executable + " -X";
+    SuppressOutputs(cmd);
+    int rtn = std::system(cmd.c_str());
+    EXPECT_EQ(rtn, DRVRERR__INVALID_OPTION);
+}
 
-    int expected_rtn;
+TEST_F(DriverTest, OpeningInputFileError) {
+    int rtn = RunDriver("/invalid/path/input.xyz", "ASM", "out.txt");
+    EXPECT_EQ(rtn, DRVRERR__OPENING_INPUT_FILE);
+}
 
-    for (auto args : argSet) {
-        expected_rtn = ParseInteger(args.back());
-        args.pop_back();
-        command = executable + " " + joinArguments(args);
-        std::cout << "Running command: " << command << std::endl;
-        // Suppress stdout when executable is called:
-#ifdef _WIN32
-        command += " > nul";
-#else
-        command += " > /dev/null";
-#endif
-        command += " 2>&1";  // Also suppress stderr
-        rtn = std::system(command.c_str());
-        if (rtn != expected_rtn) {
-            std::cout << "[FAILURE] Returned " << rtn << ", expected "
-                      << expected_rtn << std::endl;
-        } else {
-            std::cout << "[SUCCESS] Returned " << rtn << std::endl;
-        }
-        std::cout << std::endl;
-    }
+TEST_F(DriverTest, OpeningOutputFileError) {
+    // Provide valid inputs but invalid output file path
+    std::string inputs = "f__ghz,10\ntheta__deg,10.5\np,45";
+    int rtn = RunDriverWithInputFile(inputs, "ASM", "/invalid/path/output.xyz");
+    EXPECT_EQ(rtn, DRVRERR__OPENING_OUTPUT_FILE);
+}
 
-    return SUCCESS;
+TEST_F(DriverTest, ValidationInFileError) {
+    std::string cmd = executable + " -o out.txt -model ASM";
+    SuppressOutputs(cmd);
+    int rtn = std::system(cmd.c_str());
+    EXPECT_EQ(rtn, DRVRERR__VALIDATION_IN_FILE);
+}
+
+TEST_F(DriverTest, ValidationOutFileError) {
+    // Input file does not need to exist here, just has to be specified
+    std::string cmd = executable + " -i in.txt -model ASM";
+    SuppressOutputs(cmd);
+    int rtn = std::system(cmd.c_str());
+    EXPECT_EQ(rtn, DRVRERR__VALIDATION_OUT_FILE);
+}
+
+TEST_F(DriverTest, ValidationModelError) {
+    // Input file does not need to exist here, just has to be specified
+    std::string cmd = executable + " -i in.txt -o out.txt";
+    SuppressOutputs(cmd);
+    int rtn = std::system(cmd.c_str());
+    EXPECT_EQ(rtn, DRVRERR__VALIDATION_MODEL);
 }
