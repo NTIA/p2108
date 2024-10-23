@@ -12,6 +12,11 @@ class TSMDriverTest: public DriverTest {
         std::string TSMInputs;
 };
 
+TEST_F(TSMDriverTest, TestSuccess) {
+    TSMInputs = "f__ghz,26.6\nd__km,15.8\np,45";
+    TestTSM(TSMInputs, SUCCESS);
+}
+
 TEST_F(TSMDriverTest, TestParseError) {
     TSMInputs = "unknown_param,0.0";
     TestTSM(TSMInputs, DRVRERR__PARSE);

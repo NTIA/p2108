@@ -13,6 +13,11 @@ class ASMDriverTest: public DriverTest {
         std::string ASMInputs;
 };
 
+TEST_F(ASMDriverTest, TestSuccess) {
+    ASMInputs = "f__ghz,10\ntheta__deg,10.5\np,45";
+    TestASM(ASMInputs, SUCCESS);
+}
+
 TEST_F(ASMDriverTest, TestParseError) {
     ASMInputs = "unknown_param,0.0";
     TestASM(ASMInputs, DRVRERR__PARSE);

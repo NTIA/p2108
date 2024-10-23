@@ -13,6 +13,12 @@ class HGTCMDriverTest: public DriverTest {
         std::string HGTCMInputs;
 };
 
+TEST_F(HGTCMDriverTest, TestSuccess) {
+    HGTCMInputs
+        = "f__ghz,1.5\nh__meter,2\nw_s__meter,27\nR__meter,15\nclutter_type,4";
+    TestHGTCM(HGTCMInputs, SUCCESS);
+}
+
 TEST_F(HGTCMDriverTest, TestParseError) {
     HGTCMInputs = "unknown_param,0.0";
     TestHGTCM(HGTCMInputs, DRVRERR__PARSE);
