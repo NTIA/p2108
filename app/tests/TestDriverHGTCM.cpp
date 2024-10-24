@@ -2,15 +2,19 @@
 
 class HGTCMDriverTest: public DriverTest {
     protected:
-        void TestHGTCM(
-            const std::string &inFileContents, const int expected_rtn
-        ) {
+        void SetUp() override {
+            DriverTest::SetUp();
+            hgtcm_params.model = P2108Model::HGTCM;
+            hgtcm_params.out_file = params.out_file;
+        }
+        void TestHGTCM(const std::string &inputs, const int expected_rtn) {
             int hgtcm_rtn;
-            hgtcm_rtn = RunDriverWithInputFile(inFileContents, "HGTCM");
+            hgtcm_rtn = RunDriverWithInputFile(inputs, hgtcm_params);
             EXPECT_EQ(hgtcm_rtn, expected_rtn);
         }
 
         std::string HGTCMInputs;
+        DrvrParams hgtcm_params;
 };
 
 TEST_F(HGTCMDriverTest, TestSuccess) {

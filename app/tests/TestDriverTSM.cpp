@@ -2,14 +2,19 @@
 
 class TSMDriverTest: public DriverTest {
     protected:
-        void
-            TestTSM(const std::string &inFileContents, const int expected_rtn) {
+        void SetUp() override {
+            DriverTest::SetUp();
+            tsm_params.model = P2108Model::TSM;
+            tsm_params.out_file = params.out_file;
+        }
+        void TestTSM(const std::string &inputs, const int expected_rtn) {
             int tsm_rtn;
-            tsm_rtn = RunDriverWithInputFile(inFileContents, "TSM");
+            tsm_rtn = RunDriverWithInputFile(inputs, tsm_params);
             EXPECT_EQ(tsm_rtn, expected_rtn);
         }
 
         std::string TSMInputs;
+        DrvrParams tsm_params;
 };
 
 TEST_F(TSMDriverTest, TestSuccess) {

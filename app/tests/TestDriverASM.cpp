@@ -1,16 +1,20 @@
 #include "TestDriver.h"
 
-// Test fixture for the unit tests
 class ASMDriverTest: public DriverTest {
     protected:
-        void
-            TestASM(const std::string &inFileContents, const int expected_rtn) {
+        void SetUp() override {
+            DriverTest::SetUp();
+            asm_params.model = P2108Model::ASM;
+            asm_params.out_file = params.out_file;
+        }
+        void TestASM(const std::string &inputs, const int expected_rtn) {
             int asm_rtn;
-            asm_rtn = RunDriverWithInputFile(inFileContents, "ASM");
+            asm_rtn = RunDriverWithInputFile(inputs, asm_params);
             EXPECT_EQ(asm_rtn, expected_rtn);
         }
 
         std::string ASMInputs;
+        DrvrParams asm_params;
 };
 
 TEST_F(ASMDriverTest, TestSuccess) {

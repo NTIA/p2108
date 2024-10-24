@@ -27,9 +27,7 @@ class DriverTest: public ::testing::Test {
          * Sets up the test environment.
          **********************************************************************/
         void SetUp() override {
-            // TODO-TEMPLATE review and optionally adjust default params here
             // Set the default driver params
-            params.DBG = false;
             params.out_file = "tmp_out.txt";
 
             // Get the name of the executable to test
@@ -74,14 +72,19 @@ class DriverTest: public ::testing::Test {
         std::string BuildCommand(
             const DrvrParams &params, const bool suppressOutputs = true
         ) {
-            // TODO-TEMPLATE: Modify this function to correctly
-            // unpack the DrvrParams struct and build the command
-
             // Construct command from parameters
             std::string command = executable;
             command += " -i " + params.in_file;
-            if (params.DBG) {
-                command += " -DBG";
+            switch (params.model) {
+                case P2108Model::HGTCM:
+                    command += " -model HGTCM";
+                    break;
+                case P2108Model::TSM:
+                    command += " -model TSM";
+                    break;
+                case P2108Model::ASM:
+                    command += " -model ASM";
+                    break;
             }
             command += " -o " + params.out_file;
 
