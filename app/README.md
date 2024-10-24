@@ -1,4 +1,4 @@
-# Command-line Driver # TODO
+# Command-line Driver #
 
 This document explains the use of the included command-line driver. This is a
 supplemental software tool to allow a user to call the compiled propagation library
@@ -9,8 +9,7 @@ from the command-line using text files to provide inputs and store outputs.
 Inputs to the command-line driver are specified in an ASCII text file using
 the common `key,value` format. Each line holds a single `key,value` combination,
 with the `key` representing the model input variable name and the `value` representing
-its value. An example is included in this repository [here](./data/in.txt).
-(TODO-TEMPLATE update the above example data info/link)
+its value.
 
 ## Output Files ##
 
@@ -24,13 +23,11 @@ documentation.
 Executing the command-line driver requires specifying input arguments, defined
 in the below table:
 
-(TODO-TEMPLATE review and update the flags below)
-| Flag   | Type   | Required | Description                                                           |
-|--------|--------|----------|-----------------------------------------------------------------------|
-| `-i`   | string | True     | File specifying model input parameters in `key,value` format          |
-| `-o`   | string | True     | Filename where output results should be written                       |
-| `-t`   | string | True     | File containing comma-delimited terrain elevation data along the path |
-| `-dbg` | N/A    | False    | If specified, intermediate values will be written to the output file  |
+| Flag     | Type   | Required | Description                                                  |
+|----------|--------|----------|--------------------------------------------------------------|
+| `-i`     | string | true     | File specifying model input parameters in `key,value` format |
+| `-model` | string | true     | Which model to run, one of `HGTCM`, `TSM`, or `ASM`          |
+| `-o`     | string | true     | Filename where output results should be written              |
 
 Additional arguments are available to print help text and version information:
 
@@ -42,18 +39,21 @@ Additional arguments are available to print help text and version information:
 Input arguments are not case sensitive and do not have to be specified in a certain
 order. A generic example of calling the command-line driver on Windows is:
 
-(TODO-TEMPLATE: update example driver command below)
 ```cmd
-<Driver>.exe -i <input_file> -o <output_file>
+P2108Driver.exe -i input.txt -model ASM -o output.txt
 ```
 
 ### Examples ###
 
-| Input File                          | Output File                         | Arguments                       |
-|-------------------------------------|-------------------------------------|---------------------------------|
-| [`i_asm.txt`](./data/i_asm.txt)     | [`o_asm.txt`](./data/o_asm.txt)     | `-i i_asm.txt -o o_asm.txt`     |
-| [`i_hgtcm.txt`](./data/i_hgtcm.txt) | [`o_hgtcm.txt`](./data/o_hgtcm.txt) | `-i i_hgtcm.txt -o o_hgtcm.txt` |
-| [`i_tsm.txt`](./data/i_tsm.txt)     | [`o_tsm.txt`](./data/o_tsm.txt)     | `-i i_tsm.txt -o o_tsm.txt`     |
+The following files are included as references for the functionality of this software.
+Using these input files and the commands specified should produce outputs identical
+to the provided corresponding output files.
+
+| Input File                          | Output File                         | Arguments                                    |
+|-------------------------------------|-------------------------------------|----------------------------------------------|
+| [`i_hgtcm.txt`](./data/i_hgtcm.txt) | [`o_hgtcm.txt`](./data/o_hgtcm.txt) | `-i i_hgtcm.txt -model HGTCM -o o_hgtcm.txt` |
+| [`i_tsm.txt`](./data/i_tsm.txt)     | [`o_tsm.txt`](./data/o_tsm.txt)     | `-i i_tsm.txt -model TSM -o o_tsm.txt`       |
+| [`i_asm.txt`](./data/i_asm.txt)     | [`o_asm.txt`](./data/o_asm.txt)     | `-i i_asm.txt -model ASM -o o_asm.txt`       |
 
 ## Command-line Driver Errors ##
 
