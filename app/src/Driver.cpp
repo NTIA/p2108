@@ -64,7 +64,7 @@ int main(int argc, char **argv) {
     }
 
     // Return driver error code if one was returned
-    if (rtn >= 1100)
+    if (rtn > DRVR__RETURN_SUCCESS)
         return rtn;
 
     // Print results to file
@@ -149,7 +149,7 @@ int ParseArguments(int argc, char **argv, DrvrParams &params) {
             return DRVRERR__INVALID_OPTION;
         }
 
-        // Handle simple flags which don't have values
+        // Handle simple flags which don't have associated values (e.g., "-v", "-DBG")
         if (arg == "-v" || arg == "--version") {
             Version();
             return DRVR__RETURN_SUCCESS;
@@ -164,7 +164,7 @@ int ParseArguments(int argc, char **argv, DrvrParams &params) {
             return DRVRERR__MISSING_OPTION;
         }
 
-        // Match valid flags and store specified values in params
+        // Handle inputs which provide values (e.g. "-i in.txt").
         if (arg == "-i") {
             params.in_file = argv[i + 1];
             i++;
@@ -199,13 +199,14 @@ void Help(std::ostream &os) {
     os << "\t-i      :: Input file name" << std::endl;
     os << "\t-o      :: Output file name" << std::endl;
     os << "\t-model  :: Model to run [HGTCM, TSM, ASM]" << std::endl;
-    os << "\t -h     :: Display this help message" << std::endl;
-    os << "\t -v     :: Display program version information" << std::endl;
     os << std::endl << "Examples:" << std::endl;
     os << "\t[WINDOWS] " << DRIVER_NAME
-       << ".exe -i inputs.txt -o results.txt -model ASM" << std::endl;
+       << ".exe -i inputs.txt -model ASM -o results.txt" << std::endl;
     os << "\t[LINUX]   .\\" << DRIVER_NAME
-       << " -i inputs.txt -o results.txt -model ASM" << std::endl;
+       << " -i in.txt -model ASM -o results.txt" << std::endl;
+    os << "Other Options (which don't run the model)" << std::endl;
+    os << "\t-h      :: Display this help message" << std::endl;
+    os << "\t-v      :: Display program version information" << std::endl;
     os << std::endl;
 };
 

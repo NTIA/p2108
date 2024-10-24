@@ -57,7 +57,8 @@ order. A generic example of calling the command-line driver on Windows is:
 
 ## Command-line Driver Errors ##
 
-(TODO-TEMPLATE: Update the below tables with your driver errors)
+(TODO-TEMPLATE: Update the below tables with your driver errors. Align with app/Errors.h)
+
 In addition to the return codes defined by the library itself, the command-line
 driver implements the following return codes.
 
@@ -65,18 +66,25 @@ driver implements the following return codes.
 
 | Value | Const Name                     | Description                                |
 |-------|--------------------------------|--------------------------------------------|
-| 1000  | `DRVR__RETURN_SUCCESS`         | Successful execution                       |
-| 1002  | `DRVRERR__MISSING_OPTION`      | An input flag was given without a value    |
-| 1003  | `DRVRERR__INVALID_OPTION`      | Unknown option specified                   |
-| 1007  | `DRVRERR__OPENING_OUTPUT_FILE` | Failed to open the output file for writing |
+| 1000  | `DRVR__RETURN_SUCCESS`         | Internal driver success code               |
+| 1001  | `DRVRERR__MISSING_OPTION`      | No value provided for given argument       | 
+| 1002  | `DRVRERR__INVALID_OPTION`      | Unknown option specified                   |
+| 1003  | `DRVRERR__OPENING_INPUT_FILE`  | Failed to open the input file for reading  |
+| 1004  | `DRVRERR__OPENING_OUTPUT_FILE` | Failed to open the output file for writing |
 
 ### Input File Parsing Errors ###
 
-| Value | Const Name                    | Description                           |
-|-------|-------------------------------|---------------------------------------|
-| 1100  | `DRVRERR__PARSE`              | General input file parsing error      |
-| 1101  | `DRVRERR__PARSE_HTX`          | Unable to parse transmitter height    |
-
+| Value | Const Name                    | Description                               |
+|-------|-------------------------------|-------------------------------------------|
+| 1100  | `DRVRERR__PARSE`              | General input file parsing error          |
+| 1101  | `DRVRERR__PARSE_FREQ`         | Error parsing frequency value             |
+| 1102  | `DRVRERR__PARSE_THETA`        | Error parsing theta value                 |
+| 1103  | `DRVRERR__PARSE_PERCENTAGE`   | Error parsing percentage value            |
+| 1104  | `DRVRERR__PARSE_HEIGHT`       | Error parsing antenna height value        |
+| 1105  | `DRVRERR__PARSE_STREET_WIDTH` | Error parsing street width value          |
+| 1106  | `DRVRERR__PARSE_REPR_HEIGHT`  | Error parsing representative height value |
+| 1107  | `DRVRERR__PARSE_CLUTTER_TYPE` | Error parsing clutter type value          |
+| 1108  | `DRVRERR__PARSE_PATH_DIST`    | Error parsing path distance value         |
 
 ### Validation Errors ###
 
@@ -84,8 +92,8 @@ Driver validation errors occur when required command line arguments are missing.
 These validation errors are distinct from any defined within the library itself,
 which may include, e.g., parameter out-of-range errors.
 
-| Value | Const Name                         | Description                           |
-|-------|------------------------------------|---------------------------------------|
-| 1202  | `DRVRERR__VALIDATION_IN_FILE`      | Input parameter file is not specified |
-| 1203  | `DRVRERR__VALIDATION_OUT_FILE`     | Output file is not specified          |
-| 1204  | `DRVRERR__VALIDATION_MODEL`        | Model is not specified                |
+| Value | Const Name                         | Description                      |
+|-------|------------------------------------|----------------------------------|
+| 1200  | `DRVRERR__VALIDATION_IN_FILE`      | Input file not specified         |
+| 1201  | `DRVRERR__VALIDATION_OUT_FILE`     | Output file  not specified       |
+| 1202  | `DRVRERR__VALIDATION_MODEL`        | Model not specified              |

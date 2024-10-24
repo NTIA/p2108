@@ -1,5 +1,5 @@
 /** @file TestDriver.cpp
- * The main entrypoint for the TestDriver executable
+ * General tests for the driver executable
  */
 #include "TestDriver.h"
 

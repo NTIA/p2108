@@ -14,7 +14,7 @@
 #include <ostream>   // for std::endl
 #include <string>    // for std::string, std::stoi, std::stod
 #include <tuple>     // for std::tie
-#include <vector>
+#include <vector>    // for std::vector
 
 /////////////////////////////
 // Macros
@@ -23,6 +23,8 @@
 #define PRINT << std::endl << std::left << std::setw(25) <<
 #define SETW13 << std::setw(13) <<
 
+//////////////////////////////
+// Library Namespace
 using namespace ITS::ITU::PSeries::P2108;
 
 /////////////////////////////
