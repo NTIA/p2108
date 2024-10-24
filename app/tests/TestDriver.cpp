@@ -28,14 +28,18 @@ TEST_F(DriverTest, InvalidOptionError) {
 }
 
 TEST_F(DriverTest, OpeningInputFileError) {
-    int rtn = RunDriver("/invalid/path/input.xyz", "ASM", "out.txt");
+    params.in_file = "/invalid/path/input.xyz";
+    params.model = P2108Model::ASM;
+    int rtn = RunDriver(params);
     EXPECT_EQ(rtn, DRVRERR__OPENING_INPUT_FILE);
 }
 
 TEST_F(DriverTest, OpeningOutputFileError) {
     // Provide valid inputs but invalid output file path
     std::string inputs = "f__ghz,10\ntheta__deg,10.5\np,45";
-    int rtn = RunDriverWithInputFile(inputs, "ASM", "/invalid/path/output.xyz");
+    params.model = P2108Model::ASM;
+    params.out_file = "/invalid/path/output.xyz";
+    int rtn = RunDriverWithInputFile(inputs, params);
     EXPECT_EQ(rtn, DRVRERR__OPENING_OUTPUT_FILE);
 }
 
