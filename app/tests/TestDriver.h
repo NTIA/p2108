@@ -61,7 +61,6 @@ class DriverTest: public ::testing::Test {
             const std::string &outFile
         ) {
             std::string cmd = BuildCommand(inFile, model, outFile);
-            std::cerr << "Running: " << cmd << std::endl;
             int rtn = std::system(cmd.c_str());
             return rtn;
         }
