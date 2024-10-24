@@ -28,12 +28,13 @@ set(PYTHON_WRAPPER_DIR "${PROJECT_SOURCE_DIR}/wrap/python")
 ###########################################
 ## CMAKE OPTIONS AND DEFAULTS
 ###########################################
-# Define options. Defaults to: compile 64-bit library, build docs, run tests
+# Define options. Defaults to: compile 64-bit library and driver, build docs, run tests
 option(BUILD_DOCS "Generate documentation with Doxygen" ON)
+option(BUILD_DRIVER "Build driver executable" ON)
+option(RUN_DRIVER_TESTS "Test the driver executable" ON)
 option(DOCS_ONLY "Skip all steps except generating documentation" OFF)
 option(RUN_TESTS "Run C++ unit tests with Google Test + CTest" ON)
 option(COPY_TO_WRAPPERS "Copy compiled library into wrapper submodules" ON)
-option(BUILD_32BIT "Build project for x86/32-bit instead of x64/64-bit" OFF)
 
 ###########################################
 ## SETUP
@@ -61,6 +62,9 @@ if (NOT DOCS_ONLY)
                 "`git submodule update` and try again."
             )
         endif()
+    endif ()
+    if (BUILD_DRIVER)
+        add_subdirectory(app)
     endif ()
 endif ()
 
