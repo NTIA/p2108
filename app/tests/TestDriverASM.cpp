@@ -1,5 +1,8 @@
 #include "TestDriver.h"
 
+/*******************************************************************************
+ * Driver test fixture for the Aeronautical Statistical Model
+ ******************************************************************************/
 class ASMDriverTest: public DriverTest {
     protected:
         void SetUp() override {
@@ -13,8 +16,8 @@ class ASMDriverTest: public DriverTest {
             EXPECT_EQ(asm_rtn, expected_rtn);
         }
 
-        std::string ASMInputs;
-        DrvrParams asm_params;
+        std::string ASMInputs; /**< String to hold input file contents */
+        DrvrParams asm_params; /**< Default command line arguments */
 };
 
 TEST_F(ASMDriverTest, TestSuccess) {

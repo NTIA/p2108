@@ -1,5 +1,8 @@
 #include "TestDriver.h"
 
+/*******************************************************************************
+ * Driver test fixture for the Height Gain Terminal Correction Model
+ ******************************************************************************/
 class HGTCMDriverTest: public DriverTest {
     protected:
         void SetUp() override {
@@ -13,8 +16,8 @@ class HGTCMDriverTest: public DriverTest {
             EXPECT_EQ(hgtcm_rtn, expected_rtn);
         }
 
-        std::string HGTCMInputs;
-        DrvrParams hgtcm_params;
+        std::string HGTCMInputs; /**< String to hold input file contents */
+        DrvrParams hgtcm_params; /**< Default command line arguments */
 };
 
 TEST_F(HGTCMDriverTest, TestSuccess) {

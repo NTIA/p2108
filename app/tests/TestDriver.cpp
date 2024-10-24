@@ -3,7 +3,6 @@
  */
 #include "TestDriver.h"
 
-
 TEST_F(DriverTest, MissingOptionError1) {
     // Test case: missing option between two provided flags
     std::string cmd = executable + " -i -o out.txt";

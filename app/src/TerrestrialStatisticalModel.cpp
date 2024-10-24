@@ -8,7 +8,7 @@
 /*******************************************************************************
  * Top-level control function for Terrestrial Statistical Model operation
  * 
- * @param[out] tsm_params  Terrestrial Statistical Model input parameter struct
+ * @param[in] tsm_params  Terrestrial Statistical Model input parameter struct
  * @param[out] L_ctt__db   Additional loss (clutter loss), in dB
  * @return                 Return code
  ******************************************************************************/
@@ -83,8 +83,8 @@ int ParseTSMInputFile(const std::string &in_file, TSMParams &tsm_params) {
 /*******************************************************************************
  * Write Terrestrial Statistical Model inputs to the report file
  * 
- * @param[in] fp          Output stream, a text file open for writing
- * @param[in] tsm_params  TSM input parameter struct
+ * @param[in] fp      Output stream, a text file open for writing
+ * @param[in] params  TSM input parameter struct
  ******************************************************************************/
 void WriteTSMInputs(std::ofstream &fp, const TSMParams &params) {
     fp PRINT TAG__FREQ SETW13 params.f__ghz << UNITS__GHZ;

@@ -8,7 +8,7 @@
 /*******************************************************************************
  * Top-level control function for Aeronautical Statistical Model operation
  * 
- * @param[out] asm_params  Aeronautical Statistical Model input parameter struct
+ * @param[in] asm_params  Aeronautical Statistical Model input parameter struct
  * @param[out] L_ces__db   Basic transmission loss, in dB
  * @return                 Return code
  ******************************************************************************/
@@ -81,8 +81,8 @@ int ParseASMInputFile(const std::string &in_file, ASMParams &asm_params) {
 /*******************************************************************************
  * Write Aeronautical Statistical Model inputs to the report file
  * 
- * @param[in] fp          Output stream, a text file open for writing
- * @param[in] asm_params  ASM input parameter struct
+ * @param[in] fp      Output stream, a text file open for writing
+ * @param[in] params  ASM input parameter struct
  ******************************************************************************/
 void WriteASMInputs(std::ofstream &fp, const ASMParams &params) {
     fp PRINT TAG__FREQ SETW13 params.f__ghz << UNITS__GHZ;

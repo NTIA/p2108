@@ -4,6 +4,8 @@
 #pragma once
 
 // clang-format off
+// Skip Doxygen generation for tags
+#ifndef DOXYGEN_SHOULD_SKIP
 
 /** Input File Tags */
 #define TAG__FREQ               "f__ghz"
@@ -24,3 +26,4 @@
 #define UNITS__DB               "(dB)"
 
 // clang-format on
+#endif

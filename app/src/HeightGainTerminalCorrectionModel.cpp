@@ -8,7 +8,7 @@
 /*******************************************************************************
  * Top-level control function for Height Gain Terminal Correction Model
  * 
- * @param[out] hgtc_params  Height Gain Terminal Correction Model input struct
+ * @param[in] hgtc_params  Height Gain Terminal Correction Model input struct
  * @param[out] A_h__db      Additional loss (clutter loss), in dB
  * @return                  Return code
  ******************************************************************************/
@@ -101,8 +101,8 @@ int ParseHGTCInputFile(const std::string &in_file, HGTCParams &hgtc_params) {
 /*******************************************************************************
  * Write Height Gain Terminal Correction Model inputs to the report file
  * 
- * @param[in] fp           Output stream, a text file open for writing
- * @param[in] hgtc_params  HGTC input parameter struct
+ * @param[in] fp      Output stream, a text file open for writing
+ * @param[in] params  HGTCM input parameter struct
  ******************************************************************************/
 void WriteHGTCInputs(std::ofstream &fp, const HGTCParams &params) {
     fp PRINT TAG__FREQ SETW13 params.f__ghz << UNITS__GHZ;

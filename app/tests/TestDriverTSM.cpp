@@ -1,5 +1,8 @@
 #include "TestDriver.h"
 
+/*******************************************************************************
+ * Driver test fixture for the Terrestrial Statistical Model
+ ******************************************************************************/
 class TSMDriverTest: public DriverTest {
     protected:
         void SetUp() override {
@@ -13,8 +16,8 @@ class TSMDriverTest: public DriverTest {
             EXPECT_EQ(tsm_rtn, expected_rtn);
         }
 
-        std::string TSMInputs;
-        DrvrParams tsm_params;
+        std::string TSMInputs; /**< String to hold input file contents */
+        DrvrParams tsm_params; /**< Default command line arguments */
 };
 
 TEST_F(TSMDriverTest, TestSuccess) {
