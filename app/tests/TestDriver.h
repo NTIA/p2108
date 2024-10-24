@@ -1,14 +1,17 @@
+/** @file TestDriver.h
+ * Primary header for command line driver tests.
+ */
 #pragma once
 
 #include "Driver.h"
 #include "TempTextFile.h"
 
-#include <algorithm>  // for std::replace
-#include <cstdio>     // for std::remove
-#include <cstdlib>    // for std::system
-#include <gtest/gtest.h>
-#include <iostream>  // for std::cout, std::endl
-#include <string>    // for std::string
+#include <algorithm>      // for std::replace
+#include <cstdio>         // for std::remove
+#include <cstdlib>        // for std::system
+#include <gtest/gtest.h>  // GoogleTest
+#include <iostream>       // for std::cout, std::endl
+#include <string>         // for std::string
 
 class DriverTest: public ::testing::Test {
     protected:

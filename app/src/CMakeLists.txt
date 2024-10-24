@@ -32,7 +32,6 @@ add_definitions(-DLIBRARY_NAME="${LIB_NAME}")
 add_definitions(-DDRIVER_NAME="${DRIVER_NAME}")
 
 # Set some target metadata
-
 set_target_properties(
     ${DRIVER_NAME} PROPERTIES
     VERSION ${PROJECT_VERSION}
