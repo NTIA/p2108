@@ -1,8 +1,7 @@
 /** @file Enums.h
  * Enumerated types used by this software
  */
-#ifndef __ITS_ITU_PSERIES_P2108_ENUMS__
-#define __ITS_ITU_PSERIES_P2108_ENUMS__
+#pragma once
 
 namespace ITS {
 namespace ITU {
@@ -39,5 +38,3 @@ enum class RepresentativeClutterHeight {
 }  // namespace PSeries
 }  // namespace ITU
 }  // namespace ITS
-
-#endif

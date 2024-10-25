@@ -1,8 +1,7 @@
 /** @file P2108.h
  * Interface header for this library
  */
-#ifndef __ITS_ITU_PSERIES_P2108_P2108_H__
-#define __ITS_ITU_PSERIES_P2108_P2108_H__
+#pragma once
 
 #include "Enums.h"
 #include "Errors.h"
@@ -85,5 +84,3 @@ double TerrestrialStatisticalModelHelper(
 }  // namespace PSeries
 }  // namespace ITU
 }  // namespace ITS
-
-#endif

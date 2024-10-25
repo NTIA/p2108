@@ -1,11 +1,10 @@
-[submodule "extern/doxygen-awesome-css"]
-	path = extern/doxygen-awesome-css
-	url = https://github.com/jothepro/doxygen-awesome-css
 [submodule "extern/googletest"]
 	path = extern/googletest
 	url = https://github.com/google/googletest
 	branch = v1.12.x
+[submodule "extern/doxygen-awesome-css"]
+	path = extern/doxygen-awesome-css
+	url = https://github.com/jothepro/doxygen-awesome-css
 [submodule "wrap/python"]
 	path = wrap/python
 	url = https://github.com/NTIA/p2108-python
-	branch = InitialRelease

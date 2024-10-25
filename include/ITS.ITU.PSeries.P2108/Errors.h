@@ -1,8 +1,7 @@
 /** @file Errors.h
  * Contains return codes used by this software
  */
-#ifndef __ITS_ITU_PSERIES_P2108_ERRORS__
-#define __ITS_ITU_PSERIES_P2108_ERRORS__
+#pragma once
 
 namespace ITS {
 namespace ITU {
@@ -39,5 +38,3 @@ namespace P2108 {
 }  // namespace PSeries
 }  // namespace ITU
 }  // namespace ITS
-
-#endif
