@@ -60,7 +60,7 @@ void WriteTSMInputs(std::ofstream &fp, const TSMParams &params);
 
 // Reporting
 void PrintClutterTypeLabel(std::ofstream &fp, const ClutterType clutter_type);
-void PrintLabel(std::ofstream &fp, std::string &lbl);
+void PrintLabel(std::ofstream &fp, const std::string &lbl);
 
 // Driver Utils
 void Version(std::ostream &os = std::cout);

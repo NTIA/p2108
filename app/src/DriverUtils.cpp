@@ -111,6 +111,6 @@ void StringToLower(std::string &str) {
  * @param[in] fp   Output stream, a text file open for writing
  * @param[in] lbl  Text message
  ******************************************************************************/
-void PrintLabel(std::ofstream &fp, std::string &lbl) {
+void PrintLabel(std::ofstream &fp, const std::string &lbl) {
     fp << "[" << lbl << "]";
 }
