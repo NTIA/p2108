@@ -120,8 +120,8 @@ int main(int argc, char **argv) {
         fp << std::endl << std::endl << "Results";
         fp PRINT "Return Code" SETW13 rtn;
         PrintLabel(fp, GetReturnStatus(rtn));
-        fp PRINT "Clutter loss" SETW13 std::fixed
-            << std::setprecision(1) << loss__db.front() << "(dB)";
+        fp PRINT "Clutter loss" SETW13 std::fixed << std::setprecision(1)
+                                                  << loss__db.front() << "(dB)";
     }
     fp.close();
     return SUCCESS;
