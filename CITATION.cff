@@ -1,16 +1,46 @@
 cff-version: 1.2.0
-title: 'Recommendation ITU-R P.2108-1'
-message: >-
-  If you use this software, please cite it using the
-  metadata from this file.
+title: >-
+  Recommendation ITU-R P.2108-1, U.S. Reference Software
+  Implementation
+message: Please cite this software using these metadata.
 type: software
 authors:
-  - given-names: William
-    family-names: Kozma
-    name-suffix: Jr
-    email: wkozma@ntia.gov
-    affiliation: The Institute for Telecommunication Sciences
+  - family-names: Kozma
+    given-names: William
+    name-suffix: Jr.
+    affiliation: >-
+      U.S. Department of Commerce, National
+      Telecommunications and Information Administration,
+      Institute for Telecommunication Sciences
     orcid: 'https://orcid.org/0000-0002-7417-4009'
-doi: 10.5281/zenodo.7114523
-url: https://github.com/NTIA/p2108
-version: 0.0.0
+    email: wkozma@ntia.gov
+  - family-names: Romaniello
+    given-names: Anthony W.
+    affiliation: >-
+      U.S. Department of Commerce, National
+      Telecommunications and Information Administration,
+      Institute for Telecommunication Sciences
+    orcid: 'https://orcid.org/0000-0001-8437-6504'
+    email: aromaniello@ntia.gov
+  - name: >-
+      U.S. Department of Commerce, National
+      Telecommunications and Information Administration,
+      Institute for Telecommunications Sciences
+    address: 325 Broadway
+    city: Boulder
+    region: Colorado
+    post-code: '80305'
+    country: US
+    email: code@ntia.gov
+    website: 'https://its.ntia.gov'
+repository-code: 'https://github.com/NTIA/p2108'
+url: 'https://github.com/NTIA/propagation/wiki'
+repository: 'https://github.com/NTIA/p2108'
+keywords:
+  - propagation
+  - rf
+  - clutter
+  - itu
+license: 'NTIA Public Domain'
+version: 1.0.0
+date-released: '2024-07-12'
