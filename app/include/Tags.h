@@ -17,13 +17,6 @@
 #define TAG__CLUTTER_TYPE       "clutter_type"
 #define TAG__PATH_DIST          "d__km"
 
-/** Unit Labels */
-#define UNITS__GHZ              "(gigahertz)"
-#define UNITS__DEGREES          "(degrees)"
-#define UNITS__PERCENT          "(%)"
-#define UNITS__METER            "(meters)"
-#define UNITS__KM               "(kilometers)"
-#define UNITS__DB               "(dB)"
 
 // clang-format on
 #endif

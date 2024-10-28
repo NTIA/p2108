@@ -15,7 +15,6 @@ add_executable(
     "${DRIVER_HEADERS}/CommaSeparatedIterator.h"
     "${DRIVER_HEADERS}/Driver.h"
     "${DRIVER_HEADERS}/ReturnCodes.h"
-    "${DRIVER_HEADERS}/Labels.h"
     "${DRIVER_HEADERS}/Structs.h"
     "${DRIVER_HEADERS}/Tags.h"
 )

@@ -106,10 +106,10 @@ DrvrReturnCode
  * @param[in] params  HGTCM input parameter struct
  ******************************************************************************/
 void WriteHGTCInputs(std::ofstream &fp, const HGTCParams &params) {
-    fp PRINT TAG__FREQ SETW13 params.f__ghz << UNITS__GHZ;
-    fp PRINT TAG__HEIGHT SETW13 params.h__meter << UNITS__METER;
-    fp PRINT TAG__STREET_WIDTH SETW13 params.w_s__meter << UNITS__METER;
-    fp PRINT TAG__REPR_HEIGHT SETW13 params.R__meter << UNITS__METER;
+    fp PRINT TAG__FREQ SETW13 params.f__ghz << "(gigahertz)";
+    fp PRINT TAG__HEIGHT SETW13 params.h__meter << "(meters)";
+    fp PRINT TAG__STREET_WIDTH SETW13 params.w_s__meter << "(meters)";
+    fp PRINT TAG__REPR_HEIGHT SETW13 params.R__meter << "(meters)";
     fp PRINT TAG__CLUTTER_TYPE SETW13 static_cast<int>(params.clutter_type);
     PrintClutterTypeLabel(fp, params.clutter_type);
 }

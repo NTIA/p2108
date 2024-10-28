@@ -88,7 +88,7 @@ DrvrReturnCode
  * @param[in] params  TSM input parameter struct
  ******************************************************************************/
 void WriteTSMInputs(std::ofstream &fp, const TSMParams &params) {
-    fp PRINT TAG__FREQ SETW13 params.f__ghz << UNITS__GHZ;
-    fp PRINT TAG__THETA SETW13 params.d__km << UNITS__KM;
-    fp PRINT TAG__PERCENTAGE SETW13 params.p << UNITS__PERCENT;
+    fp PRINT TAG__FREQ SETW13 params.f__ghz << "(gigahertz)";
+    fp PRINT TAG__THETA SETW13 params.d__km << "(kilometers)";
+    fp PRINT TAG__PERCENTAGE SETW13 params.p << "(%)";
 }

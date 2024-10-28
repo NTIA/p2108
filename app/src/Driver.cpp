@@ -83,13 +83,13 @@ int main(int argc, char **argv) {
     fp PRINT "Model Variant";
     switch (params.model) {
         case P2108Model::HGTCM:
-            fp << LBL__HGTCM;
+            fp << "Height Gain Terminal Correction Model";
             break;
         case P2108Model::TSM:
-            fp << LBL__TSM;
+            fp << "Terrestrial Statistical Model";
             break;
         case P2108Model::ASM:
-            fp << LBL__ASM;
+            fp << "Aeronautical Statistical Model";
             break;
             // Validation above ensures one of these cases evaluates
     }
@@ -124,7 +124,7 @@ int main(int argc, char **argv) {
         fp PRINT "Return Code" SETW13 rtn;
         PrintLabel(fp, GetReturnStatus(rtn));
         fp PRINT "Clutter loss" SETW13 std::fixed
-            << std::setprecision(1) << loss__db.front() << UNITS__DB;
+            << std::setprecision(1) << loss__db.front() << "(dB)";
     }
     fp.close();
     return SUCCESS;

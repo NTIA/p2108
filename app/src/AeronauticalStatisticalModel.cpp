@@ -88,7 +88,7 @@ DrvrReturnCode
  * @param[in] params  ASM input parameter struct
  ******************************************************************************/
 void WriteASMInputs(std::ofstream &fp, const ASMParams &params) {
-    fp PRINT TAG__FREQ SETW13 params.f__ghz << UNITS__GHZ;
-    fp PRINT TAG__THETA SETW13 params.theta__deg << UNITS__DEGREES;
-    fp PRINT TAG__PERCENTAGE SETW13 params.p << UNITS__PERCENT;
+    fp PRINT TAG__FREQ SETW13 params.f__ghz << "(gigahertz)";
+    fp PRINT TAG__THETA SETW13 params.theta__deg << "(degrees)";
+    fp PRINT TAG__PERCENTAGE SETW13 params.p << "(%)";
 }

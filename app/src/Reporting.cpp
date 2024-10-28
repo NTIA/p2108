@@ -15,25 +15,25 @@ void PrintClutterTypeLabel(std::ofstream &fp, const ClutterType clutter_type) {
     std::string label;
     switch (clutter_type) {
         case ClutterType::WATER_SEA:
-            label = LBL__CLUTTERTYPE_WATER_SEA;
+            label = "Water/sea clutter type";
             break;
         case ClutterType::OPEN_RURAL:
-            label = LBL__CLUTTERTYPE_OPEN_RURAL;
+            label = "Open/rural clutter type";
             break;
         case ClutterType::SUBURBAN:
-            label = LBL__CLUTTERTYPE_SUBURBAN;
+            label = "Suburban clutter type";
             break;
         case ClutterType::URBAN:
-            label = LBL__CLUTTERTYPE_URBAN;
+            label = "Urban clutter type";
             break;
         case ClutterType::TREES_FOREST:
-            label = LBL__CLUTTERTYPE_TREES_FOREST;
+            label = "Trees/forest clutter type";
             break;
         case ClutterType::DENSE_URBAN:
-            label = LBL__CLUTTERTYPE_DENSE_URBAN;
+            label = "Dense urban clutter type";
             break;
         default:
-            label = LBL__ERROR_INVALID_VALUE;
+            label = "Invalid clutter type";
             break;
     }
     PrintLabel(fp, label);
