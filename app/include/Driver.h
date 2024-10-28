@@ -44,11 +44,11 @@ void WriteASMInputs(std::ofstream &fp, const ASMParams &params);
 
 // Height Gain Terminal Correction Model
 ReturnCode CallHeightGainTerminalCorrectionModel(
-    HGTCMParams &hgtc_params, std::vector<double> &A_h__db
+    HGTCMParams &hgtcm_params, std::vector<double> &A_h__db
 );
 DrvrReturnCode
-    ParseHGTCInputFile(const std::string &in_file, HGTCMParams &hgtc_params);
-void WriteHGTCInputs(std::ofstream &fp, const HGTCMParams &params);
+    ParseHGTCMInputFile(const std::string &in_file, HGTCMParams &hgtcm_params);
+void WriteHGTCMInputs(std::ofstream &fp, const HGTCMParams &params);
 
 // Terrestrial Statistical Model
 ReturnCode CallTerrestrialStatisticalModel(

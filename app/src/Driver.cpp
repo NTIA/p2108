@@ -33,18 +33,18 @@ int main(int argc, char **argv) {
     }
 
     // Initialize model inputs/outputs
-    HGTCMParams hgtc_params;
+    HGTCMParams hgtcm_params;
     TSMParams tsm_params;
     ASMParams asm_params;
     std::vector<double> loss__db;  // Use for any model
 
     switch (params.model) {
         case P2108Model::HGTCM:
-            rtn = ParseHGTCInputFile(params.in_file, hgtc_params);
+            rtn = ParseHGTCMInputFile(params.in_file, hgtcm_params);
             if (rtn != DRVR__SUCCESS) {
                 return rtn;
             }
-            rtn = CallHeightGainTerminalCorrectionModel(hgtc_params, loss__db);
+            rtn = CallHeightGainTerminalCorrectionModel(hgtcm_params, loss__db);
             break;
         case P2108Model::TSM:
             rtn = ParseTSMInputFile(params.in_file, tsm_params);
@@ -102,7 +102,7 @@ int main(int argc, char **argv) {
 
     switch (params.model) {
         case P2108Model::HGTCM:
-            WriteHGTCInputs(fp, hgtc_params);
+            WriteHGTCMInputs(fp, hgtcm_params);
             break;
         case P2108Model::TSM:
             WriteTSMInputs(fp, tsm_params);
