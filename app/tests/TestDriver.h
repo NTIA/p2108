@@ -32,13 +32,6 @@ class DriverTest: public ::testing::Test {
 
             // Get the name of the executable to test
             executable = std::string(DRIVER_LOCATION);
-            executable += "/" + std::string(DRIVER_NAME);
-#ifdef _WIN32
-            std::replace(executable.begin(), executable.end(), '/', '\\');
-            executable += ".exe";
-#else
-            executable = "./" + executable;
-#endif
         }
 
         /***********************************************************************

@@ -25,9 +25,8 @@ target_include_directories(
 # Link the library to the executable
 target_link_libraries(${DRIVER_TEST_NAME} ${LIB_NAME})
 
-# Make driver executable name and location available to source
-add_definitions(-DDRIVER_NAME="${DRIVER_NAME}")
-add_definitions(-DDRIVER_LOCATION="${DRIVER_EXE_DIR}/${CMAKE_BUILD_TYPE}")
+# Make driver executable location available to source
+add_definitions(-DDRIVER_LOCATION="$<TARGET_FILE:${DRIVER_NAME}>")
 
 set_target_properties(
     ${DRIVER_TEST_NAME} PROPERTIES
