@@ -3,6 +3,13 @@
  */
 #include "Driver.h"
 
+// Define the input keys
+const std::string HGTCMInputKeys::f__ghz = "f__ghz";
+const std::string HGTCMInputKeys::h__meter = "h__meter";
+const std::string HGTCMInputKeys::w_s__meter = "w_s__meter";
+const std::string HGTCMInputKeys::R__meter = "r__meter";
+const std::string HGTCMInputKeys::clutter_type = "clutter_type";
+
 /*******************************************************************************
  * Top-level control function for Height Gain Terminal Correction Model
  * 

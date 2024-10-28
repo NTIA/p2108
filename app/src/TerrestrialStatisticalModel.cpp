@@ -3,6 +3,11 @@
  */
 #include "Driver.h"
 
+// Define the input keys
+const std::string TSMInputKeys::f__ghz = "f__ghz";
+const std::string TSMInputKeys::d__km = "d__km";
+const std::string TSMInputKeys::p = "p";
+
 /*******************************************************************************
  * Top-level control function for Terrestrial Statistical Model operation
  * 

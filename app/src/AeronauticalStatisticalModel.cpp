@@ -3,6 +3,11 @@
  */
 #include "Driver.h"
 
+// Define the input keys
+const std::string ASMInputKeys::f__ghz = "f__ghz";
+const std::string ASMInputKeys::theta__deg = "theta__deg";
+const std::string ASMInputKeys::p = "p";
+
 /*******************************************************************************
  * Top-level control function for Aeronautical Statistical Model operation
  * 

@@ -3,6 +3,8 @@
 */
 #pragma once
 
+#include "ITS.ITU.PSeries.P2108/Enums.h"  // For ClutterType
+
 #include <string>  // For std::string
 
 /////////////////////////////
@@ -31,7 +33,8 @@ struct HGTCMParams {
         double h__meter;   /**< Antenna height, in meters */
         double w_s__meter; /**< Street width, in meters */
         double R__meter;   /**< Representative clutter height, in meters */
-        ClutterType clutter_type; /**< Clutter type (enum value) */
+        ITS::ITU::PSeries::P2108::ClutterType
+            clutter_type; /**< Clutter type (enum value) */
 };
 
 /** Key names for Height Gain Terminal Correction Model input file parameters */
@@ -42,12 +45,7 @@ struct HGTCMInputKeys {
         static const std::string
             R__meter; /**< Representative clutter height, in meters */
         static const std::string clutter_type; /**< Clutter type (enum value) */
-};
-const std::string HGTCMInputKeys::f__ghz = "f__ghz";
-const std::string HGTCMInputKeys::h__meter = "h__meter";
-const std::string HGTCMInputKeys::w_s__meter = "w_s__meter";
-const std::string HGTCMInputKeys::R__meter = "r__meter";
-const std::string HGTCMInputKeys::clutter_type = "clutter_type";
+};  // Constants defined in app/src/HeightGainTerminalCorrectionModel.cpp
 
 /** Input parameters for the Terrestrial Statistical Model */
 struct TSMParams {
@@ -61,10 +59,7 @@ struct TSMInputKeys {
         static const std::string f__ghz; /**< Frequency, in GHz */
         static const std::string d__km;  /**< Path distance, in km */
         static const std::string p;      /**< Percentage of locations */
-};
-const std::string TSMInputKeys::f__ghz = "f__ghz";
-const std::string TSMInputKeys::d__km = "d__km";
-const std::string TSMInputKeys::p = "p";
+};  // Constants defined in app/src/TerrestrialStatisticalModel.cpp
 
 /** Input parameters for the Aeronautical Statistical Model */
 struct ASMParams {
@@ -78,7 +73,4 @@ struct ASMInputKeys {
         static const std::string f__ghz;     /**< Frequency, in GHz */
         static const std::string theta__deg; /**< Elevation angle, in degrees */
         static const std::string p;          /**< Percentage of locations */
-};
-const std::string ASMInputKeys::f__ghz = "f__ghz";
-const std::string ASMInputKeys::theta__deg = "theta__deg";
-const std::string ASMInputKeys::p = "p";
+};  // Constants defined in app/src/AeronauticalStatisticalModel.cpp
