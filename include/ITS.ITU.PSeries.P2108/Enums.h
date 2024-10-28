@@ -26,12 +26,12 @@ enum ClutterType {
  * correction model when local information is not available.
  */
 enum RepresentativeClutterHeight {
-    WATER_SEA = 10,    /**< @f$ R @f$ for the trees/forest clutter type */
-    OPEN_RURAL = 10,   /**< @f$ R @f$ for the open/rural clutter type */
-    SUBURBAN = 10,     /**< @f$ R @f$ for the suburban clutter type */
-    URBAN = 15,        /**< @f$ R @f$ for the urban clutter type */
-    TREES_FOREST = 15, /**< @f$ R @f$ for the trees/forest clutter type */
-    DENSE_URBAN = 20,  /**< @f$ R @f$ for the dense urban clutter type */
+    R__WATER_SEA = 10,    /**< @f$ R @f$ for the trees/forest clutter type */
+    R__OPEN_RURAL = 10,   /**< @f$ R @f$ for the open/rural clutter type */
+    R__SUBURBAN = 10,     /**< @f$ R @f$ for the suburban clutter type */
+    R__URBAN = 15,        /**< @f$ R @f$ for the urban clutter type */
+    R__TREES_FOREST = 15, /**< @f$ R @f$ for the trees/forest clutter type */
+    R__DENSE_URBAN = 20,  /**< @f$ R @f$ for the dense urban clutter type */
 };
 
 }  // namespace P2108
