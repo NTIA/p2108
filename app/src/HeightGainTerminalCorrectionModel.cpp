@@ -13,7 +13,7 @@
  * @return                  Return code
  ******************************************************************************/
 ReturnCode CallHeightGainTerminalCorrectionModel(
-    HGTCParams &hgtc_params, std::vector<double> &A_h__db
+    HGTCMParams &hgtc_params, std::vector<double> &A_h__db
 ) {
     ReturnCode rtn;
     double A_h;
@@ -38,7 +38,7 @@ ReturnCode CallHeightGainTerminalCorrectionModel(
  * @return                  Return code
  ******************************************************************************/
 DrvrReturnCode
-    ParseHGTCInputStream(std::istream &stream, HGTCParams &hgtc_params) {
+    ParseHGTCInputStream(std::istream &stream, HGTCMParams &hgtc_params) {
     CommaSeparatedIterator it(stream);
     DrvrReturnCode rtn = DRVR__SUCCESS;
     std::string key, value;
@@ -90,7 +90,7 @@ DrvrReturnCode
  * @return                  Return code
  ******************************************************************************/
 DrvrReturnCode
-    ParseHGTCInputFile(const std::string &in_file, HGTCParams &hgtc_params) {
+    ParseHGTCInputFile(const std::string &in_file, HGTCMParams &hgtc_params) {
     std::ifstream file(in_file);
     if (!file) {
         std::cerr << "Failed to open file " << in_file << std::endl;
@@ -105,7 +105,7 @@ DrvrReturnCode
  * @param[in] fp      Output stream, a text file open for writing
  * @param[in] params  HGTCM input parameter struct
  ******************************************************************************/
-void WriteHGTCInputs(std::ofstream &fp, const HGTCParams &params) {
+void WriteHGTCInputs(std::ofstream &fp, const HGTCMParams &params) {
     fp PRINT TAG__FREQ SETW13 params.f__ghz << "(gigahertz)";
     fp PRINT TAG__HEIGHT SETW13 params.h__meter << "(meters)";
     fp PRINT TAG__STREET_WIDTH SETW13 params.w_s__meter << "(meters)";

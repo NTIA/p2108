@@ -26,7 +26,7 @@ struct DrvrParams {
 };
 
 /** Input parameters for the Height Gain Terminal Correction Model */
-struct HGTCParams {
+struct HGTCMParams {
         double f__ghz;     /**< Frequency, in GHz */
         double h__meter;   /**< Antenna height, in meters */
         double w_s__meter; /**< Street width, in meters */

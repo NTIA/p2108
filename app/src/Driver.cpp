@@ -36,7 +36,7 @@ int main(int argc, char **argv) {
     }
 
     // Initialize model inputs/outputs
-    HGTCParams hgtc_params;
+    HGTCMParams hgtc_params;
     TSMParams tsm_params;
     ASMParams asm_params;
     std::vector<double> loss__db;  // Use for any model
