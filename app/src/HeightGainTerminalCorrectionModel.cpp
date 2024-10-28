@@ -42,23 +42,23 @@ DrvrReturnCode
     std::string key, value;
     while (it) {
         std::tie(key, value) = *it;
-        if (key.compare(HGTCMInputKeys.f__ghz) == 0) {
+        if (key.compare(HGTCMInputKeys::f__ghz) == 0) {
             rtn = ParseDouble(value, hgtc_params.f__ghz);
             if (rtn == DRVRERR__PARSE)
                 rtn = DRVRERR__PARSE_FREQ;
-        } else if (key.compare(HGTCMInputKeys.h__meter) == 0) {
+        } else if (key.compare(HGTCMInputKeys::h__meter) == 0) {
             rtn = ParseDouble(value, hgtc_params.h__meter);
             if (rtn == DRVRERR__PARSE)
                 rtn = DRVRERR__PARSE_HEIGHT;
-        } else if (key.compare(HGTCMInputKeys.w_s__meter) == 0) {
+        } else if (key.compare(HGTCMInputKeys::w_s__meter) == 0) {
             rtn = ParseDouble(value, hgtc_params.w_s__meter);
             if (rtn == DRVRERR__PARSE)
                 rtn = DRVRERR__PARSE_STREET_WIDTH;
-        } else if (key.compare(HGTCMInputKeys.R__meter) == 0) {
+        } else if (key.compare(HGTCMInputKeys::R__meter) == 0) {
             rtn = ParseDouble(value, hgtc_params.R__meter);
             if (rtn == DRVRERR__PARSE)
                 rtn = DRVRERR__PARSE_REPR_HEIGHT;
-        } else if (key.compare(HGTCMInputKeys.clutter_type) == 0) {
+        } else if (key.compare(HGTCMInputKeys::clutter_type) == 0) {
             int clutter_type_int;
             rtn = ParseInteger(value, clutter_type_int);
             if (rtn == DRVRERR__PARSE) {
@@ -104,11 +104,11 @@ DrvrReturnCode
  * @param[in] params  HGTCM input parameter struct
  ******************************************************************************/
 void WriteHGTCInputs(std::ofstream &fp, const HGTCMParams &params) {
-    fp PRINT HGTCMInputKeys.f__ghz SETW13 params.f__ghz << "(gigahertz)";
-    fp PRINT HGTCMInputKeys.h__meter SETW13 params.h__meter << "(meters)";
-    fp PRINT HGTCMInputKeys.w_s__meter SETW13 params.w_s__meter << "(meters)";
-    fp PRINT HGTCMInputKeys.R__meter SETW13 params.R__meter << "(meters)";
-    fp PRINT HGTCMInputKeys.clutter_type SETW13 static_cast<int>(
+    fp PRINT HGTCMInputKeys::f__ghz SETW13 params.f__ghz << "(gigahertz)";
+    fp PRINT HGTCMInputKeys::h__meter SETW13 params.h__meter << "(meters)";
+    fp PRINT HGTCMInputKeys::w_s__meter SETW13 params.w_s__meter << "(meters)";
+    fp PRINT HGTCMInputKeys::R__meter SETW13 params.R__meter << "(meters)";
+    fp PRINT HGTCMInputKeys::clutter_type SETW13 static_cast<int>(
         params.clutter_type
     );
     PrintClutterTypeLabel(fp, params.clutter_type);

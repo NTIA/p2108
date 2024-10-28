@@ -36,14 +36,18 @@ struct HGTCMParams {
 
 /** Key names for Height Gain Terminal Correction Model input file parameters */
 struct HGTCMInputKeys {
-        std::string f__ghz = "f__ghz";         /**< Frequency, in GHz */
-        std::string h__meter = "h__meter";     /**< Antenna height, in meters */
-        std::string w_s__meter = "w_s__meter"; /**< Street width, in meters */
-        std::string R__meter
-            = "r__meter"; /**< Representative clutter height, in meters */
-        std::string clutter_type
-            = "clutter_type"; /**< Clutter type (enum value) */
+        static const std::string f__ghz;     /**< Frequency, in GHz */
+        static const std::string h__meter;   /**< Antenna height, in meters */
+        static const std::string w_s__meter; /**< Street width, in meters */
+        static const std::string
+            R__meter; /**< Representative clutter height, in meters */
+        static const std::string clutter_type; /**< Clutter type (enum value) */
 };
+const std::string HGTCMInputKeys::f__ghz = "f__ghz";
+const std::string HGTCMInputKeys::h__meter = "h__meter";
+const std::string HGTCMInputKeys::w_s__meter = "w_s__meter";
+const std::string HGTCMInputKeys::R__meter = "r__meter";
+const std::string HGTCMInputKeys::clutter_type = "clutter_type";
 
 /** Input parameters for the Terrestrial Statistical Model */
 struct TSMParams {
@@ -54,11 +58,13 @@ struct TSMParams {
 
 /** Key names for Terrestrial Statistical Model input file parameters */
 struct TSMInputKeys {
-        std::string f__ghz = "f__ghz"; /**< Frequency, in GHz */
-        std::string d__km = "d__km";   /**< Path distance, in km */
-        std::string p = "p";           /**< Percentage of locations */
+        static const std::string f__ghz; /**< Frequency, in GHz */
+        static const std::string d__km;  /**< Path distance, in km */
+        static const std::string p;      /**< Percentage of locations */
 };
-
+const std::string TSMInputKeys::f__ghz = "f__ghz";
+const std::string TSMInputKeys::d__km = "d__km";
+const std::string TSMInputKeys::p = "p";
 
 /** Input parameters for the Aeronautical Statistical Model */
 struct ASMParams {
@@ -69,8 +75,10 @@ struct ASMParams {
 
 /** Key names for Aeronautical Statistical Model input file parameters */
 struct ASMInputKeys {
-        std::string f__ghz = "f__ghz"; /**< Frequency, in GHz */
-        std::string theta__deg
-            = "theta__deg";  /**< Elevation angle, in degrees */
-        std::string p = "p"; /**< Percentage of locations */
+        static const std::string f__ghz;     /**< Frequency, in GHz */
+        static const std::string theta__deg; /**< Elevation angle, in degrees */
+        static const std::string p;          /**< Percentage of locations */
 };
+const std::string ASMInputKeys::f__ghz = "f__ghz";
+const std::string ASMInputKeys::theta__deg = "theta__deg";
+const std::string ASMInputKeys::p = "p";
