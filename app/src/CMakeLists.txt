@@ -16,7 +16,6 @@ add_executable(
     "${DRIVER_HEADERS}/Driver.h"
     "${DRIVER_HEADERS}/ReturnCodes.h"
     "${DRIVER_HEADERS}/Structs.h"
-    "${DRIVER_HEADERS}/Tags.h"
 )
 
 # Add the include directory

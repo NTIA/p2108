@@ -39,15 +39,15 @@ DrvrReturnCode
     std::string key, value, errMsg;
     while (it) {
         std::tie(key, value) = *it;
-        if (key.compare(TAG__FREQ) == 0) {
+        if (key.compare(ASMInputKeys.f__ghz) == 0) {
             rtn = ParseDouble(value, asm_params.f__ghz);
             if (rtn == DRVRERR__PARSE)
                 rtn = DRVRERR__PARSE_FREQ;
-        } else if (key.compare(TAG__THETA) == 0) {
+        } else if (key.compare(ASMInputKeys.theta__deg) == 0) {
             rtn = ParseDouble(value, asm_params.theta__deg);
             if (rtn == DRVRERR__PARSE)
                 rtn = DRVRERR__PARSE_THETA;
-        } else if (key.compare(TAG__PERCENTAGE) == 0) {
+        } else if (key.compare(ASMInputKeys.p) == 0) {
             rtn = ParseDouble(value, asm_params.p);
             if (rtn == DRVRERR__PARSE)
                 rtn = DRVRERR__PARSE_PERCENTAGE;
@@ -88,7 +88,7 @@ DrvrReturnCode
  * @param[in] params  ASM input parameter struct
  ******************************************************************************/
 void WriteASMInputs(std::ofstream &fp, const ASMParams &params) {
-    fp PRINT TAG__FREQ SETW13 params.f__ghz << "(gigahertz)";
-    fp PRINT TAG__THETA SETW13 params.theta__deg << "(degrees)";
-    fp PRINT TAG__PERCENTAGE SETW13 params.p << "(%)";
+    fp PRINT ASMInputKeys.f__ghz SETW13 params.f__ghz << "(gigahertz)";
+    fp PRINT ASMInputKeys.theta__deg SETW13 params.theta__deg << "(degrees)";
+    fp PRINT ASMInputKeys.p SETW13 params.p << "(%)";
 }

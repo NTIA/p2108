@@ -39,15 +39,15 @@ DrvrReturnCode
     std::string key, value;
     while (it) {
         std::tie(key, value) = *it;
-        if (key.compare(TAG__FREQ) == 0) {
+        if (key.compare(TSMInputKeys.f__ghz) == 0) {
             rtn = ParseDouble(value, tsm_params.f__ghz);
             if (rtn == DRVRERR__PARSE)
                 rtn = DRVRERR__PARSE_FREQ;
-        } else if (key.compare(TAG__PATH_DIST) == 0) {
+        } else if (key.compare(TSMInputKeys.d__km) == 0) {
             rtn = ParseDouble(value, tsm_params.d__km);
             if (rtn == DRVRERR__PARSE)
                 rtn = DRVRERR__PARSE_PATH_DIST;
-        } else if (key.compare(TAG__PERCENTAGE) == 0) {
+        } else if (key.compare(TSMInputKeys.p) == 0) {
             rtn = ParseDouble(value, tsm_params.p);
             if (rtn == DRVRERR__PARSE)
                 rtn = DRVRERR__PARSE_PERCENTAGE;
@@ -88,7 +88,7 @@ DrvrReturnCode
  * @param[in] params  TSM input parameter struct
  ******************************************************************************/
 void WriteTSMInputs(std::ofstream &fp, const TSMParams &params) {
-    fp PRINT TAG__FREQ SETW13 params.f__ghz << "(gigahertz)";
-    fp PRINT TAG__THETA SETW13 params.d__km << "(kilometers)";
-    fp PRINT TAG__PERCENTAGE SETW13 params.p << "(%)";
+    fp PRINT TSMInputKeys.f__ghz SETW13 params.f__ghz << "(gigahertz)";
+    fp PRINT TSMInputKeys.d__km SETW13 params.d__km << "(kilometers)";
+    fp PRINT TSMInputKeys.p SETW13 params.p << "(%)";
 }

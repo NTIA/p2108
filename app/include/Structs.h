@@ -35,6 +35,17 @@ struct HGTCMParams {
             clutter_type; /**< Clutter type (enum value) */
 };
 
+/** Key names for Height Gain Terminal Correction Model input file parameters */
+struct HGTCMInputKeys {
+        std::string f__ghz = "f__ghz";         /**< Frequency, in GHz */
+        std::string h__meter = "h__meter";     /**< Antenna height, in meters */
+        std::string w_s__meter = "w_s__meter"; /**< Street width, in meters */
+        std::string R__meter
+            = "r__meter"; /**< Representative clutter height, in meters */
+        std::string clutter_type
+            = "clutter_type"; /**< Clutter type (enum value) */
+};
+
 /** Input parameters for the Terrestrial Statistical Model */
 struct TSMParams {
         double f__ghz; /**< Frequency, in GHz */
@@ -42,9 +53,25 @@ struct TSMParams {
         double p;      /**< Percentage of locations */
 };
 
+/** Key names for Terrestrial Statistical Model input file parameters */
+struct TSMInputKeys {
+        std::string f__ghz = "f__ghz"; /**< Frequency, in GHz */
+        std::string d__km = "d__km";   /**< Path distance, in km */
+        std::string p = "p";           /**< Percentage of locations */
+};
+
+
 /** Input parameters for the Aeronautical Statistical Model */
 struct ASMParams {
         double f__ghz;     /**< Frequency, in GHz */
         double theta__deg; /**< Elevation angle, in degrees */
         double p;          /**< Percentage of locations */
+};
+
+/** Key names for Aeronautical Statistical Model input file parameters */
+struct ASMInputKeys {
+        std::string f__ghz = "f__ghz"; /**< Frequency, in GHz */
+        std::string theta__deg
+            = "theta__deg";  /**< Elevation angle, in degrees */
+        std::string p = "p"; /**< Percentage of locations */
 };
