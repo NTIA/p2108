@@ -2,8 +2,6 @@
  * Implements top-level functions for running the Terrestrial Statistical Model.
  */
 #include "Driver.h"
-#include "Tags.h"
-
 
 /*******************************************************************************
  * Top-level control function for Terrestrial Statistical Model operation

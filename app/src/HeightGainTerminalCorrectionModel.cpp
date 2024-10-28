@@ -2,8 +2,6 @@
  * Implements functions for running the Height Gain Terminal Correction Model.
  */
 #include "Driver.h"
-#include "Tags.h"
-
 
 /*******************************************************************************
  * Top-level control function for Height Gain Terminal Correction Model

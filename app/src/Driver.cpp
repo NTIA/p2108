@@ -3,9 +3,6 @@
  */
 #include "Driver.h"
 
-#include "Labels.h"
-#include "Tags.h"
-
 #include <algorithm>  // for std::find
 
 /*******************************************************************************

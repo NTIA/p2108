@@ -2,8 +2,6 @@
  * Implements utility functions for printing driver results
  */
 #include "Driver.h"
-#include "Labels.h"
-#include "Tags.h"
 
 /*******************************************************************************
  * Print text message corresponding to clutter type enum value
