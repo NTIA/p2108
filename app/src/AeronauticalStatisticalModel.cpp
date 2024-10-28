@@ -12,10 +12,10 @@
  * @param[out] L_ces__db   Basic transmission loss, in dB
  * @return                 Return code
  ******************************************************************************/
-int CallAeronauticalStatisticalModel(
+ReturnCode CallAeronauticalStatisticalModel(
     ASMParams &asm_params, std::vector<double> &L_ces__db
 ) {
-    int rtn;
+    ReturnCode rtn;
     double L_ces;
     rtn = AeronauticalStatisticalModel(
         asm_params.f__ghz, asm_params.theta__deg, asm_params.p, L_ces
@@ -32,34 +32,36 @@ int CallAeronauticalStatisticalModel(
  * @param[out] asm_params  ASM input parameter struct
  * @return                 Return code
  ******************************************************************************/
-int ParseASMInputStream(std::istream &stream, ASMParams &asm_params) {
+DrvrReturnCode
+    ParseASMInputStream(std::istream &stream, ASMParams &asm_params) {
     CommaSeparatedIterator it(stream);
-    std::string key, value;
+    DrvrReturnCode rtn = DRVR__SUCCESS;
+    std::string key, value, errMsg;
     while (it) {
         std::tie(key, value) = *it;
         if (key.compare(TAG__FREQ) == 0) {
-            if (ParseDouble(value, asm_params.f__ghz) == DRVRERR__PARSE) {
-                return ParsingErrorHelper(DRVRERR__PARSE_FREQ, TAG__FREQ);
-            }
+            rtn = ParseDouble(value, asm_params.f__ghz);
+            if (rtn == DRVRERR__PARSE)
+                rtn = DRVRERR__PARSE_FREQ;
         } else if (key.compare(TAG__THETA) == 0) {
-            if (ParseDouble(value, asm_params.theta__deg) == DRVRERR__PARSE) {
-                return ParsingErrorHelper(DRVRERR__PARSE_THETA, TAG__THETA);
-            }
+            rtn = ParseDouble(value, asm_params.theta__deg);
+            if (rtn == DRVRERR__PARSE)
+                rtn = DRVRERR__PARSE_THETA;
         } else if (key.compare(TAG__PERCENTAGE) == 0) {
-            if (ParseDouble(value, asm_params.p) == DRVRERR__PARSE) {
-                return ParsingErrorHelper(
-                    DRVRERR__PARSE_PERCENTAGE, TAG__PERCENTAGE
-                );
-            }
+            rtn = ParseDouble(value, asm_params.p);
+            if (rtn == DRVRERR__PARSE)
+                rtn = DRVRERR__PARSE_PERCENTAGE;
         } else {
-            std::cerr << "Driver Error " << DRVRERR__PARSE;
-            std::cerr << ": Unknown input parameter '" << key << "'"
-                      << std::endl;
-            return DRVRERR__PARSE;
+            rtn = DRVRERR__PARSE;
+        }
+
+        if (rtn != DRVR__SUCCESS) {
+            std::cerr << GetDrvrReturnStatus(rtn);
+            return rtn;
         }
         ++it;
     }
-    return SUCCESS;
+    return rtn;
 }
 
 /*******************************************************************************
@@ -69,7 +71,8 @@ int ParseASMInputStream(std::istream &stream, ASMParams &asm_params) {
  * @param[out] asm_params  ASM input parameter struct
  * @return                 Return code
  ******************************************************************************/
-int ParseASMInputFile(const std::string &in_file, ASMParams &asm_params) {
+DrvrReturnCode
+    ParseASMInputFile(const std::string &in_file, ASMParams &asm_params) {
     std::ifstream file(in_file);
     if (!file) {
         std::cerr << "Failed to open file " << in_file << std::endl;

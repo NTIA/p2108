@@ -28,7 +28,7 @@ namespace P2108 {
  * @param[out] A_h__db       Additional loss (clutter loss), in dB
  * @return                   Return code
  ******************************************************************************/
-int HeightGainTerminalCorrectionModel(
+ReturnCode HeightGainTerminalCorrectionModel(
     const double f__ghz,
     const double h__meter,
     const double w_s__meter,
@@ -36,7 +36,7 @@ int HeightGainTerminalCorrectionModel(
     const ClutterType clutter_type,
     double &A_h__db
 ) {
-    const int rtn
+    const ReturnCode rtn
         = Section3p1_InputValidation(f__ghz, h__meter, w_s__meter, R__meter);
     if (rtn != SUCCESS)
         return rtn;
@@ -89,7 +89,7 @@ int HeightGainTerminalCorrectionModel(
  * @param[in] R__meter    Representative clutter height, in meters
  * @return                Return code
  ******************************************************************************/
-int Section3p1_InputValidation(
+ReturnCode Section3p1_InputValidation(
     const double f__ghz,
     const double h__meter,
     const double w_s__meter,

@@ -30,27 +30,13 @@ void Version(std::ostream &os) {
 }
 
 /*******************************************************************************
- * Helper function to format and print error messages encountered during
- * validation of input parameters
- * 
- * @param[in] opt  Command flag in error
- * @param[in] err  Error code
- * @return         Return code
- ******************************************************************************/
-int Validate_RequiredErrMsgHelper(const std::string &opt, const int err) {
-    std::cerr << "Driver Error " << err << ": Option \"" << opt
-              << "\" is required but was not provided" << std::endl;
-    return err;
-}
-
-/*******************************************************************************
  * Parse an integer value read from the input parameter file
  * 
  * @param[in]  str    Input file value as string
  * @param[out] value  Input file value converted to int
  * @return            Return code
  ******************************************************************************/
-int ParseInteger(const std::string &str, int &value) {
+DrvrReturnCode ParseInteger(const std::string &str, int &value) {
     try {
         size_t pos;
         value = std::stoi(str, &pos, 10);
@@ -64,7 +50,7 @@ int ParseInteger(const std::string &str, int &value) {
         return DRVRERR__PARSE;
     };
 
-    return SUCCESS;
+    return DRVR__SUCCESS;
 }
 
 /*******************************************************************************
@@ -74,7 +60,7 @@ int ParseInteger(const std::string &str, int &value) {
  * @param[out] value  Input file value converted to double
  * @return            Return code
  ******************************************************************************/
-int ParseDouble(const std::string &str, double &value) {
+DrvrReturnCode ParseDouble(const std::string &str, double &value) {
     try {
         value = std::stod(str);
     } catch (...) {
@@ -82,20 +68,7 @@ int ParseDouble(const std::string &str, double &value) {
         return DRVRERR__PARSE;
     }
 
-    return SUCCESS;
-}
-
-/*******************************************************************************
- * Common error handling function
- * 
- * @param[in] err  Error parsing code
- * @param[in] msg  Error message
- * @return         Error code from input param
- ******************************************************************************/
-int ParsingErrorHelper(const int err, const std::string &msg) {
-    std::cerr << "Driver Error " << err << ": Unable to parse '" << msg
-              << "' value." << std::endl;
-    return err;
+    return DRVR__SUCCESS;
 }
 
 /******************************************************************************
@@ -130,4 +103,14 @@ void StringToLower(std::string &str) {
     std::transform(str.begin(), str.end(), str.begin(), [](const char c) {
         return static_cast<char>(std::tolower(c));
     });
+}
+
+/*******************************************************************************
+ * Helper function to standardize printing of text labels to file
+ * 
+ * @param[in] fp   Output stream, a text file open for writing
+ * @param[in] lbl  Text message
+ ******************************************************************************/
+void PrintLabel(std::ofstream &fp, std::string &lbl) {
+    fp << "[" << lbl << "]";
 }

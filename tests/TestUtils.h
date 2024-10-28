@@ -15,7 +15,7 @@ struct AeronauticalStatisticalModelTestData {
         double f__ghz;
         double theta__deg;
         double p;
-        int rtn;
+        ReturnCode rtn;
         double L_ces__db;
 };
 
@@ -25,7 +25,7 @@ struct HeightGainTerminalCorrectionModelTestData {
         double w_s__meter;
         double R__meter;
         ClutterType clutter_type;
-        int rtn;
+        ReturnCode rtn;
         double A_h__db;
 };
 
@@ -33,7 +33,7 @@ struct TerrestrialStatisticalModelTestData {
         double f__ghz;
         double d__km;
         double p;
-        int rtn;
+        ReturnCode rtn;
         double L_ctt__db;
 };
 

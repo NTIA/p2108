@@ -12,10 +12,10 @@
  * @param[out] A_h__db      Additional loss (clutter loss), in dB
  * @return                  Return code
  ******************************************************************************/
-int CallHeightGainTerminalCorrectionModel(
+ReturnCode CallHeightGainTerminalCorrectionModel(
     HGTCParams &hgtc_params, std::vector<double> &A_h__db
 ) {
-    int rtn;
+    ReturnCode rtn;
     double A_h;
     rtn = HeightGainTerminalCorrectionModel(
         hgtc_params.f__ghz,
@@ -37,49 +37,49 @@ int CallHeightGainTerminalCorrectionModel(
  * @param[out] hgtc_params  HGTC input parameter struct
  * @return                  Return code
  ******************************************************************************/
-int ParseHGTCInputStream(std::istream &stream, HGTCParams &hgtc_params) {
+DrvrReturnCode
+    ParseHGTCInputStream(std::istream &stream, HGTCParams &hgtc_params) {
     CommaSeparatedIterator it(stream);
+    DrvrReturnCode rtn = DRVR__SUCCESS;
     std::string key, value;
     while (it) {
         std::tie(key, value) = *it;
         if (key.compare(TAG__FREQ) == 0) {
-            if (ParseDouble(value, hgtc_params.f__ghz) == DRVRERR__PARSE) {
-                return ParsingErrorHelper(DRVRERR__PARSE_FREQ, TAG__FREQ);
-            }
+            rtn = ParseDouble(value, hgtc_params.f__ghz);
+            if (rtn == DRVRERR__PARSE)
+                rtn = DRVRERR__PARSE_FREQ;
         } else if (key.compare(TAG__HEIGHT) == 0) {
-            if (ParseDouble(value, hgtc_params.h__meter) == DRVRERR__PARSE) {
-                return ParsingErrorHelper(DRVRERR__PARSE_HEIGHT, TAG__HEIGHT);
-            }
+            rtn = ParseDouble(value, hgtc_params.h__meter);
+            if (rtn == DRVRERR__PARSE)
+                rtn = DRVRERR__PARSE_HEIGHT;
         } else if (key.compare(TAG__STREET_WIDTH) == 0) {
-            if (ParseDouble(value, hgtc_params.w_s__meter) == DRVRERR__PARSE) {
-                return ParsingErrorHelper(
-                    DRVRERR__PARSE_STREET_WIDTH, TAG__STREET_WIDTH
-                );
-            }
+            rtn = ParseDouble(value, hgtc_params.w_s__meter);
+            if (rtn == DRVRERR__PARSE)
+                rtn = DRVRERR__PARSE_STREET_WIDTH;
         } else if (key.compare(TAG__REPR_HEIGHT) == 0) {
-            if (ParseDouble(value, hgtc_params.R__meter) == DRVRERR__PARSE) {
-                return ParsingErrorHelper(
-                    DRVRERR__PARSE_REPR_HEIGHT, TAG__REPR_HEIGHT
-                );
-            }
+            rtn = ParseDouble(value, hgtc_params.R__meter);
+            if (rtn == DRVRERR__PARSE)
+                rtn = DRVRERR__PARSE_REPR_HEIGHT;
         } else if (key.compare(TAG__CLUTTER_TYPE) == 0) {
             int clutter_type_int;
-            if (ParseInteger(value, clutter_type_int) == DRVRERR__PARSE) {
-                return ParsingErrorHelper(
-                    DRVRERR__PARSE_CLUTTER_TYPE, TAG__CLUTTER_TYPE
-                );
+            rtn = ParseInteger(value, clutter_type_int);
+            if (rtn == DRVRERR__PARSE) {
+                rtn = DRVRERR__PARSE_CLUTTER_TYPE;
+            } else {
+                hgtc_params.clutter_type
+                    = static_cast<ClutterType>(clutter_type_int);
             }
-            hgtc_params.clutter_type
-                = static_cast<ClutterType>(clutter_type_int);
         } else {
-            std::cerr << "Driver Error " << DRVRERR__PARSE;
-            std::cerr << ": Unknown input parameter '" << key << "'"
-                      << std::endl;
-            return DRVRERR__PARSE;
+            rtn = DRVRERR__PARSE;
+        }
+
+        if (rtn != DRVR__SUCCESS) {
+            std::cerr << GetDrvrReturnStatus(rtn);
+            return rtn;
         }
         ++it;
     }
-    return SUCCESS;
+    return rtn;
 }
 
 /*******************************************************************************
@@ -89,7 +89,8 @@ int ParseHGTCInputStream(std::istream &stream, HGTCParams &hgtc_params) {
  * @param[out] hgtc_params  HGTC input parameter struct
  * @return                  Return code
  ******************************************************************************/
-int ParseHGTCInputFile(const std::string &in_file, HGTCParams &hgtc_params) {
+DrvrReturnCode
+    ParseHGTCInputFile(const std::string &in_file, HGTCParams &hgtc_params) {
     std::ifstream file(in_file);
     if (!file) {
         std::cerr << "Failed to open file " << in_file << std::endl;

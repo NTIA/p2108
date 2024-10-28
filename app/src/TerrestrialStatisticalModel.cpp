@@ -12,10 +12,10 @@
  * @param[out] L_ctt__db   Additional loss (clutter loss), in dB
  * @return                 Return code
  ******************************************************************************/
-int CallTerrestrialStatisticalModel(
+ReturnCode CallTerrestrialStatisticalModel(
     TSMParams &tsm_params, std::vector<double> &L_ctt__db
 ) {
-    int rtn;
+    ReturnCode rtn;
     double L_ctt;
     rtn = TerrestrialStatisticalModel(
         tsm_params.f__ghz, tsm_params.d__km, tsm_params.p, L_ctt
@@ -32,36 +32,36 @@ int CallTerrestrialStatisticalModel(
  * @param[out] tsm_params  TSM input parameter struct
  * @return                 Return code
  ******************************************************************************/
-int ParseTSMInputStream(std::istream &stream, TSMParams &tsm_params) {
+DrvrReturnCode
+    ParseTSMInputStream(std::istream &stream, TSMParams &tsm_params) {
     CommaSeparatedIterator it(stream);
+    DrvrReturnCode rtn = DRVR__SUCCESS;
     std::string key, value;
     while (it) {
         std::tie(key, value) = *it;
         if (key.compare(TAG__FREQ) == 0) {
-            if (ParseDouble(value, tsm_params.f__ghz) == DRVRERR__PARSE) {
-                return ParsingErrorHelper(DRVRERR__PARSE_FREQ, TAG__FREQ);
-            }
+            rtn = ParseDouble(value, tsm_params.f__ghz);
+            if (rtn == DRVRERR__PARSE)
+                rtn = DRVRERR__PARSE_FREQ;
         } else if (key.compare(TAG__PATH_DIST) == 0) {
-            if (ParseDouble(value, tsm_params.d__km) == DRVRERR__PARSE) {
-                return ParsingErrorHelper(
-                    DRVRERR__PARSE_PATH_DIST, TAG__PATH_DIST
-                );
-            }
+            rtn = ParseDouble(value, tsm_params.d__km);
+            if (rtn == DRVRERR__PARSE)
+                rtn = DRVRERR__PARSE_PATH_DIST;
         } else if (key.compare(TAG__PERCENTAGE) == 0) {
-            if (ParseDouble(value, tsm_params.p) == DRVRERR__PARSE) {
-                return ParsingErrorHelper(
-                    DRVRERR__PARSE_PERCENTAGE, TAG__PERCENTAGE
-                );
-            }
+            rtn = ParseDouble(value, tsm_params.p);
+            if (rtn == DRVRERR__PARSE)
+                rtn = DRVRERR__PARSE_PERCENTAGE;
         } else {
-            std::cerr << "Driver Error " << DRVRERR__PARSE;
-            std::cerr << ": Unknown input parameter '" << key << "'"
-                      << std::endl;
-            return DRVRERR__PARSE;
+            rtn = DRVRERR__PARSE;
+        }
+
+        if (rtn != DRVR__SUCCESS) {
+            std::cerr << GetDrvrReturnStatus(rtn);
+            return rtn;
         }
         ++it;
     }
-    return SUCCESS;
+    return rtn;
 }
 
 /*******************************************************************************
@@ -71,7 +71,8 @@ int ParseTSMInputStream(std::istream &stream, TSMParams &tsm_params) {
  * @param[out] tsm_params  TSM input parameter struct
  * @return                 Return code
  ******************************************************************************/
-int ParseTSMInputFile(const std::string &in_file, TSMParams &tsm_params) {
+DrvrReturnCode
+    ParseTSMInputFile(const std::string &in_file, TSMParams &tsm_params) {
     std::ifstream file(in_file);
     if (!file) {
         std::cerr << "Failed to open file " << in_file << std::endl;

@@ -21,16 +21,16 @@ int main(int argc, char **argv) {
 
     // Parse command line arguments
     rtn = ParseArguments(argc, argv, params);
-    if (rtn == DRVR__RETURN_SUCCESS)
+    if (rtn == DRVR__RETURN_SUCCESS) {
         return SUCCESS;
-    if (rtn != SUCCESS) {
+    } else if (rtn != DRVR__SUCCESS) {
         Help();
         return rtn;
     }
 
     // Ensure required options were provided
     rtn = ValidateInputs(params);
-    if (rtn != SUCCESS) {
+    if (rtn != DRVR__SUCCESS) {
         Help();
         return rtn;
     }
@@ -44,21 +44,21 @@ int main(int argc, char **argv) {
     switch (params.model) {
         case P2108Model::HGTCM:
             rtn = ParseHGTCInputFile(params.in_file, hgtc_params);
-            if (rtn != SUCCESS) {
+            if (rtn != DRVR__SUCCESS) {
                 return rtn;
             }
             rtn = CallHeightGainTerminalCorrectionModel(hgtc_params, loss__db);
             break;
         case P2108Model::TSM:
             rtn = ParseTSMInputFile(params.in_file, tsm_params);
-            if (rtn != SUCCESS) {
+            if (rtn != DRVR__SUCCESS) {
                 return rtn;
             }
             rtn = CallTerrestrialStatisticalModel(tsm_params, loss__db);
             break;
         case P2108Model::ASM:
             rtn = ParseASMInputFile(params.in_file, asm_params);
-            if (rtn != SUCCESS) {
+            if (rtn != DRVR__SUCCESS) {
                 return rtn;
             }
             rtn = CallAeronauticalStatisticalModel(asm_params, loss__db);
@@ -68,8 +68,10 @@ int main(int argc, char **argv) {
     }
 
     // Return driver error code if one was returned
-    if (rtn > DRVR__RETURN_SUCCESS)
+    if (rtn > DRVR__RETURN_SUCCESS) {
+        std::cerr << GetDrvrReturnStatus(rtn);
         return rtn;
+    }
 
     // Print results to file
     std::ofstream fp(params.out_file);
@@ -116,11 +118,11 @@ int main(int argc, char **argv) {
 
     if (rtn != SUCCESS) {
         fp PRINT LIBRARY_NAME << " Error" SETW13 rtn;
-        PrintErrorMsgLabel(fp, rtn);
+        PrintLabel(fp, GetReturnStatus(rtn));
     } else {
         fp << std::endl << std::endl << "Results";
         fp PRINT "Return Code" SETW13 rtn;
-        PrintErrorMsgLabel(fp, rtn);
+        PrintLabel(fp, GetReturnStatus(rtn));
         fp PRINT "Clutter loss" SETW13 std::fixed
             << std::setprecision(1) << loss__db.front() << UNITS__DB;
     }
@@ -136,7 +138,7 @@ int main(int argc, char **argv) {
  * @param[out] params  Structure with user input params
  * @return             Return code
  ******************************************************************************/
-int ParseArguments(int argc, char **argv, DrvrParams &params) {
+DrvrReturnCode ParseArguments(int argc, char **argv, DrvrParams &params) {
     const std::vector<std::string> validArgs
         = {"-i", "-o", "-model", "-h", "--help", "-v", "--version"};
 
@@ -189,7 +191,7 @@ int ParseArguments(int argc, char **argv, DrvrParams &params) {
         }
     }
 
-    return SUCCESS;
+    return DRVR__SUCCESS;
 }
 
 /*******************************************************************************
@@ -223,20 +225,18 @@ void Help(std::ostream &os) {
  * @param[in] params  Structure with user input parameters
  * @return            Return code
  ******************************************************************************/
-int ValidateInputs(const DrvrParams &params) {
+DrvrReturnCode ValidateInputs(const DrvrParams &params) {
     DrvrParams not_set;
+    DrvrReturnCode rtn = DRVR__SUCCESS;
     if (params.in_file == not_set.in_file)
-        return Validate_RequiredErrMsgHelper("-i", DRVRERR__VALIDATION_IN_FILE);
-
+        rtn = DRVRERR__VALIDATION_IN_FILE;
     if (params.out_file == not_set.out_file)
-        return Validate_RequiredErrMsgHelper(
-            "-o", DRVRERR__VALIDATION_OUT_FILE
-        );
-
+        rtn = DRVRERR__VALIDATION_OUT_FILE;
     if (params.model == not_set.model)
-        return Validate_RequiredErrMsgHelper(
-            "-model", DRVRERR__VALIDATION_MODEL
-        );
+        rtn = DRVRERR__VALIDATION_MODEL;
 
-    return SUCCESS;
+    if (rtn != DRVR__SUCCESS)
+        std::cerr << GetDrvrReturnStatus(rtn);
+
+    return rtn;
 }

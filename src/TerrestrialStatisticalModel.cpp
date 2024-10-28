@@ -25,10 +25,10 @@ namespace P2108 {
  * @param[out] L_ctt__db  Additional loss (clutter loss), in dB
  * @return                Return code
  ******************************************************************************/
-int TerrestrialStatisticalModel(
+ReturnCode TerrestrialStatisticalModel(
     const double f__ghz, const double d__km, const double p, double &L_ctt__db
 ) {
-    int rtn = Section3p2_InputValidation(f__ghz, d__km, p);
+    const ReturnCode rtn = Section3p2_InputValidation(f__ghz, d__km, p);
     if (rtn != SUCCESS)
         return rtn;
 
@@ -58,12 +58,12 @@ double TerrestrialStatisticalModelHelper(
     const double f__ghz, const double d__km, const double p
 ) {
     // Equations 4a and 4b
-    const double sigma_l__db = 4;
+    constexpr double sigma_l__db = 4;
     const double L_l__db
         = -2 * log10(pow(10, -5 * log10(f__ghz) - 12.5) + pow(10, -16.5));
 
     // Equations 5a and 5b
-    const double sigma_s__db = 6;
+    constexpr double sigma_s__db = 6;
     const double L_s__db = 32.98 + 23.9 * log10(d__km) + 3 * log10(f__ghz);
 
     // Equation 3b
@@ -90,7 +90,7 @@ double TerrestrialStatisticalModelHelper(
  * @param[in] p       Percentage of locations, in %
  * @return            Return code
  ******************************************************************************/
-int Section3p2_InputValidation(
+ReturnCode Section3p2_InputValidation(
     const double f__ghz, const double d__km, const double p
 ) {
     if (f__ghz < 0.5 || f__ghz > 67)

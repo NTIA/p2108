@@ -19,7 +19,7 @@ TEST_F(TerrestrialStatisticalModelTest, TestTerrestrialStatisticalModel) {
     // Ensure test data was loaded
     EXPECT_NE(static_cast<int>(testData.size()), 0);
     double L_ctt__db;
-    int rtn;
+    ReturnCode rtn;
     for (const auto &data : testData) {
         rtn = TerrestrialStatisticalModel(
             data.f__ghz, data.d__km, data.p, L_ctt__db
