@@ -9,7 +9,7 @@ namespace PSeries {
 namespace P2108 {
 
 /** Clutter type enum, based on Table 3 in Section 3.1 */
-enum class ClutterType {
+enum ClutterType {
     WATER_SEA = 1,    /**< Water/sea clutter type */
     OPEN_RURAL = 2,   /**< Open/rural clutter type */
     SUBURBAN = 3,     /**< Suburban clutter type */
@@ -25,7 +25,7 @@ enum class ClutterType {
  * These should be used as inputs to the height gain terminal
  * correction model when local information is not available.
  */
-enum class RepresentativeClutterHeight {
+enum RepresentativeClutterHeight {
     WATER_SEA = 10,    /**< @f$ R @f$ for the trees/forest clutter type */
     OPEN_RURAL = 10,   /**< @f$ R @f$ for the open/rural clutter type */
     SUBURBAN = 10,     /**< @f$ R @f$ for the suburban clutter type */

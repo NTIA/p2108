@@ -31,8 +31,7 @@ struct HGTCMParams {
         double h__meter;   /**< Antenna height, in meters */
         double w_s__meter; /**< Street width, in meters */
         double R__meter;   /**< Representative clutter height, in meters */
-        ITS::ITU::PSeries::P2108::ClutterType
-            clutter_type; /**< Clutter type (enum value) */
+        ClutterType clutter_type; /**< Clutter type (enum value) */
 };
 
 /** Key names for Height Gain Terminal Correction Model input file parameters */
