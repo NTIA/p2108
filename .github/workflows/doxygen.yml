@@ -67,9 +67,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Check event name
-        run: echo "Event name: ${{ github.event_name }}"
+        run: echo ${{ github.event_name }}
       - name: Check repository
-        run: echo "Repository: ${{ github.repository }}"
+        run: echo ${{ github.repository }}
       - name: Debug condition
         run: |
           echo "Evaluating conditions..."
