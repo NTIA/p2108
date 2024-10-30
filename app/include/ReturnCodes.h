@@ -3,15 +3,14 @@
  */
 #pragma once
 
-#include <string>
-#include <unordered_map>
+#include <string>  // for std::string
 
 /*******************************************************************************
  * Return Codes defined by this driver software.
  ******************************************************************************/
 // clang-format off
 enum DrvrReturnCode {
-    // Primary Return Codes
+    // Primary Return Codes (1000-1099)
     DRVR__SUCCESS = 1000,               /**< Successful execution */
     DRVR__RETURN_SUCCESS,               /**< Indicates driver should exit successfully */
     DRVRERR__MISSING_OPTION,            /**< No value provided for given argument */
@@ -33,7 +32,7 @@ enum DrvrReturnCode {
     // Validation Errors (1200-1299)
     DRVRERR__VALIDATION_IN_FILE = 1200, /**< Input file not specified */
     DRVRERR__VALIDATION_OUT_FILE,       /**< Output file not specified */
-    DRVRERR__VALIDATION_MODEL           /**< Model not specified */
+    DRVRERR__VALIDATION_MODEL,          /**< Model not specified */
 };
 // clang-format on
 

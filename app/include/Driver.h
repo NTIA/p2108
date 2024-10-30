@@ -30,8 +30,8 @@ using namespace ITS::ITU::PSeries::P2108;
 
 /////////////////////////////
 // Functions
-DrvrReturnCode ParseArguments(int argc, char **argv, DrvrParams &params);
 void Help(std::ostream &os = std::cout);
+DrvrReturnCode ParseArguments(int argc, char **argv, DrvrParams &params);
 DrvrReturnCode ValidateInputs(const DrvrParams &params);
 
 // Aeronautical Statistical Model
@@ -63,8 +63,8 @@ void PrintClutterTypeLabel(std::ofstream &fp, const ClutterType clutter_type);
 void PrintLabel(std::ofstream &fp, const std::string &lbl);
 
 // Driver Utils
-void Version(std::ostream &os = std::cout);
-DrvrReturnCode ParseInteger(const std::string &str, int &value);
-DrvrReturnCode ParseDouble(const std::string &str, double &value);
 std::string GetDatetimeString();
+DrvrReturnCode ParseDouble(const std::string &str, double &value);
+DrvrReturnCode ParseInteger(const std::string &str, int &value);
 void StringToLower(std::string &str);
+void Version(std::ostream &os = std::cout);

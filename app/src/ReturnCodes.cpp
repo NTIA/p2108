@@ -4,6 +4,8 @@
 
 #include "ReturnCodes.h"
 
+#include <unordered_map>
+
 /*******************************************************************************
  * Get an error message string from a return code.
  * 
