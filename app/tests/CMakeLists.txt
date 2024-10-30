@@ -26,7 +26,8 @@ target_include_directories(
 target_link_libraries(${DRIVER_TEST_NAME} ${LIB_NAME})
 
 # Make driver executable location available to source
-add_definitions(-DDRIVER_LOCATION="$<TARGET_FILE:${DRIVER_NAME}>")
+add_definitions(-DDRIVER_NAME="${DRIVER_NAME}")
+add_definitions(-DDRIVER_LOCATION="${DRIVER_EXE_DIR}/${CMAKE_BUILD_TYPE}")
 
 set_target_properties(
     ${DRIVER_TEST_NAME} PROPERTIES
@@ -38,13 +39,6 @@ set_target_properties(
 ###########################################
 ## SET UP AND DISCOVER TESTS
 ###########################################
-if (NOT ${GOOGLETEST_ADDED})
-    set(gtest_force_shared_crt ON CACHE BOOL "" FORCE)
-    add_subdirectory("${PROJECT_SOURCE_DIR}/extern/googletest" "extern/googletest")
-    include(GoogleTest)
-    include_directories(${gtest_SOURCE_DIR}/include ${gtest_SOURCE_DIR})
-    set(GOOGLETEST_ADDED ON)
-endif ()
-
+include_directories(${gtest_SOURCE_DIR}/include ${gtest_SOURCE_DIR})
 target_link_libraries(${DRIVER_TEST_NAME} ${LIB_NAME} GTest::gtest_main)
 gtest_discover_tests(${DRIVER_TEST_NAME})
