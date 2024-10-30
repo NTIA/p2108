@@ -49,9 +49,9 @@ std::string GetDrvrReturnStatus(int code) {
 
     auto it = messages.find(static_cast<DrvrReturnCode>(code));
     if (it != messages.end()) {
-        msg += it->second + "\n";
+        msg += it->second;
     } else {
-        msg += "Undefined return code\n";
+        msg += "Undefined return code";
     }
     return msg;
 }

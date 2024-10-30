@@ -79,7 +79,7 @@ DrvrReturnCode
         }
 
         if (rtn != DRVR__SUCCESS) {
-            std::cerr << GetDrvrReturnStatus(rtn);
+            std::cerr << GetDrvrReturnStatus(rtn) << std::endl;
             return rtn;
         }
         ++it;
