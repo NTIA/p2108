@@ -83,6 +83,7 @@ contains an extensive set of example values which are useful as validation cases
 ## References ##
 
 * [ITS Propagation Library Wiki](https://ntia.github.io/propagation-library-wiki)
+* [P2108 Wiki Page](https://ntia.github.io/propagation-library-wiki/models/P2108)
 * [`ITS.ITU.PSeries.P2108` C++ API Reference](https://ntia.github.io/P2108)
 * [Recommendation ITU-R P.2108](https://www.itu.int/rec/R-REC-P.2108/en)
 * [Report ITU-R P.2402](https://www.itu.int/pub/R-REP-P.2402)
@@ -90,5 +91,3 @@ contains an extensive set of example values which are useful as validation cases
 ## Contact ##
 
 For technical questions, contact <code@ntia.gov>.
-
--->
