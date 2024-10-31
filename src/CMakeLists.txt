@@ -32,8 +32,7 @@ endif ()
 # Set some target metadata
 set_target_properties(
     ${LIB_NAME} PROPERTIES
-    VERSION ${PROJECT_VERSION}
-    SOVERSION ${PROJECT_VERSION_MAJOR} # Include version in .so output filenames
+    OUTPUT_NAME ${LIB_NAME}-${PROJECT_VERSION}
     LIBRARY_OUTPUT_DIRECTORY "${PROJECT_SOURCE_DIR}/bin"
     ARCHIVE_OUTPUT_DIRECTORY "${PROJECT_SOURCE_DIR}/bin"
     RUNTIME_OUTPUT_DIRECTORY "${PROJECT_SOURCE_DIR}/bin"

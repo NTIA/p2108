@@ -14,6 +14,6 @@
     "title": "Recommendation ITU-R P.2108-1, Release 1.0",
     "description": "Models for the prediction of clutter loss",
     "upload_type": "software",
-    "version": "1.0.0",
+    "version": "1.0",
     "keywords": ["Study Group 3", "ITU-R", "P2108", "clutter", "propagation"]
 }
