@@ -3,6 +3,8 @@
  */
 #include "ITS.ITU.PSeries.P2108/P2108.h"
 
+#include <cmath>  // for std::atan, std::log10, std::pow, std::sqrt
+
 namespace ITS {
 namespace ITU {
 namespace PSeries {
@@ -48,8 +50,8 @@ ReturnCode HeightGainTerminalCorrectionModel(
 
     const double h_dif__meter = R__meter - h__meter;  // Equation (2d)
     const double theta_clut__deg
-        = atan(h_dif__meter / w_s__meter) * 180.0 / PI;  // Equation (2e)
-    const double K_h2 = 21.8 + 6.2 * log10(f__ghz);      // Equation (2f)
+        = std::atan(h_dif__meter / w_s__meter) * 180.0 / PI;  // Equation (2e)
+    const double K_h2 = 21.8 + 6.2 * std::log10(f__ghz);      // Equation (2f)
 
     switch (clutter_type) {
         case ClutterType::WATER_SEA:
@@ -62,10 +64,11 @@ ReturnCode HeightGainTerminalCorrectionModel(
         case ClutterType::TREES_FOREST:
         case ClutterType::DENSE_URBAN:
             {
-                const double K_nu = 0.342 * sqrt(f__ghz);  // Equation (2g)
-                const double nu
-                    = K_nu
-                    * sqrt(h_dif__meter * theta_clut__deg);  // Equation (2c)
+                const double K_nu = 0.342 * std::sqrt(f__ghz);  // Equation (2g)
+                const double nu = K_nu
+                                * std::sqrt(
+                                      h_dif__meter * theta_clut__deg
+                                );  // Equation (2c)
 
                 A_h__db = Equation_2a(nu);
                 break;
@@ -118,11 +121,12 @@ ReturnCode Section3p1_InputValidation(
  ******************************************************************************/
 double Equation_2a(const double nu) {
     double J_nu__db;
-    if (nu <= -0.78)
+    if (nu <= -0.78) {
         J_nu__db = 0;
-    else
-        J_nu__db = 6.9 + 20 * log10(sqrt(pow(nu - 0.1, 2) + 1) + nu - 0.1);
-
+    } else {
+        const double term1 = std::sqrt(std::pow(nu - 0.1, 2) + 1);
+        J_nu__db = 6.9 + 20 * std::log10(term1 + nu - 0.1);
+    }
     const double A_h__db = J_nu__db - 6.03;
 
     return A_h__db;
@@ -139,7 +143,7 @@ double Equation_2a(const double nu) {
 double Equation_2b(
     const double K_h2, const double h__meter, const double R__meter
 ) {
-    const double A_h__db = -K_h2 * log10(h__meter / R__meter);
+    const double A_h__db = -K_h2 * std::log10(h__meter / R__meter);
 
     return A_h__db;
 }

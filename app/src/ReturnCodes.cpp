@@ -4,7 +4,8 @@
 
 #include "ReturnCodes.h"
 
-#include <unordered_map>
+#include <string>         // for std::string
+#include <unordered_map>  // for std::unordered_map
 
 /*******************************************************************************
  * Get an error message string from a return code.

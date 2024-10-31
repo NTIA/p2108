@@ -3,6 +3,9 @@
  */
 #include "Driver.h"
 
+#include <fstream>  // for std::ofstream
+#include <string>   // for std::string
+
 /*******************************************************************************
  * Print text message corresponding to clutter type enum value
  * 

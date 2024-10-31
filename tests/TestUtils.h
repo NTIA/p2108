@@ -9,7 +9,7 @@
 using namespace ITS::ITU::PSeries::P2108;
 
 // Absolute tolerance for checking model outputs against test data
-#define ABSTOL__DB 0.1
+constexpr double ABSTOL__DB = 0.1;
 
 struct AeronauticalStatisticalModelTestData {
         double f__ghz;

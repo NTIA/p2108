@@ -7,16 +7,16 @@
 #include "TempTextFile.h"
 
 #include <algorithm>      // for std::replace
-#include <cstdio>         // for std::remove
+#include <cstdio>         // for std::remove, std::perror
 #include <cstdlib>        // for std::system
 #include <gtest/gtest.h>  // GoogleTest
-#include <iostream>       // for std::cout, std::endl, std::flush
+#include <iostream>       // for std::cout
+#include <ostream>        // for std::endl, std::flush
 #include <string>         // for std::string
 
 #ifndef _WIN32
     #include <unistd.h>  // for WEXITSTATUS
 #endif
-
 
 /*******************************************************************************
  * @class DriverTest

@@ -1,7 +1,9 @@
 #include "TestUtils.h"
 
-#include <fstream>
-#include <sstream>
+#include <fstream>  // for std::ifstream
+#include <sstream>  // for std::istringstream
+#include <string>   // for std::string, std::getline
+#include <vector>   // for std::vector
 
 void appendDirectorySep(std::string &str) {
 #ifdef _WIN32

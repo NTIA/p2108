@@ -3,6 +3,8 @@
  */
 #include "ITS.ITU.PSeries.P2108/P2108.h"
 
+#include <cmath>  // for std::pow, std::log, std::tan
+
 namespace ITS {
 namespace ITU {
 namespace PSeries {
@@ -37,16 +39,16 @@ ReturnCode AeronauticalStatisticalModel(
         return rtn;
 
     constexpr double A_1 = 0.05;
-    const double K_1 = 93 * pow(f__ghz, 0.175);
+    const double K_1 = 93 * std::pow(f__ghz, 0.175);
 
-    const double part1 = log(1 - p / 100.0);
+    const double part1 = std::log(1 - p / 100.0);
     const double part2
         = A_1 * (1 - theta__deg / 90.0) + PI * theta__deg / 180.0;
     const double part3 = 0.5 * (90.0 - theta__deg) / 90.0;
     const double part4
         = 0.6 * InverseComplementaryCumulativeDistribution(p / 100);
 
-    L_ces__db = pow(-K_1 * part1 * cot(part2), part3) - 1 - part4;
+    L_ces__db = std::pow(-K_1 * part1 * cot(part2), part3) - 1 - part4;
     return rtn;
 }
 
@@ -90,7 +92,7 @@ ReturnCode Section3p3_InputValidation(
  * @return       Cotangent of the argument, @f$ \cot(x) @f$
  ******************************************************************************/
 double cot(const double x) {
-    return 1 / tan(x);
+    return 1 / std::tan(x);
 }
 
 }  // namespace P2108

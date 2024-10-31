@@ -3,8 +3,8 @@
  */
 #pragma once
 
-#include <string>
-#include <unordered_map>
+#include <string>         // for std::string
+#include <unordered_map>  // for std::unordered_map
 
 namespace ITS {
 namespace ITU {

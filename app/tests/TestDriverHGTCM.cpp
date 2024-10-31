@@ -1,5 +1,7 @@
 #include "TestDriver.h"
 
+#include <string>  // for std::string
+
 /*******************************************************************************
  * Driver test fixture for the Height Gain Terminal Correction Model
  ******************************************************************************/

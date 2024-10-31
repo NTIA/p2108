@@ -3,6 +3,14 @@
  */
 #include "Driver.h"
 
+#include <fstream>   // for std::ifstream, std::ofstream
+#include <iostream>  // for std::cerr
+#include <istream>   // for std::istream
+#include <ostream>   // for std::endl
+#include <string>    // for std::string
+#include <tuple>     // for std::tie
+#include <vector>    // for std::vector
+
 // Define the input keys
 const std::string ASMInputKeys::f__ghz = "f__ghz";
 const std::string ASMInputKeys::theta__deg = "theta__deg";

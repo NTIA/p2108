@@ -4,6 +4,9 @@
 
 #include "ITS.ITU.PSeries.P2108/ReturnCodes.h"
 
+#include <string>         // for std::string
+#include <unordered_map>  // for std::unordered_map
+
 namespace ITS {
 namespace ITU {
 namespace PSeries {

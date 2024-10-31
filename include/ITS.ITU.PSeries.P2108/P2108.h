@@ -6,8 +6,6 @@
 #include "Enums.h"
 #include "ReturnCodes.h"
 
-#include <cmath>  // For atan, fmin, log10, pow, sqrt, tan
-
 namespace ITS {
 namespace ITU {
 namespace PSeries {
@@ -21,16 +19,6 @@ namespace P2108 {
         #define EXPORTED extern "C"
     #endif
 #endif
-
-// Bring some commonly-used mathematical functions into the global namespace
-// This makes long equations a bit more readable while avoiding total namespace
-// chaos.
-using std::atan;
-using std::fmin;
-using std::log10;
-using std::pow;
-using std::sqrt;
-using std::tan;
 
 ////////////////////////////////////////////////////////////////////////////////
 // Constants

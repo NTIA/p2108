@@ -22,6 +22,7 @@
 #include <iostream>   // for std::cerr, std::cout, std::ios::trunc
 #include <ostream>    // for std::endl
 #include <stdexcept>  // for std::runtime_error
+#include <string>     // for std::string
 
 TempTextFile::TempTextFile(const std::string &content) {
 #ifdef _WIN32
