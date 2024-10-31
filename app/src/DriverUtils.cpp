@@ -13,13 +13,13 @@
     #endif
 #endif
 
-#include <algorithm> // for std::transform
-#include <cctype>    // for std::tolower
-#include <ctime>     // for localtime_{s,r}, std::{time, time_t, tm, strftime}
-#include <fstream>   // for std::ofstream
-#include <iomanip>   // for std::setfill, std::setw
-#include <iostream>  // for std::cerr, std::endl
-#include <string>    // for std::stod, std::stoi, std::string
+#include <algorithm>  // for std::transform
+#include <cctype>     // for std::tolower
+#include <ctime>      // for localtime_{s,r}, std::{time, time_t, tm, strftime}
+#include <fstream>    // for std::ofstream
+#include <iomanip>    // for std::setfill, std::setw
+#include <iostream>   // for std::cerr, std::endl
+#include <string>     // for std::stod, std::stoi, std::string
 
 /******************************************************************************
  * Get a string containing the current date and time information.
@@ -51,7 +51,7 @@ std::string GetDatetimeString() {
  * @param[out] value  Input file value converted to double
  * @return            Return code
  ******************************************************************************/
-int ParseDouble(const std::string &str, double &value) {
+DrvrReturnCode ParseDouble(const std::string &str, double &value) {
     try {
         value = std::stod(str);
     } catch (...) {
@@ -59,7 +59,7 @@ int ParseDouble(const std::string &str, double &value) {
         return DRVRERR__PARSE;
     }
 
-    return SUCCESS;
+    return DRVR__SUCCESS;
 }
 
 /*******************************************************************************
@@ -69,7 +69,7 @@ int ParseDouble(const std::string &str, double &value) {
  * @param[out] value  Input file value converted to int
  * @return            Return code
  ******************************************************************************/
-int ParseInteger(const std::string &str, int &value) {
+DrvrReturnCode ParseInteger(const std::string &str, int &value) {
     try {
         size_t pos;
         value = std::stoi(str, &pos, 10);
@@ -83,7 +83,7 @@ int ParseInteger(const std::string &str, int &value) {
         return DRVRERR__PARSE;
     };
 
-    return SUCCESS;
+    return DRVR__SUCCESS;
 }
 
 /*******************************************************************************
