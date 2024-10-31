@@ -5,7 +5,7 @@
 
 #include "ITS.ITU.PSeries.P2108/Enums.h"  // For ClutterType
 
-#include <string>  // For std::string
+#include <string>  // for std::string
 
 /////////////////////////////
 // Enums

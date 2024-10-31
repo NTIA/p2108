@@ -8,8 +8,8 @@
 #include "ReturnCodes.h"
 #include "Structs.h"
 
-#include <fstream>   // for std::ifstream, std::ofstream
-#include <iomanip>   // for std::setw
+#include <fstream>   // for std::ofstream
+#include <iomanip>   // for std::left, std::setw
 #include <iostream>  // for std::cout
 #include <ostream>   // for std::endl, std::ostream
 #include <string>    // for std::string
