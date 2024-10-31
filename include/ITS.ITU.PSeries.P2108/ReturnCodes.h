@@ -37,8 +37,6 @@ enum ReturnCode {
 };
 // clang-format on
 
-std::string GetReturnStatus(int code);
-
 }  // namespace P2108
 }  // namespace PSeries
 }  // namespace ITU
