@@ -4,9 +4,7 @@
 #pragma once
 
 #include "Enums.h"
-#include "Errors.h"
-
-#include <cmath>  // For atan, fmin, log10, pow, sqrt, tan
+#include "ReturnCodes.h"
 
 namespace ITS {
 namespace ITU {
@@ -22,32 +20,23 @@ namespace P2108 {
     #endif
 #endif
 
-// Bring some commonly-used mathematical functions into the global namespace
-// This makes long equations a bit more readable while avoiding total namespace
-// chaos.
-using std::atan;
-using std::fmin;
-using std::log10;
-using std::pow;
-using std::sqrt;
-using std::tan;
-
 ////////////////////////////////////////////////////////////////////////////////
 // Constants
-#define PI 3.14159265358979323846 /**< Approximate value of @f$ \pi @f$ */
+/** Approximate value of @f$ \pi @f$ */
+constexpr double PI = 3.14159265358979323846;
 
 ////////////////////////////////////////////////////////////////////////////////
 // Public Functions
-EXPORTED int AeronauticalStatisticalModel(
+EXPORTED ReturnCode AeronauticalStatisticalModel(
     const double f__ghz,
     const double theta__deg,
     const double p,
     double &L_ces__db
 );
-EXPORTED int TerrestrialStatisticalModel(
+EXPORTED ReturnCode TerrestrialStatisticalModel(
     const double f__ghz, const double d__km, const double p, double &L_ctt__db
 );
-EXPORTED int HeightGainTerminalCorrectionModel(
+EXPORTED ReturnCode HeightGainTerminalCorrectionModel(
     const double f__ghz,
     const double h__meter,
     const double w_s__meter,
@@ -64,16 +53,16 @@ double Equation_2a(const double nu);
 double Equation_2b(
     const double K_h2, const double h__meter, const double R__meter
 );
-int Section3p1_InputValidation(
+ReturnCode Section3p1_InputValidation(
     const double f__ghz,
     const double h__meter,
     const double w_s__meter,
     const double R__meter
 );
-int Section3p2_InputValidation(
+ReturnCode Section3p2_InputValidation(
     const double f__ghz, const double d__km, const double p
 );
-int Section3p3_InputValidation(
+ReturnCode Section3p3_InputValidation(
     const double f__ghz, const double theta__deg, const double p
 );
 double TerrestrialStatisticalModelHelper(

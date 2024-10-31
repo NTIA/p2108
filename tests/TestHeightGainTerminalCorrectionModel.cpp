@@ -23,7 +23,7 @@ TEST_F(
     // Ensure test data was loaded
     EXPECT_NE(static_cast<int>(testData.size()), 0);
     double A_h__db;
-    int rtn;
+    ReturnCode rtn;
     for (const auto &data : testData) {
         rtn = HeightGainTerminalCorrectionModel(
             data.f__ghz,

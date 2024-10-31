@@ -7,12 +7,16 @@
 #include "TempTextFile.h"
 
 #include <algorithm>      // for std::replace
-#include <cstdio>         // for std::remove
+#include <cstdio>         // for std::remove, std::perror
 #include <cstdlib>        // for std::system
 #include <gtest/gtest.h>  // GoogleTest
-#include <iostream>       // for std::cout, std::endl
+#include <iostream>       // for std::cout
+#include <ostream>        // for std::endl, std::flush
 #include <string>         // for std::string
 
+#ifndef _WIN32
+    #include <unistd.h>  // for WEXITSTATUS
+#endif
 
 /*******************************************************************************
  * @class DriverTest
@@ -32,13 +36,6 @@ class DriverTest: public ::testing::Test {
 
             // Get the name of the executable to test
             executable = std::string(DRIVER_LOCATION);
-            executable += "/" + std::string(DRIVER_NAME);
-#ifdef _WIN32
-            std::replace(executable.begin(), executable.end(), '/', '\\');
-            executable += ".exe";
-#else
-            executable = "./" + executable;
-#endif
         }
 
         /***********************************************************************
@@ -98,6 +95,26 @@ class DriverTest: public ::testing::Test {
         }
 
         /***********************************************************************
+         * Runs the provided command (cross-platform)
+         * 
+         * Note that on POSIX platforms the exit code of the command should be
+         * between 0 and 255. Exit codes outside this range will be shifted into
+         * this range and cannot be unambiguously compared to expectations.
+         * 
+         * @param[in] cmd The command to run
+         * @return        The exit code of the command.
+         **********************************************************************/
+        int RunCommand(const std::string &cmd) {
+            std::cout << std::flush;
+            int rtn = std::system(cmd.c_str());
+#ifndef _WIN32
+            rtn = WEXITSTATUS(rtn);  // Get child process exit code on POSIX
+#endif
+            return rtn;
+        }
+
+
+        /***********************************************************************
          * Runs the driver executable.
          * 
          * @param[in] params  Parameters to parse as command line arguments
@@ -105,8 +122,7 @@ class DriverTest: public ::testing::Test {
          **********************************************************************/
         int RunDriver(const DrvrParams &params) {
             std::string cmd = BuildCommand(params);
-            int rtn = std::system(cmd.c_str());
-            return rtn;
+            return RunCommand(cmd);
         }
 
         /***********************************************************************

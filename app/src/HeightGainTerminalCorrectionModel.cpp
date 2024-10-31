@@ -2,27 +2,40 @@
  * Implements functions for running the Height Gain Terminal Correction Model.
  */
 #include "Driver.h"
-#include "Tags.h"
 
+#include <fstream>   // for std::ifstream, std::ofstream
+#include <iostream>  // for std::cerr
+#include <istream>   // for std::istream
+#include <ostream>   // for std::endl
+#include <string>    // for std::string
+#include <tuple>     // for std::tie
+#include <vector>    // for std::vector
+
+// Define the input keys
+const std::string HGTCMInputKeys::f__ghz = "f__ghz";
+const std::string HGTCMInputKeys::h__meter = "h__meter";
+const std::string HGTCMInputKeys::w_s__meter = "w_s__meter";
+const std::string HGTCMInputKeys::R__meter = "r__meter";
+const std::string HGTCMInputKeys::clutter_type = "clutter_type";
 
 /*******************************************************************************
  * Top-level control function for Height Gain Terminal Correction Model
  * 
- * @param[in] hgtc_params  Height Gain Terminal Correction Model input struct
- * @param[out] A_h__db      Additional loss (clutter loss), in dB
- * @return                  Return code
+ * @param[in]  hgtcm_params  Height Gain Terminal Correction Model input struct
+ * @param[out] A_h__db       Additional loss (clutter loss), in dB
+ * @return                   Return code
  ******************************************************************************/
-int CallHeightGainTerminalCorrectionModel(
-    HGTCParams &hgtc_params, std::vector<double> &A_h__db
+ReturnCode CallHeightGainTerminalCorrectionModel(
+    HGTCMParams &hgtcm_params, std::vector<double> &A_h__db
 ) {
-    int rtn;
+    ReturnCode rtn;
     double A_h;
     rtn = HeightGainTerminalCorrectionModel(
-        hgtc_params.f__ghz,
-        hgtc_params.h__meter,
-        hgtc_params.w_s__meter,
-        hgtc_params.R__meter,
-        hgtc_params.clutter_type,
+        hgtcm_params.f__ghz,
+        hgtcm_params.h__meter,
+        hgtcm_params.w_s__meter,
+        hgtcm_params.R__meter,
+        hgtcm_params.clutter_type,
         A_h
     );
     A_h__db.push_back(A_h);
@@ -31,71 +44,72 @@ int CallHeightGainTerminalCorrectionModel(
 }
 
 /*******************************************************************************
- * Parse input stream (file or string stream) to HGTC parameter struct.
+ * Parse input stream (file or string stream) to HGTCM parameter struct.
  * 
- * @param[in]  stream       Path to ASM input parameter file
- * @param[out] hgtc_params  HGTC input parameter struct
- * @return                  Return code
+ * @param[in]  stream        Path to HGTCM input parameter file
+ * @param[out] hgtcm_params  HGTCM input parameter struct
+ * @return                   Return code
  ******************************************************************************/
-int ParseHGTCInputStream(std::istream &stream, HGTCParams &hgtc_params) {
+DrvrReturnCode
+    ParseHGTCMInputStream(std::istream &stream, HGTCMParams &hgtcm_params) {
     CommaSeparatedIterator it(stream);
+    DrvrReturnCode rtn = DRVR__SUCCESS;
     std::string key, value;
     while (it) {
         std::tie(key, value) = *it;
-        if (key.compare(TAG__FREQ) == 0) {
-            if (ParseDouble(value, hgtc_params.f__ghz) == DRVRERR__PARSE) {
-                return ParsingErrorHelper(DRVRERR__PARSE_FREQ, TAG__FREQ);
-            }
-        } else if (key.compare(TAG__HEIGHT) == 0) {
-            if (ParseDouble(value, hgtc_params.h__meter) == DRVRERR__PARSE) {
-                return ParsingErrorHelper(DRVRERR__PARSE_HEIGHT, TAG__HEIGHT);
-            }
-        } else if (key.compare(TAG__STREET_WIDTH) == 0) {
-            if (ParseDouble(value, hgtc_params.w_s__meter) == DRVRERR__PARSE) {
-                return ParsingErrorHelper(
-                    DRVRERR__PARSE_STREET_WIDTH, TAG__STREET_WIDTH
-                );
-            }
-        } else if (key.compare(TAG__REPR_HEIGHT) == 0) {
-            if (ParseDouble(value, hgtc_params.R__meter) == DRVRERR__PARSE) {
-                return ParsingErrorHelper(
-                    DRVRERR__PARSE_REPR_HEIGHT, TAG__REPR_HEIGHT
-                );
-            }
-        } else if (key.compare(TAG__CLUTTER_TYPE) == 0) {
+        if (key.compare(HGTCMInputKeys::f__ghz) == 0) {
+            rtn = ParseDouble(value, hgtcm_params.f__ghz);
+            if (rtn == DRVRERR__PARSE)
+                rtn = DRVRERR__PARSE_FREQ;
+        } else if (key.compare(HGTCMInputKeys::h__meter) == 0) {
+            rtn = ParseDouble(value, hgtcm_params.h__meter);
+            if (rtn == DRVRERR__PARSE)
+                rtn = DRVRERR__PARSE_HEIGHT;
+        } else if (key.compare(HGTCMInputKeys::w_s__meter) == 0) {
+            rtn = ParseDouble(value, hgtcm_params.w_s__meter);
+            if (rtn == DRVRERR__PARSE)
+                rtn = DRVRERR__PARSE_STREET_WIDTH;
+        } else if (key.compare(HGTCMInputKeys::R__meter) == 0) {
+            rtn = ParseDouble(value, hgtcm_params.R__meter);
+            if (rtn == DRVRERR__PARSE)
+                rtn = DRVRERR__PARSE_REPR_HEIGHT;
+        } else if (key.compare(HGTCMInputKeys::clutter_type) == 0) {
             int clutter_type_int;
-            if (ParseInteger(value, clutter_type_int) == DRVRERR__PARSE) {
-                return ParsingErrorHelper(
-                    DRVRERR__PARSE_CLUTTER_TYPE, TAG__CLUTTER_TYPE
-                );
+            rtn = ParseInteger(value, clutter_type_int);
+            if (rtn == DRVRERR__PARSE) {
+                rtn = DRVRERR__PARSE_CLUTTER_TYPE;
+            } else {
+                hgtcm_params.clutter_type
+                    = static_cast<ClutterType>(clutter_type_int);
             }
-            hgtc_params.clutter_type
-                = static_cast<ClutterType>(clutter_type_int);
         } else {
-            std::cerr << "Driver Error " << DRVRERR__PARSE;
-            std::cerr << ": Unknown input parameter '" << key << "'"
-                      << std::endl;
-            return DRVRERR__PARSE;
+            rtn = DRVRERR__PARSE;
+        }
+
+        if (rtn != DRVR__SUCCESS) {
+            std::cerr << GetDrvrReturnStatus(rtn) << std::endl;
+            return rtn;
         }
         ++it;
     }
-    return SUCCESS;
+    return rtn;
 }
 
 /*******************************************************************************
  * Parse Height Gain Terminal Correction Model input parameter file
  * 
- * @param[in]  in_file      Path to HGTC input parameter file
- * @param[out] hgtc_params  HGTC input parameter struct
- * @return                  Return code
+ * @param[in]  in_file       Path to HGTCM input parameter file
+ * @param[out] hgtcm_params  HGTCM input parameter struct
+ * @return                   Return code
  ******************************************************************************/
-int ParseHGTCInputFile(const std::string &in_file, HGTCParams &hgtc_params) {
+DrvrReturnCode
+    ParseHGTCMInputFile(const std::string &in_file, HGTCMParams &hgtcm_params) {
     std::ifstream file(in_file);
     if (!file) {
         std::cerr << "Failed to open file " << in_file << std::endl;
         return DRVRERR__OPENING_INPUT_FILE;
     }
-    return ParseHGTCInputStream(file, hgtc_params);
+    return ParseHGTCMInputStream(file, hgtcm_params);
 }
 
 /*******************************************************************************
@@ -104,11 +118,13 @@ int ParseHGTCInputFile(const std::string &in_file, HGTCParams &hgtc_params) {
  * @param[in] fp      Output stream, a text file open for writing
  * @param[in] params  HGTCM input parameter struct
  ******************************************************************************/
-void WriteHGTCInputs(std::ofstream &fp, const HGTCParams &params) {
-    fp PRINT TAG__FREQ SETW13 params.f__ghz << UNITS__GHZ;
-    fp PRINT TAG__HEIGHT SETW13 params.h__meter << UNITS__METER;
-    fp PRINT TAG__STREET_WIDTH SETW13 params.w_s__meter << UNITS__METER;
-    fp PRINT TAG__REPR_HEIGHT SETW13 params.R__meter << UNITS__METER;
-    fp PRINT TAG__CLUTTER_TYPE SETW13 static_cast<int>(params.clutter_type);
+void WriteHGTCMInputs(std::ofstream &fp, const HGTCMParams &params) {
+    fp PRINT HGTCMInputKeys::f__ghz SETW13 params.f__ghz << "(gigahertz)";
+    fp PRINT HGTCMInputKeys::h__meter SETW13 params.h__meter << "(meters)";
+    fp PRINT HGTCMInputKeys::w_s__meter SETW13 params.w_s__meter << "(meters)";
+    fp PRINT HGTCMInputKeys::R__meter SETW13 params.R__meter << "(meters)";
+    fp PRINT HGTCMInputKeys::clutter_type SETW13 static_cast<int>(
+        params.clutter_type
+    );
     PrintClutterTypeLabel(fp, params.clutter_type);
 }

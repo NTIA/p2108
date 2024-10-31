@@ -9,13 +9,17 @@ add_library(
     "HeightGainTerminalCorrectionModel.cpp"
     "InverseComplementaryCumulativeDistribution.cpp"
     "TerrestrialStatisticalModel.cpp"
+    "ReturnCodes.cpp"
     "${PROJECT_HEADERS}/Enums.h"
-    "${PROJECT_HEADERS}/Errors.h"
+    "${PROJECT_HEADERS}/ReturnCodes.h"
     "${PROJECT_HEADERS}/${LIB_NAME}.h"
 )
 
 # Add the include directory
 target_include_directories(${LIB_NAME} PUBLIC "${PROJECT_SOURCE_DIR}/include")
+
+# Add definition to get the library name inside the library
+add_definitions(-DLIBRARY_NAME="${LIB_NAME}")
 
 # Set minimum C++ version to C++11
 target_compile_features(${LIB_NAME} PUBLIC cxx_std_11)

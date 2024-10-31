@@ -19,7 +19,7 @@ TEST_F(AeronauticalStatisticalModelTest, TestAeronauticalStatisticalModel) {
     // Ensure test data was loaded
     EXPECT_NE(static_cast<int>(testData.size()), 0);
     double L_ces__db;
-    int rtn;
+    ReturnCode rtn;
     for (const auto &data : testData) {
         rtn = AeronauticalStatisticalModel(
             data.f__ghz, data.theta__deg, data.p, L_ces__db

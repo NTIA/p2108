@@ -10,13 +10,12 @@ add_executable(
     "DriverUtils.cpp"
     "HeightGainTerminalCorrectionModel.cpp"
     "Reporting.cpp"
+    "ReturnCodes.cpp"
     "TerrestrialStatisticalModel.cpp"
     "${DRIVER_HEADERS}/CommaSeparatedIterator.h"
     "${DRIVER_HEADERS}/Driver.h"
-    "${DRIVER_HEADERS}/Errors.h"
-    "${DRIVER_HEADERS}/Labels.h"
+    "${DRIVER_HEADERS}/ReturnCodes.h"
     "${DRIVER_HEADERS}/Structs.h"
-    "${DRIVER_HEADERS}/Tags.h"
 )
 
 # Add the include directory

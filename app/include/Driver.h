@@ -4,16 +4,15 @@
 #pragma once
 
 #include "CommaSeparatedIterator.h"
-#include "Errors.h"
 #include "ITS.ITU.PSeries.P2108/P2108.h"
+#include "ReturnCodes.h"
 #include "Structs.h"
 
-#include <fstream>   // for std::ifstream, std::ofstream
-#include <iomanip>   // for std::setw
-#include <iostream>  // for std::cerr, std::cout, std::ostream
-#include <ostream>   // for std::endl
-#include <string>    // for std::string, std::stoi, std::stod
-#include <tuple>     // for std::tie
+#include <fstream>   // for std::ofstream
+#include <iomanip>   // for std::left, std::setw
+#include <iostream>  // for std::cout
+#include <ostream>   // for std::endl, std::ostream
+#include <string>    // for std::string
 #include <vector>    // for std::vector
 
 /////////////////////////////
@@ -30,41 +29,41 @@ using namespace ITS::ITU::PSeries::P2108;
 
 /////////////////////////////
 // Functions
-int ParseArguments(int argc, char **argv, DrvrParams &params);
 void Help(std::ostream &os = std::cout);
-int ValidateInputs(const DrvrParams &params);
+DrvrReturnCode ParseArguments(int argc, char **argv, DrvrParams &params);
+DrvrReturnCode ValidateInputs(const DrvrParams &params);
 
 // Aeronautical Statistical Model
-int CallAeronauticalStatisticalModel(
+ReturnCode CallAeronauticalStatisticalModel(
     ASMParams &asm_params, std::vector<double> &L_ces__db
 );
-int ParseASMInputFile(const std::string &in_file, ASMParams &asm_params);
+DrvrReturnCode
+    ParseASMInputFile(const std::string &in_file, ASMParams &asm_params);
 void WriteASMInputs(std::ofstream &fp, const ASMParams &params);
 
 // Height Gain Terminal Correction Model
-int CallHeightGainTerminalCorrectionModel(
-    HGTCParams &hgtc_params, std::vector<double> &A_h__db
+ReturnCode CallHeightGainTerminalCorrectionModel(
+    HGTCMParams &hgtcm_params, std::vector<double> &A_h__db
 );
-int ParseHGTCInputFile(const std::string &in_file, HGTCParams &hgtc_params);
-void WriteHGTCInputs(std::ofstream &fp, const HGTCParams &params);
+DrvrReturnCode
+    ParseHGTCMInputFile(const std::string &in_file, HGTCMParams &hgtcm_params);
+void WriteHGTCMInputs(std::ofstream &fp, const HGTCMParams &params);
 
 // Terrestrial Statistical Model
-int CallTerrestrialStatisticalModel(
+ReturnCode CallTerrestrialStatisticalModel(
     TSMParams &tsm_params, std::vector<double> &L_ctt__db
 );
-int ParseTSMInputFile(const std::string &in_file, TSMParams &tsm_params);
+DrvrReturnCode
+    ParseTSMInputFile(const std::string &in_file, TSMParams &tsm_params);
 void WriteTSMInputs(std::ofstream &fp, const TSMParams &params);
 
 // Reporting
 void PrintClutterTypeLabel(std::ofstream &fp, const ClutterType clutter_type);
-void PrintErrorMsgLabel(std::ofstream &fp, const int err);
-void PrintLabel(std::ofstream &fp, const char *lbl);
 
 // Driver Utils
-void Version(std::ostream &os = std::cout);
-int Validate_RequiredErrMsgHelper(const std::string &opt, const int err);
-int ParseInteger(const std::string &str, int &value);
-int ParseDouble(const std::string &str, double &value);
-int ParsingErrorHelper(const int err, const std::string &msg);
 std::string GetDatetimeString();
+DrvrReturnCode ParseDouble(const std::string &str, double &value);
+DrvrReturnCode ParseInteger(const std::string &str, int &value);
+void PrintLabel(std::ofstream &fp, const std::string &lbl);
 void StringToLower(std::string &str);
+void Version(std::ostream &os = std::cout);
