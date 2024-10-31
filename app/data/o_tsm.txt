@@ -1,15 +1,15 @@
 Model                    P2108
 Model Variant            Terrestrial Statistical Model
-Library Version          v1.0.0
+Library Version          v1.0
 Driver Version           v1.0.0
-Date Generated           Fri Oct 11 15:54:26 2024
-Input Arguments          -i .\i_tsm.txt -o .\o_tsm.txt -model TSM 
+Date Generated           Thu Oct 31 17:30:55 2024
+Input Arguments          -i .\i_tsm.txt -model TSM -o .\o_tsm.txt 
 
 Inputs
 f__ghz                   26.6         (gigahertz)
-theta__deg               15.8         (kilometers)
+d__km                    15.8         (kilometers)
 p                        45           (%)
 
 Results
-Return Code              0            [Success - No Errors]
+Return Code              0            [P2108 Status: Successful execution]
 Clutter loss             32.5         (dB)
