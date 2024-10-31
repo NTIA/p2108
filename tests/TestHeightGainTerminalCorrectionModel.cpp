@@ -114,8 +114,8 @@ TEST(Section3p1_Equation_2aTest, Section3p1_NuAboveLimit) {
 TEST(Section3p1_Equation_2bTest, TestSection3p1_Equation_2b) {
     // Test a few values with separately-computed expected results for this
     // equation
-    EXPECT_DOUBLE_EQ(Equation_2b(1, 10, 5), -log10(2));
-    EXPECT_DOUBLE_EQ(Equation_2b(5, 1, 2), -5 * log10(0.5));
+    EXPECT_DOUBLE_EQ(Equation_2b(1, 10, 5), -std::log10(2));
+    EXPECT_DOUBLE_EQ(Equation_2b(5, 1, 2), -5 * std::log10(0.5));
     EXPECT_DOUBLE_EQ(Equation_2b(0, 100, 100), 0);
     EXPECT_DOUBLE_EQ(Equation_2b(-1, 10, 1), 1);
 }
