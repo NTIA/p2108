@@ -6,6 +6,10 @@ set(TEST_NAME "Test${LIB_NAME}")
 # Add all unit test files here
 add_executable(
     ${TEST_NAME}
+    "TestAeronauticalStatisticalModel.cpp"
+    "TestHeightGainTerminalCorrectionModel.cpp"
+    "TestInverseComplementaryCumulativeDistribution.cpp"
+    "TestTerrestrialStatisticalModel.cpp"
     "TestUtils.cpp"
     "TestUtils.h"
 )
