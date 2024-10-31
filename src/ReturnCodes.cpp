@@ -70,7 +70,11 @@ std::string GetReturnStatus(const int code) {
 char *GetReturnStatusCharArray(const int code) {
     std::string msg = GetReturnStatus(code);
     char *c_msg = new char[msg.size() + 1];
+#ifndef _WIN32
     strcpy_s(c_msg, msg.size() + 1, msg.c_str());
+#else
+    strcpy(c_msg, msg.c_str());
+#endif
     return c_msg;
 }
 
