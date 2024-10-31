@@ -1,5 +1,6 @@
 #include "TestUtils.h"
 
+#include <cmath>   // for std::log10
 #include <limits>  // For std::numeric_limits<T>::max()
 
 // Test fixture for the unit tests
