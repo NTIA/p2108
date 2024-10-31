@@ -44,9 +44,12 @@ EXPORTED ReturnCode HeightGainTerminalCorrectionModel(
     const ClutterType clutter_type,
     double &A_h__db
 );
+EXPORTED char *GetReturnStatusCharArray(const int code);
+EXPORTED void FreeReturnStatusCharArray(char *c_msg);
 
 ////////////////////////////////////////////////////////////////////////////////
 // Private Functions
+std::string GetReturnStatus(const int code);
 double cot(const double x);
 double InverseComplementaryCumulativeDistribution(const double q);
 double Equation_2a(const double nu);
@@ -68,6 +71,7 @@ ReturnCode Section3p3_InputValidation(
 double TerrestrialStatisticalModelHelper(
     const double f__ghz, const double d__km, const double p
 );
+
 
 }  // namespace P2108
 }  // namespace PSeries
