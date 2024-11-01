@@ -113,7 +113,6 @@ class DriverTest: public ::testing::Test {
             return rtn;
         }
 
-
         /***********************************************************************
          * Runs the driver executable.
          * 
