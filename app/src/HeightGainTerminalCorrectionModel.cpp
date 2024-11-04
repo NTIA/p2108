@@ -46,7 +46,7 @@ ReturnCode CallHeightGainTerminalCorrectionModel(
 /*******************************************************************************
  * Parse input stream (file or string stream) to HGTCM parameter struct.
  * 
- * @param[in]  stream        Path to HGTCM input parameter file
+ * @param[in]  stream        Input stream containing HGTCM parameters
  * @param[out] hgtcm_params  HGTCM input parameter struct
  * @return                   Return code
  ******************************************************************************/
