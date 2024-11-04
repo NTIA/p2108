@@ -39,7 +39,7 @@ ReturnCode CallAeronauticalStatisticalModel(
 /*******************************************************************************
  * Parse input stream (file or string stream) to ASM parameter struct.
  * 
- * @param[in]  stream      Path to ASM input parameter file
+ * @param[in]  stream      Input stream containing ASM parameters
  * @param[out] asm_params  ASM input parameter struct
  * @return                 Return code
  ******************************************************************************/

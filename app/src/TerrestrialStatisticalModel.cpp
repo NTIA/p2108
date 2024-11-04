@@ -19,7 +19,7 @@ const std::string TSMInputKeys::p = "p";
 /*******************************************************************************
  * Top-level control function for Terrestrial Statistical Model operation
  * 
- * @param[in] tsm_params  Terrestrial Statistical Model input parameter struct
+ * @param[in]  tsm_params  Terrestrial Statistical Model input parameter struct
  * @param[out] L_ctt__db   Additional loss (clutter loss), in dB
  * @return                 Return code
  ******************************************************************************/
@@ -39,7 +39,7 @@ ReturnCode CallTerrestrialStatisticalModel(
 /*******************************************************************************
  * Parse input stream (file or string stream) to TSM parameter struct.
  * 
- * @param[in]  stream      Path to TSM input parameter file
+ * @param[in]  stream      Input stream containing TSM parameters
  * @param[out] tsm_params  TSM input parameter struct
  * @return                 Return code
  ******************************************************************************/
