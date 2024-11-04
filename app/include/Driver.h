@@ -39,6 +39,7 @@ ReturnCode CallAeronauticalStatisticalModel(
 );
 DrvrReturnCode
     ParseASMInputFile(const std::string &in_file, ASMParams &asm_params);
+DrvrReturnCode ParseASMInputStream(std::istream &stream, ASMParams &asm_params);
 void WriteASMInputs(std::ofstream &fp, const ASMParams &params);
 
 // Height Gain Terminal Correction Model
@@ -47,6 +48,8 @@ ReturnCode CallHeightGainTerminalCorrectionModel(
 );
 DrvrReturnCode
     ParseHGTCMInputFile(const std::string &in_file, HGTCMParams &hgtcm_params);
+DrvrReturnCode
+    ParseHGTCMInputStream(std::istream &stream, HGTCMParams &hgtcm_params);
 void WriteHGTCMInputs(std::ofstream &fp, const HGTCMParams &params);
 
 // Terrestrial Statistical Model
@@ -55,6 +58,7 @@ ReturnCode CallTerrestrialStatisticalModel(
 );
 DrvrReturnCode
     ParseTSMInputFile(const std::string &in_file, TSMParams &tsm_params);
+DrvrReturnCode ParseTSMInputStream(std::istream &stream, TSMParams &tsm_params);
 void WriteTSMInputs(std::ofstream &fp, const TSMParams &params);
 
 // Reporting
@@ -62,8 +66,9 @@ void PrintClutterTypeLabel(std::ofstream &fp, const ClutterType clutter_type);
 
 // Driver Utils
 std::string GetDatetimeString();
+DrvrReturnCode ParseBoolean(const std::string &str, bool &value);
 DrvrReturnCode ParseDouble(const std::string &str, double &value);
 DrvrReturnCode ParseInteger(const std::string &str, int &value);
-void PrintLabel(std::ofstream &fp, const std::string &lbl);
+void PrintLabel(std::ostream &os, const std::string &lbl);
 void StringToLower(std::string &str);
 void Version(std::ostream &os = std::cout);
