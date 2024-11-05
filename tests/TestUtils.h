@@ -3,6 +3,7 @@
 #include "ITS.ITU.PSeries.P2108/P2108.h"
 
 #include <string>  // for std::string
+#include <vector>  // for std::vector
 
 using namespace ITS::ITU::PSeries::P2108;
 
