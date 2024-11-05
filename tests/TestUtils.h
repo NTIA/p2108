@@ -2,9 +2,7 @@
 
 #include "ITS.ITU.PSeries.P2108/P2108.h"
 
-#include <gtest/gtest.h>
-#include <string>
-#include <vector>
+#include <string>  // for std::string
 
 using namespace ITS::ITU::PSeries::P2108;
 

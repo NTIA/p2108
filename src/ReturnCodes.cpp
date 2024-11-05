@@ -14,7 +14,7 @@
     #endif
 #endif
 
-#include <cstring>        // for strcpy_s
+#include <cstring>        // for strcpy, strcpy_s
 #include <string>         // for std::string
 #include <unordered_map>  // for std::unordered_map
 
