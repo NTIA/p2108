@@ -83,6 +83,7 @@ DrvrReturnCode
                     = static_cast<ClutterType>(clutter_type_int);
             }
         } else {
+            std::cerr << "Unknown parameter: " << key << std::endl;
             rtn = DRVRERR__PARSE;
         }
 
