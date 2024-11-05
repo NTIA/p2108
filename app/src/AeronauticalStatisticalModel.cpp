@@ -63,6 +63,7 @@ DrvrReturnCode
             if (rtn == DRVRERR__PARSE)
                 rtn = DRVRERR__PARSE_PERCENTAGE;
         } else {
+            std::cerr << "Unknown parameter: " << key << std::endl;
             rtn = DRVRERR__PARSE;
         }
 
