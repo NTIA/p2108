@@ -1,6 +1,7 @@
 #include "TestUtils.h"
 
-#include <stdexcept>
+#include <gtest/gtest.h>  // GoogleTest
+#include <stdexcept>      // for std::out_of_range
 
 TEST(InverseCCDFTest, TestInverseCCDF) {
     EXPECT_DOUBLE_EQ(
