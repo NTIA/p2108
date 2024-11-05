@@ -1,5 +1,8 @@
 #include "TestUtils.h"
 
+#include <gtest/gtest.h>  // GoogleTest
+#include <vector>         // for std::vector
+
 // Test fixture for the unit tests
 class TerrestrialStatisticalModelTest: public ::testing::Test {
     protected:

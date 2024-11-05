@@ -1,7 +1,9 @@
 #include "TestUtils.h"
 
-#include <cmath>   // for std::log10
-#include <limits>  // For std::numeric_limits<T>::max()
+#include <cmath>          // for std::log10
+#include <gtest/gtest.h>  // GoogleTest
+#include <limits>         // for std::numeric_limits
+#include <vector>         // for std::vector
 
 // Test fixture for the unit tests
 class HeightGainTerminalCorrectionModelTest: public ::testing::Test {
