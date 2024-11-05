@@ -70,12 +70,14 @@ int main(int argc, char **argv) {
         return rtn;
     }
 
-    // Print results to file
+    // Open output file for writing
     std::ofstream fp(params.out_file);
     if (!fp) {
         std::cerr << "Error opening output file. Exiting." << std::endl;
         return DRVRERR__OPENING_OUTPUT_FILE;
     }
+
+    // Print generator information to file
     fp << std::left << std::setw(25) << "Model" << LIBRARY_NAME;
     fp PRINT "Model Variant";
     switch (params.model) {
@@ -98,8 +100,9 @@ int main(int argc, char **argv) {
         fp << argv[i] << " ";
     }
     fp << std::endl << std::endl;
-    fp << "Inputs";
 
+    // Print inputs to file
+    fp << "Inputs";
     switch (params.model) {
         case P2108Model::HGTCM:
             WriteHGTCMInputs(fp, hgtcm_params);
@@ -113,13 +116,11 @@ int main(int argc, char **argv) {
             // Validation above ensures one of these cases evaluates
     }
 
-    if (rtn != SUCCESS) {
-        fp PRINT LIBRARY_NAME << " Error" SETW13 rtn;
-        PrintLabel(fp, GetReturnStatus(rtn));
-    } else {
-        fp << std::endl << std::endl << "Results";
-        fp PRINT "Return Code" SETW13 rtn;
-        PrintLabel(fp, GetReturnStatus(rtn));
+    // Print results to file
+    fp << std::endl << std::endl << "Results";
+    fp PRINT "Return Code" SETW13 rtn;
+    PrintLabel(fp, GetReturnStatus(rtn));
+    if (rtn == SUCCESS) {
         fp PRINT "Clutter loss" SETW13 std::fixed << std::setprecision(1)
                                                   << loss__db.front() << "(dB)";
     }
