@@ -1,20 +1,24 @@
 # Recommendation ITU-R P.2108 - U.S. Reference Implementation #
 
-<!-- TODO on v1.0 release created: add updated DOI badge -->
-[![Unit Tests Status][gh-actions-test-badge]][gh-actions-test-link]
-[![C++ API Reference][gh-actions-docs-badge]][gh-actions-docs-link]
-![GitHub Release][gh-releases-badge]
-![GitHub Issues][gh-issues-badge]
-<!-- [![DOI][doi-badge]][doi-link] -->
+[![NTIA/ITS PropLib][proplib-badge]][proplib-link]
+[![GitHub Release][gh-releases-badge]][gh-releases-link]
+[![DOI][doi-badge]][doi-link]
+[![GitHub Actions Unit Test Status][gh-actions-test-badge]][gh-actions-test-link]
+[![C++ API Reference][gh-actions-docs-badge]][gh-pages-docs-link]
+[![GitHub Issues][gh-issues-badge]][gh-issues-link]
 
+[proplib-badge]: https://img.shields.io/badge/PropLib-badge?label=%F0%9F%87%BA%F0%9F%87%B8%20NTIA%2FITS&labelColor=162E51&color=D63E04
+[proplib-link]: https://ntia.github.io/propagation-library-wiki
+[gh-actions-test-badge]: https://img.shields.io/github/actions/workflow/status/NTIA/p2108/ctest.yml?branch=main&logo=cmake&label=Build%2FTests&labelColor=162E51
 [gh-actions-test-link]: https://github.com/NTIA/p2108/actions/workflows/ctest.yml
-[gh-actions-test-badge]: https://github.com/NTIA/p2108/actions/workflows/ctest.yml/badge.svg?branch=main
-[gh-actions-docs-link]: https://github.com/NTIA/p2108/actions/workflows/doxygen.yml
-[gh-actions-docs-badge]: https://github.com/NTIA/p2108/actions/workflows/doxygen.yml/badge.svg?branch=main
-[gh-releases-badge]: https://img.shields.io/github/v/release/NTIA/P2108
-[gh-issues-badge]: https://img.shields.io/github/issues/NTIA/P2108
-<!-- [doi-badge]: https://zenodo.org/badge/DOI/10.5281/zenodo.7114033.svg -->
-<!-- [doi-link]: https://doi.org/10.5281/zenodo.7114033 -->
+[gh-actions-docs-badge]: https://img.shields.io/github/actions/workflow/status/NTIA/p2108/doxygen.yml?branch=main&logo=c%2B%2B&label=Docs&labelColor=162E51
+[gh-pages-docs-link]: https://ntia.github.io/p2108
+[gh-releases-badge]: https://img.shields.io/github/v/release/NTIA/p2108?logo=github&label=Release&labelColor=162E51&color=D63E04
+[gh-releases-link]: https://github.com/NTIA/p2108/releases
+[gh-issues-badge]: https://img.shields.io/github/issues/NTIA/p2108?logo=github&label=Issues&labelColor=162E51
+[gh-issues-link]: https://github.com/NTIA/p2108/issues
+[doi-badge]: https://img.shields.io/badge/10.5281%2Fzenodo.7114033-x?logo=doi&logoColor=ffffff&labelColor=162E51&color=D63E04
+[doi-link]: https://zenodo.org/badge/latestdoi/384267941
 
 This code repository contains the U.S. Reference Software Implementation of
 Recommendation ITU-R P.2108. This Recommendation contains three methods for the
