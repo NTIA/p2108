@@ -34,7 +34,7 @@ authors:
     email: code@ntia.gov
     website: 'https://its.ntia.gov'
 repository-code: 'https://github.com/NTIA/p2108'
-url: 'https://github.com/NTIA/propagation/wiki'
+url: 'https://ntia.github.io/propagation-library-wiki/models/P2108'
 repository: 'https://github.com/NTIA/p2108'
 keywords:
   - propagation
