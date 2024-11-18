@@ -1,17 +1,23 @@
 #include "TestUtils.h"
 
+#define _USE_MATH_DEFINES  // for <cmath> constants
+#include <cmath>           // for M_PI_2, M_PI_4
+#include <gtest/gtest.h>   // GoogleTest
+#include <limits>          // for std::numeric_limits
+#include <vector>          // for std::vector
+
 // Test fixture for the unit tests
 class AeronauticalStatisticalModelTest: public ::testing::Test {
-protected:
-    void SetUp() override {
-        // Load test data from CSV
-        testData = readAeronauticalStatisticalModelTestData(
-            "AeronauticalStatisticalModelTestData.csv"
-        );
-    }
+    protected:
+        void SetUp() override {
+            // Load test data from CSV
+            testData = readAeronauticalStatisticalModelTestData(
+                "AeronauticalStatisticalModelTestData.csv"
+            );
+        }
 
-    // Vector to hold test data
-    std::vector<AeronauticalStatisticalModelTestData> testData;
+        // Vector to hold test data
+        std::vector<AeronauticalStatisticalModelTestData> testData;
 };
 
 // Test case to verify the AeronauticalStatisticalModel function
@@ -19,7 +25,7 @@ TEST_F(AeronauticalStatisticalModelTest, TestAeronauticalStatisticalModel) {
     // Ensure test data was loaded
     EXPECT_NE(static_cast<int>(testData.size()), 0);
     double L_ces__db;
-    int rtn;
+    ReturnCode rtn;
     for (const auto &data : testData) {
         rtn = AeronauticalStatisticalModel(
             data.f__ghz, data.theta__deg, data.p, L_ces__db

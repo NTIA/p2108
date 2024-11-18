@@ -11,7 +11,8 @@ set(EXTRA_STYLESHEET "${PROJECT_SOURCE_DIR}/extern/doxygen-awesome-css/doxygen-a
 if (NOT EXISTS ${EXTRA_STYLESHEET})
     message(FATAL_ERROR
         "External Doxygen stylesheet is missing! "
-        "Run `git submodule init extern/doxygen-awesome-css` and try again."
+        "Run `git submodule init extern/doxygen-awesome-css`, then "
+        "`git submodule update` and try again."
     )
 endif ()
 
@@ -57,6 +58,8 @@ set(DOXYGEN_INTERNAL_DOCS "YES")
 
 doxygen_add_docs(
     "${CMAKE_PROJECT_NAME}-Docs"
+    "${PROJECT_SOURCE_DIR}/app/src"
+    "${PROJECT_SOURCE_DIR}/app/include"
     "${PROJECT_SOURCE_DIR}/src"
     "${PROJECT_SOURCE_DIR}/include"
     "${DOCS_DIR}/doxy_mainpage.md"

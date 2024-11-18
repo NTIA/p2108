@@ -1,16 +1,24 @@
 # Recommendation ITU-R P.2108 - U.S. Reference Implementation #
 
-<!-- TODO on v1.0 release created: add updated DOI badge -->
-[![GitHub Actions Unit Tests Status][gh-actions-test-badge]][gh-actions-test-link]
-[![C++ API Reference][gh-actions-docs-badge]][gh-actions-docs-link]
-![GitHub Release](https://img.shields.io/github/v/release/NTIA/P2108)
-![GitHub Issues](https://img.shields.io/github/issues/NTIA/P2108)
-<!-- [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.7114033.svg)](https://doi.org/10.5281/zenodo.7114033) -->
+[![NTIA/ITS PropLib][proplib-badge]][proplib-link]
+[![GitHub Release][gh-releases-badge]][gh-releases-link]
+[![DOI][doi-badge]][doi-link]
+[![GitHub Actions Unit Test Status][gh-actions-test-badge]][gh-actions-test-link]
+[![C++ API Reference][gh-actions-docs-badge]][gh-pages-docs-link]
+[![GitHub Issues][gh-issues-badge]][gh-issues-link]
 
+[proplib-badge]: https://img.shields.io/badge/PropLib-badge?label=%F0%9F%87%BA%F0%9F%87%B8%20NTIA%2FITS&labelColor=162E51&color=D63E04
+[proplib-link]: https://ntia.github.io/propagation-library-wiki
+[gh-actions-test-badge]: https://img.shields.io/github/actions/workflow/status/NTIA/p2108/ctest.yml?branch=main&logo=cmake&label=Build%2FTests&labelColor=162E51
 [gh-actions-test-link]: https://github.com/NTIA/p2108/actions/workflows/ctest.yml
-[gh-actions-test-badge]: https://github.com/NTIA/p2108/actions/workflows/ctest.yml/badge.svg
-[gh-actions-docs-link]: https://github.com/NTIA/p2108/actions/workflows/doxygen.yml
-[gh-actions-docs-badge]: https://github.com/NTIA/p2108/actions/workflows/doxygen.yml/badge.svg
+[gh-actions-docs-badge]: https://img.shields.io/github/actions/workflow/status/NTIA/p2108/doxygen.yml?branch=main&logo=c%2B%2B&label=Docs&labelColor=162E51
+[gh-pages-docs-link]: https://ntia.github.io/p2108
+[gh-releases-badge]: https://img.shields.io/github/v/release/NTIA/p2108?logo=github&label=Release&labelColor=162E51&color=D63E04
+[gh-releases-link]: https://github.com/NTIA/p2108/releases
+[gh-issues-badge]: https://img.shields.io/github/issues/NTIA/p2108?logo=github&label=Issues&labelColor=162E51
+[gh-issues-link]: https://github.com/NTIA/p2108/issues
+[doi-badge]: https://img.shields.io/badge/10.5281%2Fzenodo.7114033-x?logo=doi&logoColor=ffffff&labelColor=162E51&color=D63E04
+[doi-link]: https://zenodo.org/badge/latestdoi/384267941
 
 This code repository contains the U.S. Reference Software Implementation of
 Recommendation ITU-R P.2108. This Recommendation contains three methods for the
@@ -40,12 +48,12 @@ provided for cross-platform builds, which can be carried out, for example, by:
 # From this repository's root directory, try one of the following command pairs:
 
 # "Release" configurations compile the library, build docs, and configure tests:
-cmake --preset release64
-cmake --build --preset release64
+cmake --preset release
+cmake --build --preset release
 
 # "Debug" configurations skip building the docs:
-cmake --preset debug64
-cmake --build --preset debug64
+cmake --preset debug
+cmake --build --preset debug
 
 # "DocsOnly" configurations only build the docs:
 cmake --preset docsOnly
@@ -61,7 +69,7 @@ In order to do either, ensure the required submodules are cloned by running:
 # From this repository's root directory
 git submodule init extern/googletest           # Required to run tests
 git submodule init extern/doxygen-awesome-css  # Required to build docs
-git submodule update
+git submodule update                           # Clones the initialized submodules
 ```
 
 ## Running Tests ##
@@ -70,7 +78,7 @@ If you've configured tests when building the project, for example by using one o
 the "Release" or "Debug" CMake presets, you can run the included unit tests as follows:
 
 ```cmd
-ctest --preset release64
+ctest --preset release
 ```
 
 Additionally, the [Study Group Clutter Excel Workbook](https://www.itu.int/en/ITU-R/study-groups/rsg3/ionotropospheric/Clutter%20and%20BEL%20workbook_V2.xlsx)
@@ -79,6 +87,7 @@ contains an extensive set of example values which are useful as validation cases
 ## References ##
 
 * [ITS Propagation Library Wiki](https://ntia.github.io/propagation-library-wiki)
+* [P2108 Wiki Page](https://ntia.github.io/propagation-library-wiki/models/P2108)
 * [`ITS.ITU.PSeries.P2108` C++ API Reference](https://ntia.github.io/P2108)
 * [Recommendation ITU-R P.2108](https://www.itu.int/rec/R-REC-P.2108/en)
 * [Report ITU-R P.2402](https://www.itu.int/pub/R-REP-P.2402)

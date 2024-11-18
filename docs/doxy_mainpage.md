@@ -1,8 +1,9 @@
 # Main Page
 
 This website is an information-oriented API reference document for the @libname
-C++ library, a part of the NTIA/ITS Propagation Library. This site is primarily
-useful for developers wishing to contribute to this library or take it as a dependency.
+C++ library and associated command-line driver, a part of the NTIA/ITS Propagation
+Library. This site is primarily useful for developers wishing to contribute to this
+library or take it as a dependency.
 
 **For most users, the best place to start is the**
 [**NTIA/ITS Propagation Library Wiki**](https://ntia.github.io/propagation-library-wiki).
@@ -27,6 +28,6 @@ e.g. classes, functions, etc.
 
 This site is generated with [Doxygen](https://www.doxygen.nl/), which is configured
 in the source project using [CMake](https://cmake.org/). The documentation is generated
-by default when building the project in its debug configuration. Additionally, the
-documentation can be generated without compiling the source project by using the
-`DOCS_ONLY` CMake option.
+by default when building the project in its release configuration. Additionally,
+the documentation can be generated without compiling the source project by using
+the `DOCS_ONLY` CMake option.

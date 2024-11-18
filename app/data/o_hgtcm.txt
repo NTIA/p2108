@@ -1,0 +1,17 @@
+Model                    P2108
+Model Variant            Height Gain Terminal Correction Model
+Library Version          v1.0
+Driver Version           v1.0.0
+Date Generated           Thu Oct 31 17:31:08 2024
+Input Arguments          -i .\i_hgtcm.txt -model HGTCM -o .\o_hgtcm.txt 
+
+Inputs
+f__ghz                   1.5          (gigahertz)
+h__meter                 2            (meters)
+w_s__meter               27           (meters)
+r__meter                 15           (meters)
+clutter_type             4            [Urban clutter type]
+
+Results
+Return Code              0            [P2108 Status: Successful execution]
+Clutter loss             24.5         (dB)

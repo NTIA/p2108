@@ -1,9 +1,15 @@
 # This action builds **AND DEPLOYS** Doxygen documentation to GitHub Pages
+# Doxygen site is DEPLOYED if this action is triggered by publishing a release.
+# Doxygen site is NOT DEPLOYED (only built) when triggered by pull request or dispatched. 
 name: C++ Docs
 
 on:
   release:
     types: ["published"]
+  pull_request:
+    branches: ["main", "dev"]
+  push:
+    branches: ["main", "dev"]
   workflow_dispatch:
 
 # Allow only one concurrent deployment, skipping runs queued between the run in-progress and latest queued.
@@ -27,9 +33,10 @@ jobs:
         - name: Install Doxygen
           uses: ssciwr/doxygen-install@v1
           with:
-            version: "1.11.0"
+            version: "1.12.0"
 
         - name: Setup GitHub Pages
+          if: ${{ github.event_name == 'release' }}
           id: pages
           uses: actions/configure-pages@v5
 
@@ -44,10 +51,12 @@ jobs:
           
         - name: Upload GitHub Pages artifact
           uses: actions/upload-pages-artifact@v3
+          if: ${{ github.event_name == 'release' }}
           with:
             path: ./docs/html/
 
   deploy:
+    if: ${{ github.event_name == 'release' }}
     needs: build
     permissions:
       contents: read
@@ -58,6 +67,6 @@ jobs:
       url: ${{ steps.deployment.outputs.page_url }}
     runs-on: ubuntu-latest
     steps:
-        - name: Deploy to GitHub Pages
-          id: deployment
-          uses: actions/deploy-pages@v4
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4

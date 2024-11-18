@@ -6,29 +6,35 @@
 cmake_minimum_required(VERSION 3.14 FATAL_ERROR)
 
 ###########################################
-## PROJECT METADATA AND CONFIGURATION
+## PROJECT METADATA
 ###########################################
 set(LIB_NAME "P2108")                 # Name of library/target
 set(LIB_NAMESPACE "ITS.ITU.PSeries")  # Namespace for the named library
 project(
     "${LIB_NAMESPACE}.${LIB_NAME}"
-    VERSION 1.0.0
+    VERSION 1.0
     DESCRIPTION "Recommendation ITU-R P.2108, U.S. Reference Implementation"
     HOMEPAGE_URL "https://ntia.github.io/propagation-library-wiki/models/P2108"
     LANGUAGES "CXX"
 )
 
-# Configure wrapper locations
+###########################################
+## SPECIFY MULTI-LANGUAGE WRAPPERS
+###########################################
 set(DOTNET_WRAPPER_DIR "${PROJECT_SOURCE_DIR}/wrap/dotnet")
 set(MATLAB_WRAPPER_DIR "${PROJECT_SOURCE_DIR}/wrap/matlab")
 set(PYTHON_WRAPPER_DIR "${PROJECT_SOURCE_DIR}/wrap/python")
 
-# Define options. Defaults to: compile 64-bit library, build docs, run tests
-option(BUILD_DOCS "Generate documentation with Doxygen" ON)
-option(DOCS_ONLY "Skip all steps except generating documentation" OFF)
-option(RUN_TESTS "Run C++ unit tests with Google Test + CTest" ON)
-option(COPY_TO_WRAPPERS "Copy compiled library into wrapper submodules" ON)
-option(BUILD_32BIT "Build project for x86/32-bit instead of x64/64-bit" OFF)
+###########################################
+## CMAKE OPTIONS AND DEFAULTS
+###########################################
+# Define options. Defaults to: compile 64-bit library and driver, build docs, run tests
+option(BUILD_DOCS "Generate documentation site with Doxygen" ON)
+option(BUILD_DRIVER "Build the command-line driver executable" ON)
+option(RUN_DRIVER_TESTS "Test the command-line driver executable" ON)
+option(DOCS_ONLY "Skip all steps except generating the documentation site" OFF)
+option(RUN_TESTS "Run unit tests for the main library" ON)
+option(COPY_TO_WRAPPERS "Copy the compiled shared library into wrapper submodules" ON)
 
 ###########################################
 ## SETUP
@@ -45,16 +51,25 @@ if (NOT DOCS_ONLY)
     if (COPY_TO_WRAPPERS)  # Copy compiled library to wrappers
         add_subdirectory(wrap)
     endif ()
-    if (RUN_TESTS)         # Build and run unit tests
+    if (RUN_TESTS OR RUN_DRIVER_TESTS)
         if (EXISTS "${PROJECT_SOURCE_DIR}/extern/googletest/CMakeLists.txt")
             enable_testing()
-            add_subdirectory(tests)
+            set(gtest_force_shared_crt ON CACHE BOOL "" FORCE)
+            add_subdirectory("${PROJECT_SOURCE_DIR}/extern/googletest" "extern/googletest")
+            include(GoogleTest)
         else ()
             message(SEND_ERROR
                 "Unable to build tests. GoogleTest submodule is missing. "
-                "Run `git submodule init extern/googletest` and try again."
+                "Run `git submodule init extern/googletest` then "
+                "`git submodule update` and try again."
             )
-        endif()
+        endif ()
+    endif ()
+    if (RUN_TESTS)         # Build and run unit tests
+        add_subdirectory(tests)
+    endif ()
+    if (BUILD_DRIVER OR RUN_DRIVER_TESTS)
+        add_subdirectory(app)
     endif ()
 endif ()
 
