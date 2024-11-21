@@ -1,7 +1,7 @@
 /** @internal @file InverseComplementaryCumulativeDistribution.cpp
  * @brief Implements a function to calculate the inverse CCDF.
  */
-#include "ITS.ITU.PSeries.P2108/P2108.h"
+#include "P2108.h"
 
 #include <cmath>      // for std::log, std::sqrt
 #include <stdexcept>  // for std::out_of_range

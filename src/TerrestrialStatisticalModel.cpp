@@ -1,7 +1,7 @@
 /** @file TerrestrialStatisticalModel.cpp
  * Implements the model from ITU-R P.2108 Section 3.2.
  */
-#include "ITS.ITU.PSeries.P2108/P2108.h"
+#include "P2108.h"
 
 #include <cmath>  // for std::fmin, std::log10, std::pow, std::sqrt
 

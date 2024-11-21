@@ -1,6 +1,6 @@
 #pragma once
 
-#include "ITS.ITU.PSeries.P2108/P2108.h"
+#include "P2108.h"
 
 #include <string>  // for std::string
 #include <vector>  // for std::vector

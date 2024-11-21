@@ -3,7 +3,7 @@
 */
 #pragma once
 
-#include "ITS.ITU.PSeries.P2108/Enums.h"  // For ClutterType
+#include "P2108.h"  // For ClutterType enum
 
 #include <string>  // for std::string
 

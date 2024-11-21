@@ -1,7 +1,7 @@
 /** @file AeronauticalStatisticalModel.cpp
  * Implements the model from ITU-R P.2108 Section 3.3.
  */
-#include "ITS.ITU.PSeries.P2108/P2108.h"
+#include "P2108.h"
 
 #include <cmath>  // for std::pow, std::log, std::tan
 
