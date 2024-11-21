@@ -1,4 +1,4 @@
-# Recommendation ITU-R P.2108 - U.S. Reference Implementation #
+# Recommendation ITU-R P.2108 #
 
 [![NTIA/ITS PropLib][proplib-badge]][proplib-link]
 [![GitHub Release][gh-releases-badge]][gh-releases-link]

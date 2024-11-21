@@ -1,7 +1,6 @@
 cff-version: 1.2.0
 title: >-
-  Recommendation ITU-R P.2108-1, U.S. Reference Software
-  Implementation
+  Recommendation ITU-R P.2108
 message: Please cite this software using these metadata.
 type: software
 authors:
