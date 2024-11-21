@@ -7,7 +7,7 @@ type: software
 authors:
   - given-names: William
     family-names: Kozma
-    name-particle: Jr
+    name-suffix: Jr.
     email: wkozma@ntia.gov
     affiliation: >-
       U.S. Department of Commerce, National
