@@ -4,7 +4,7 @@
 #pragma once
 
 #include "CommaSeparatedIterator.h"
-#include "ITS.ITU.PSeries.P2108/P2108.h"
+#include "P2108.h"
 #include "ReturnCodes.h"
 #include "Structs.h"
 

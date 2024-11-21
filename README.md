@@ -26,6 +26,13 @@ prediction of clutter loss: the Height Gain Terminal Correction Model, the
 Terrestrial Statistical Model, and the Aeronautical Statistical Model. The software
 implements Section 3 of Annex 1 of the Recommendation.
 
+Additional bindings to the shared library built from this repository are provided
+for .NET, MATLAB, and Python in the following repositories:
+
+- [NTIA/p2108-dotnet](https://github.com/NTIA/p2108-dotnet)
+- [NTIA/p2108-matlab](https://github.com/NTIA/p2108-matlab)
+- [NTIA/p2108-python](https://github.com/NTIA/p2108-python)
+
 ## Getting Started ##
 
 To get started using this model, refer to
@@ -67,9 +74,8 @@ In order to do either, ensure the required submodules are cloned by running:
 
 ```cmd
 # From this repository's root directory
-git submodule init extern/googletest           # Required to run tests
-git submodule init extern/doxygen-awesome-css  # Required to build docs
-git submodule update                           # Clones the initialized submodules
+git submodule init
+git submodule update
 ```
 
 ## Running Tests ##

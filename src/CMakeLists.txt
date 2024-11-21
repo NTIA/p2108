@@ -1,8 +1,6 @@
 ###########################################
 ## BUILD THE LIBRARY
 ###########################################
-# Include source AND header files here so IDEs can find them
-set(PROJECT_HEADERS "${PROJECT_SOURCE_DIR}/include/${PROJECT_NAME}")
 add_library(
     ${LIB_NAME} SHARED
     "AeronauticalStatisticalModel.cpp"
@@ -10,9 +8,7 @@ add_library(
     "InverseComplementaryCumulativeDistribution.cpp"
     "TerrestrialStatisticalModel.cpp"
     "ReturnCodes.cpp"
-    "${PROJECT_HEADERS}/Enums.h"
-    "${PROJECT_HEADERS}/ReturnCodes.h"
-    "${PROJECT_HEADERS}/${LIB_NAME}.h"
+    "${PROJECT_SOURCE_DIR}/include/${LIB_NAME}.h"
 )
 
 # Add the include directory

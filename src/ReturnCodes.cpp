@@ -2,7 +2,7 @@
  * Maps status messages to library return codes
  */
 
-#include "ITS.ITU.PSeries.P2108/P2108.h"
+#include "P2108.h"
 
 #ifdef _WIN32
     // Ensure strcpy_s is available on Windows
@@ -67,7 +67,7 @@ std::string GetReturnStatus(const int code) {
  * @param[in] code  Integer return code.
  * @return          A status message corresponding to the input code.
  ******************************************************************************/
-EXPORTED char *GetReturnStatusCharArray(const int code) {
+char *GetReturnStatusCharArray(const int code) {
     const std::string msg = GetReturnStatus(code);
     char *c_msg = new char[msg.size() + 1];
 #ifdef _WIN32
@@ -83,7 +83,7 @@ EXPORTED char *GetReturnStatusCharArray(const int code) {
  * 
  * @param[in] c_msg  The status message C-style string to delete
  ******************************************************************************/
-EXPORTED void FreeReturnStatusCharArray(char *c_msg) {
+void FreeReturnStatusCharArray(char *c_msg) {
     delete[] c_msg;
 }
 
