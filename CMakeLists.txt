@@ -13,7 +13,7 @@ set(LIB_NAMESPACE "ITS.ITU.PSeries")  # Namespace for the named library
 project(
     "${LIB_NAMESPACE}.${LIB_NAME}"
     VERSION 1.0
-    DESCRIPTION "Recommendation ITU-R P.2108, U.S. Reference Implementation"
+    DESCRIPTION "Recommendation ITU-R P.2108"
     HOMEPAGE_URL "https://ntia.github.io/propagation-library-wiki/models/P2108"
     LANGUAGES "CXX"
 )
