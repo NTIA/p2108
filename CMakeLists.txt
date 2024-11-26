@@ -1,3 +1,8 @@
+############################################################
+## CMakeList.txt : Top-level CMake project file, do global
+## configuration and include sub-projects here.
+############################################################
+
 # >=3.21 required for Ninja Generators to use absolute paths.
 #    See https://stackoverflow.com/questions/69846931/
 #    This is relevant for specifying unit test data file paths
@@ -34,6 +39,30 @@ option(RUN_TESTS "Run unit tests for the main library" ON)
 # GoogleTest v1.12.1 requires at least C++11
 set(CMAKE_CXX_STANDARD 11)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
+set(CMAKE_CXX_EXTENSIONS OFF)
+
+add_library(proplib_compiler_flags INTERFACE)
+target_compile_features(proplib_compiler_flags INTERFACE cxx_std_11)
+
+# add compiler warning flags just when building this project via
+# the BUILD_INTERFACE generator expression
+set(gcc_like_cxx "$<COMPILE_LANG_AND_ID:CXX,ARMClang,AppleClang,Clang,GNU,LCC>")
+set(msvc_cxx "$<COMPILE_LANG_AND_ID:CXX,MSVC>")
+target_compile_options(proplib_compiler_flags INTERFACE
+  "$<${gcc_like_cxx}:$<BUILD_INTERFACE:-Wall;-Wextra;-Wshadow;-Wformat=2;-Wunused>>"
+  "$<${msvc_cxx}:$<BUILD_INTERFACE:-W3>>"
+)
+
+# Enable Hot Reload for MSVC compilers if supported.
+if (POLICY CMP0141)
+  cmake_policy(SET CMP0141 NEW)
+  set(CMAKE_MSVC_DEBUG_INFORMATION_FORMAT "$<IF:$<AND:$<C_COMPILER_ID:MSVC>,$<CXX_COMPILER_ID:MSVC>>,$<$<CONFIG:Debug,RelWithDebInfo>:EditAndContinue>,$<$<CONFIG:Debug,RelWithDebInfo>:ProgramDatabase>>")
+endif()
+
+# control where the static and shared libraries are built
+set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY "${PROJECT_SOURCE_DIR}/bin" CACHE STRING "Set the CMAKE Archive Output Directory")
+set(CMAKE_LIBRARY_OUTPUT_DIRECTORY "${PROJECT_SOURCE_DIR}/bin" CACHE STRING "Set the CMAKE Library Output Directory")
+set(CMAKE_RUNTIME_OUTPUT_DIRECTORY "${PROJECT_SOURCE_DIR}/bin" CACHE STRING "Set the CMAKE Runtime Output Directory")
 
 ##########################################
 ## BUILD/RUN
@@ -41,11 +70,23 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 if (NOT DOCS_ONLY)
     add_subdirectory(src)  # Build the shared library
     if (RUN_TESTS OR RUN_DRIVER_TESTS)
+        # Set up GoogleTest
         if (EXISTS "${PROJECT_SOURCE_DIR}/extern/googletest/CMakeLists.txt")
             enable_testing()
             set(gtest_force_shared_crt ON CACHE BOOL "" FORCE)
+            # Ensure GoogleTest is built as a static library
+            if (DEFINED BUILD_SHARED_LIBS AND BUILD_SHARED_LIBS)
+                set(BUILD_SHARED_LIBS_${LIB_NAME} ${BUILD_SHARED_LIBS})
+                set(BUILD_SHARED_LIBS OFF)
+                message(STATUS "STATUS: BUILD_SHARED_LIBS is " ${BUILD_SHARED_LIBS} " to build gtest library.")
+            endif ()
             add_subdirectory("${PROJECT_SOURCE_DIR}/extern/googletest" "extern/googletest")
             include(GoogleTest)
+            # Restore initial value of BUILD_SHARED_LIBS
+            if (DEFINED BUILD_SHARED_LIBS_${LIB_NAME})
+                set(BUILD_SHARED_LIBS ${BUILD_SHARED_LIBS_${LIB_NAME}})
+                message(STATUS "STATUS: BUILD_SHARED_LIBS is " ${BUILD_SHARED_LIBS} " to build ${LIB_NAME} library.")
+            endif ()
         else ()
             message(SEND_ERROR
                 "Unable to build tests. GoogleTest submodule is missing. "
