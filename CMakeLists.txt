@@ -10,6 +10,28 @@
 # >=3.14 required for GoogleTest v1.12.x
 cmake_minimum_required(VERSION 3.14 FATAL_ERROR)
 
+# If on macOS, handle arm64/x86_64 architectures (must be done before project())
+if (APPLE)
+    # Get the current platform's native architecture
+    execute_process(
+        COMMAND uname -m
+        RESULT_VARIABLE result
+        OUTPUT_VARIABLE MACOS_NATIVE_ARCHITECTURE
+        OUTPUT_STRIP_TRAILING_WHITESPACE
+    )
+    message(STATUS "Current macOS architecture is " ${MACOS_NATIVE_ARCHITECTURE})
+
+    # If running on Apple silicon, try a universal build. Otherwise, a native build.
+    if ((CMAKE_GENERATOR STREQUAL "Xcode") AND (MACOS_NATIVE_ARCHITECTURE STREQUAL "arm64"))
+        set(CMAKE_OSX_ARCHITECTURE "arm64;x86_64" CACHE STRING "")
+        set(PROPLIB_ARCHITECTURE "macOS_universal")
+        message(STATUS "Configured for universal macOS build")
+    else ()
+        set(PROPLIB_ARCHITECTURE MACOS_NATIVE_ARCHITECTURE)
+        message(STATUS "Configured for native macOS build")
+    endif ()
+endif ()
+
 ###########################################
 ## PROJECT METADATA
 ###########################################
@@ -49,15 +71,25 @@ target_compile_features(proplib_compiler_flags INTERFACE cxx_std_11)
 set(gcc_like_cxx "$<COMPILE_LANG_AND_ID:CXX,ARMClang,AppleClang,Clang,GNU,LCC>")
 set(msvc_cxx "$<COMPILE_LANG_AND_ID:CXX,MSVC>")
 target_compile_options(proplib_compiler_flags INTERFACE
-  "$<${gcc_like_cxx}:$<BUILD_INTERFACE:-Wall;-Wextra;-Wshadow;-Wformat=2;-Wunused>>"
-  "$<${msvc_cxx}:$<BUILD_INTERFACE:-W3>>"
+    # For GCC-like compilers in any configuration
+    "$<${gcc_like_cxx}:$<BUILD_INTERFACE:-Wall;-Wextra;-Wshadow;-Wformat=2;-Wunused>>"
+    # For GCC-like compilers in Release configurations
+    "$<${gcc_like_cxx}:$<$<CONFIG:Release>:-O3;-DNDEBUG>>"
+    # For GCC-like compilers in Debug configurations
+    "$<${gcc_like_cxx}:$<$<CONFIG:Debug>:-g;-O0>>"
+    # For MSVC compiler in any configuration
+    "$<${msvc_cxx}:$<BUILD_INTERFACE:/W3;/Gz>>"
+    # For MSVC compiler in Release configurations
+    "$<${msvc_cxx}:$<$<CONFIG:Release>:/O2;/DNDEBUG>>"
+    # For MSVC compiler in Debug configurations
+    "$<${msvc_cxx}:$<$<CONFIG:Debug>:/Od;/Zi>>"
 )
 
 # Enable Hot Reload for MSVC compilers if supported.
 if (POLICY CMP0141)
   cmake_policy(SET CMP0141 NEW)
   set(CMAKE_MSVC_DEBUG_INFORMATION_FORMAT "$<IF:$<AND:$<C_COMPILER_ID:MSVC>,$<CXX_COMPILER_ID:MSVC>>,$<$<CONFIG:Debug,RelWithDebInfo>:EditAndContinue>,$<$<CONFIG:Debug,RelWithDebInfo>:ProgramDatabase>>")
-endif()
+endif ()
 
 # control where the static and shared libraries are built
 set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY "${PROJECT_SOURCE_DIR}/bin" CACHE STRING "Set the CMAKE Archive Output Directory")

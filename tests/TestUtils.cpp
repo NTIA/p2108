@@ -20,7 +20,7 @@ std::string getDataDirectory() {
     appendDirectorySep(dataDir);
     dataDir += "extern";
     appendDirectorySep(dataDir);
-    dataDir += "p2108-test-data";
+    dataDir += "p2108-test-data";  // Name of data directory as cloned in the `extern` directory
     appendDirectorySep(dataDir);
     return dataDir;
 }
