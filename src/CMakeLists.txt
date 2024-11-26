@@ -11,7 +11,6 @@ set(LIB_FILES
     "TerrestrialStatisticalModel.cpp"
     "ReturnCodes.cpp"
     "${LIB_HEADERS}/${LIB_NAME}.h"
-    ## TODO-TEMPLATE: Include source AND header files here.
 )
 
 # By default, create shared library
