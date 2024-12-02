@@ -2,10 +2,10 @@
 
 [![NTIA/ITS PropLib][proplib-badge]][proplib-link]
 [![GitHub Release][gh-releases-badge]][gh-releases-link]
-[![DOI][doi-badge]][doi-link]
 [![GitHub Actions Unit Test Status][gh-actions-test-badge]][gh-actions-test-link]
 [![C++ API Reference][gh-actions-docs-badge]][gh-pages-docs-link]
 [![GitHub Issues][gh-issues-badge]][gh-issues-link]
+[![DOI][doi-badge]][doi-link]
 
 [proplib-badge]: https://img.shields.io/badge/PropLib-badge?label=%F0%9F%87%BA%F0%9F%87%B8%20NTIA%2FITS&labelColor=162E51&color=D63E04
 [proplib-link]: https://ntia.github.io/propagation-library-wiki
@@ -17,14 +17,14 @@
 [gh-releases-link]: https://github.com/NTIA/p2108/releases
 [gh-issues-badge]: https://img.shields.io/github/issues/NTIA/p2108?logo=github&label=Issues&labelColor=162E51
 [gh-issues-link]: https://github.com/NTIA/p2108/issues
-[doi-badge]: https://img.shields.io/badge/10.5281%2Fzenodo.7114033-x?logo=doi&logoColor=ffffff&labelColor=162E51&color=D63E04
+[doi-badge]: https://zenodo.org/badge/384267941.svg
 [doi-link]: https://zenodo.org/badge/latestdoi/384267941
 
-This code repository contains the U.S. Reference Software Implementation of
-Recommendation ITU-R P.2108. This Recommendation contains three methods for the
-prediction of clutter loss: the Height Gain Terminal Correction Model, the
-Terrestrial Statistical Model, and the Aeronautical Statistical Model. The software
-implements Section 3 of Annex 1 of the Recommendation.
+This repository contains the NTIA/ITS implementation of Recommendation ITU-R
+P.2108. This Recommendation contains three methods for the prediction of clutter
+loss: the Height Gain Terminal Correction Model, the Terrestrial Statistical Model,
+and the Aeronautical Statistical Model. The software implements Section 3 of Annex 1
+of the Recommendation.
 
 Additional bindings to the shared library built from this repository are provided
 for .NET, MATLAB, and Python in the following repositories:
