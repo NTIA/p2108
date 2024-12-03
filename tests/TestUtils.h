@@ -13,6 +13,9 @@ using namespace ITS::ITU::PSeries::P2108;
 // Absolute tolerance for checking model outputs against test data
 constexpr double ABSTOL__DB = 0.1;
 
+void AppendDirectorySep(std::string &str);
+std::string GetDataDirectory();
+
 struct AeronauticalStatisticalModelTestData {
         double f__ghz;
         double theta__deg;
