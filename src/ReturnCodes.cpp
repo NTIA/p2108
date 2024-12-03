@@ -46,6 +46,8 @@ std::string GetReturnStatus(const int code) {
            {ERROR33__PERCENTAGE, "Percentage must be between 0 and 100"}};
     // Construct status message
     std::string msg = LIBRARY_NAME;
+    msg += " v";
+    msg += LIBRARY_VERSION;
     if (code == SUCCESS) {
         msg += " Status: ";
     } else {

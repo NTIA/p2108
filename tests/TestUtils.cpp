@@ -1,3 +1,6 @@
+/** @file TestUtils.cpp
+ * Primary implementations for fixtures or common functions used by unit tests.
+ */
 #include "TestUtils.h"
 
 #include <fstream>  // for std::ifstream
@@ -5,7 +8,13 @@
 #include <string>   // for std::string, std::getline
 #include <vector>   // for std::vector
 
-void appendDirectorySep(std::string &str) {
+/*******************************************************************************
+ * Append a directory separator ('/' or '\') to a string, based on the
+ * current operating system.
+ *
+ *  @param[in, out] str  String to which the character will be appended.
+ *****************************************************************************/
+void AppendDirectorySep(std::string &str) {
 #ifdef _WIN32
     str += "\\";
 #else
@@ -13,22 +22,28 @@ void appendDirectorySep(std::string &str) {
 #endif
 }
 
-std::string getDataDirectory() {
+/******************************************************************************
+ * Get the full path of the directory containing test data files.
+ * 
+ * @return The path of the test data directory.
+ *****************************************************************************/
+std::string GetDataDirectory() {
     std::string dataDir(__FILE__);
     dataDir.resize(dataDir.find_last_of("/\\"));
     dataDir.resize(dataDir.find_last_of("/\\"));
-    appendDirectorySep(dataDir);
+    AppendDirectorySep(dataDir);
     dataDir += "extern";
-    appendDirectorySep(dataDir);
-    dataDir += "p2108-test-data";  // Name of data directory as cloned in the `extern` directory
-    appendDirectorySep(dataDir);
+    AppendDirectorySep(dataDir);
+    dataDir
+        += "test-data";  // Name of data directory as cloned in the `extern` directory
+    AppendDirectorySep(dataDir);
     return dataDir;
 }
 
 std::vector<AeronauticalStatisticalModelTestData>
     readAeronauticalStatisticalModelTestData(const std::string &filename) {
     std::vector<AeronauticalStatisticalModelTestData> testData;
-    std::string dataDir = getDataDirectory();
+    std::string dataDir = GetDataDirectory();
     std::ifstream file(dataDir + filename);
     std::string line;
     // struct to store data from a single line of CSV:
@@ -49,7 +64,7 @@ std::vector<AeronauticalStatisticalModelTestData>
 std::vector<HeightGainTerminalCorrectionModelTestData>
     readHeightGainTerminalCorrectionModelTestData(const std::string &filename) {
     std::vector<HeightGainTerminalCorrectionModelTestData> testData;
-    std::string dataDir = getDataDirectory();
+    std::string dataDir = GetDataDirectory();
     std::ifstream file(dataDir + filename);
     std::string line;
     // struct to store data from a single line of CSV:
@@ -74,7 +89,7 @@ std::vector<HeightGainTerminalCorrectionModelTestData>
 std::vector<TerrestrialStatisticalModelTestData>
     readTerrestrialStatisticalModelTestData(const std::string &filename) {
     std::vector<TerrestrialStatisticalModelTestData> testData;
-    std::string dataDir = getDataDirectory();
+    std::string dataDir = GetDataDirectory();
     std::ifstream file(dataDir + filename);
     std::string line;
     // struct to store data from a single line of CSV:

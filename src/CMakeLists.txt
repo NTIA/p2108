@@ -29,8 +29,11 @@ target_include_directories(${LIB_NAME} PUBLIC "${LIB_HEADERS}")
 # link library to proplib_compiler_flags
 target_link_libraries(${LIB_NAME} PUBLIC proplib_compiler_flags)
 
-# Add definition to get the library name inside the library
-add_compile_definitions(LIBRARY_NAME="${LIB_NAME}")
+# Add definition to get the library name and version inside the library
+add_compile_definitions(
+    LIBRARY_NAME="${LIB_NAME}"
+    LIBRARY_VERSION="${PROJECT_VERSION}"
+)
 
 # Platform-specific configurations
 if (WIN32)
