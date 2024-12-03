@@ -1,7 +1,5 @@
 #include "TestUtils.h"
 
-#define _USE_MATH_DEFINES  // for <cmath> constants
-#include <cmath>           // for M_PI_2, M_PI_4
 #include <gtest/gtest.h>   // GoogleTest
 #include <limits>          // for std::numeric_limits
 #include <vector>          // for std::vector
