@@ -5,6 +5,7 @@ name: Create Release Artifacts
 on:
   push:
     tags: ['v[0-9]+.*']
+    branches: ["inherit-from-template"]
   workflow_dispatch:
 
 permissions:
