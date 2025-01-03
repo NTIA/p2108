@@ -1,50 +1,58 @@
 {
     "upload_type": "software",
-    "publication_date": "TODO-TEMPLATE",
-    "title": "TODO-TEMPLATE",
+    "publication_date": "2022-09-26",
+    "title": "Recommendation ITU-R P.2108-1, Release 1.0",
     "creators": [
         {
-            "name": "TODO-TEMPLATE",
+            "name": "Kozma Jr, William",
             "affiliation": "U.S. Department of Commerce, National Telecommunications and Information Administration, Institute for Telecommunication Sciences",
-            "orcid": "TODO-TEMPLATE"
+            "orcid": "0000-0002-7417-4009"
+        },
+        {
+            "name": "Romaniello, Anthony W.",
+            "affiliation": "U.S. Department of Commerce, National Telecommunications and Information Administration, Institute for Telecommunication Sciences",
+            "orcid": "0000-0001-8437-6504"
         }
     ],
-    "description": "TODO-TEMPLATE. Make this the same as the abstract.",
+    "description": "This repository contains the NTIA/ITS implementation of Recommendation ITU-R P.2108. This Recommendation contains three methods for the prediction of clutter loss: the Height Gain Terminal Correction Model, the Terrestrial Statistical Model, and the Aeronautical Statistical Model. The software implements Section 3 of Annex 1 of the Recommendation.",
     "keywords": [
-        "TODO-TEMPLATE",
-        "TODO-TEMPLATE"
+        "Study Group 3",
+        "ITU-R",
+        "P2108",
+        "clutter",
+        "propagation"
     ],
     "related_identifiers": [
         {
-            "identifier": "https://github.com/NTIA/TODO-TEMPLATE-dotnet",
+            "identifier": "https://github.com/NTIA/p2108-dotnet",
             "relation": "isSupplementedBy",
             "resource_type": "software"
         },
         {
-            "identifier": "https://github.com/NTIA/TODO-TEMPLATE-matlab",
+            "identifier": "https://github.com/NTIA/p2108-matlab",
             "relation": "isSupplementedBy",
             "resource_type": "software"
         },
         {
-            "identifier": "https://github.com/NTIA/TODO-TEMPLATE-python",
+            "identifier": "https://github.com/NTIA/p2108-python",
             "relation": "isSupplementedBy",
             "resource_type": "software"
         },
         {
-            "identifier": "https://github.com/NTIA/TODO-TEMPLATE-test-data",
+            "identifier": "https://github.com/NTIA/-test-data",
             "relation": "isSupplementedBy",
             "resource_type": "dataset"
         },
         {
-            "identifier": "https://ntia.github.io/TODO-TEMPLATE/",
+            "identifier": "https://ntia.github.io/P2108/",
             "relation": "isDocumentedBy",
             "resource_type": "softwaredocumentation"
         },
         {
-            "identifier": "https://ntia.github.io/propagation-library-wiki/models/TODO-TEMPLATE/",
+            "identifier": "https://ntia.github.io/propagation-library-wiki/models/P2108/",
             "relation": "isDocumentedBy",
             "resource_type": "softwaredocumentation"
         }
     ],
-    "version": "TODO-TEMPLATE"
+    "version": "1.0"
 }
