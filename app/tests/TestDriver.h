@@ -85,6 +85,8 @@ class DriverTest: public ::testing::Test {
                 case P2108Model::ASM:
                     command += " -model ASM";
                     break;
+                default:  // avoid compile-time warning. command will be invalid if this runs.
+                    break;
             }
             command += " -o " + dParams.out_file;
 
