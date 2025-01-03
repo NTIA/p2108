@@ -1,9 +1,9 @@
 ############################################
 ## CONFIGURE UNIT TESTS
 ############################################
-set(TEST_NAME "Test${LIB_NAME}")
+set(TEST_NAME "${LIB_NAME}Test")
+proplib_message("Configuring library tests ${TEST_NAME}")
 
-# Add all unit test files here
 add_executable(
     ${TEST_NAME}
     "TestAeronauticalStatisticalModel.cpp"
@@ -19,4 +19,7 @@ add_executable(
 ###########################################
 include_directories(${gtest_SOURCE_DIR}/include ${gtest_SOURCE_DIR})
 target_link_libraries(${TEST_NAME} ${LIB_NAME} GTest::gtest_main)
+include(GoogleTest)
 gtest_discover_tests(${TEST_NAME})
+
+proplib_message("Done configuring library tests ${TEST_NAME}")

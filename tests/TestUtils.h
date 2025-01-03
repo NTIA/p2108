@@ -3,6 +3,11 @@
  */
 #pragma once
 
+// clang-format off
+// GoogleTest must be included first
+#include <gtest/gtest.h>  // GoogleTest
+// clang-format on
+
 #include "P2108.h"
 
 #include <string>  // for std::string
