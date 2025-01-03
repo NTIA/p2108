@@ -3,14 +3,14 @@
  */
 #include "Driver.h"
 
-#include <algorithm> // for std::find
-#include <fstream>   // for std::ifstream, std::ofstream
-#include <iomanip>   // for std::setw
-#include <ios>       // for std::left
-#include <iostream>  // for std::cerr
-#include <ostream>   // for std::endl
-#include <string>    // for std::string
-#include <vector>    // for std::vector
+#include <algorithm>  // for std::find
+#include <fstream>    // for std::ifstream, std::ofstream
+#include <iomanip>    // for std::setw
+#include <ios>        // for std::left
+#include <iostream>   // for std::cerr
+#include <ostream>    // for std::endl
+#include <string>     // for std::string
+#include <vector>     // for std::vector
 
 /*******************************************************************************
  * Main function of the driver executable
@@ -97,7 +97,9 @@ int main(int argc, char **argv) {
         case P2108Model::ASM:
             fp << "Aeronautical Statistical Model";
             break;
-            // Validation above ensures one of these cases evaluates
+        // Validation above ensures one of the above cases evaluates
+        default:
+            break;
     }
     fp PRINT "Library Version" << "v" << LIBRARY_VERSION;
     fp PRINT "Driver Version" << "v" << DRIVER_VERSION;
@@ -120,7 +122,9 @@ int main(int argc, char **argv) {
         case P2108Model::ASM:
             WriteASMInputs(fp, asm_params);
             break;
-            // Validation above ensures one of these cases evaluates
+        // Validation above ensures one of these cases evaluates
+        default:
+            break;
     }
 
     // Print results to file
