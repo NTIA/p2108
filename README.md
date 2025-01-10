@@ -27,7 +27,7 @@ and the Aeronautical Statistical Model. The software implements Section 3 of Ann
 of the Recommendation.
 
 Additional bindings to the shared library built from this repository are provided
-for .NET, MATLAB, and Python in the following repositories:
+for .NET, MATLAB®, and Python® in the following repositories:
 
 - [NTIA/p2108-dotnet](https://github.com/NTIA/p2108-dotnet)
 - [NTIA/p2108-matlab](https://github.com/NTIA/p2108-matlab)
@@ -108,6 +108,19 @@ contains an extensive set of example values which are useful as validation cases
 - [Recommendation ITU-R P.2108](https://www.itu.int/rec/R-REC-P.2108/en)
 - [Report ITU-R P.2402](https://www.itu.int/pub/R-REP-P.2402)
 
+## License ##
+
+See [`LICENSE.md`](./LICENSE.md).
+
+MATLAB is a registered trademark of The MathWorks, Inc. See
+[mathworks.com/trademarks](https://mathworks.com/trademarks) for a list of additional trademarks.
+
+"Python" and the Python logos are trademarks or registered trademarks of the Python Software Foundation, used by the National Telecommunications and Information Administration with permission from the Foundation.
+
 ## Contact ##
 
 For technical questions, contact <code@ntia.gov>.
+
+## Disclaimer ##
+
+Certain commercial equipment, instruments, or materials are identified in this project were used for the convenience of the developers. In no case does such identification imply recommendation or endorsement by the National Telecommunications and Information Administration, nor does it imply that the material or equipment identified is necessarily the best available for the purpose.
