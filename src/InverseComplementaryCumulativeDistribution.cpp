@@ -1,9 +1,10 @@
 /** @internal @file InverseComplementaryCumulativeDistribution.cpp
  * @brief Implements a function to calculate the inverse CCDF.
  */
-#include "ITS.ITU.PSeries.P2108/P2108.h"
+#include "P2108.h"
 
-#include <stdexcept>
+#include <cmath>      // for std::log, std::sqrt
+#include <stdexcept>  // for std::out_of_range
 
 namespace ITS {
 namespace ITU {
@@ -38,7 +39,7 @@ double InverseComplementaryCumulativeDistribution(const double q) {
     if (q > 0.5)
         x = 1.0 - x;
 
-    const double T_x = sqrt(-2.0 * log(x));
+    const double T_x = std::sqrt(-2.0 * std::log(x));
 
     const double zeta_x = ((C_2 * T_x + C_1) * T_x + C_0)
                         / (((D_3 * T_x + D_2) * T_x + D_1) * T_x + 1.0);

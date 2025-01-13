@@ -1,7 +1,9 @@
 /** @file AeronauticalStatisticalModel.cpp
  * Implements the model from ITU-R P.2108 Section 3.3.
  */
-#include "ITS.ITU.PSeries.P2108/P2108.h"
+#include "P2108.h"
+
+#include <cmath>  // for std::pow, std::log, std::tan
 
 namespace ITS {
 namespace ITU {
@@ -26,29 +28,28 @@ namespace P2108 {
  * @param[out] L_ces__db   Additional loss (clutter loss), in dB
  * @return                 Return code
  ******************************************************************************/
-int AeronauticalStatisticalModel(
+ReturnCode AeronauticalStatisticalModel(
     const double f__ghz,
     const double theta__deg,
     const double p,
     double &L_ces__db
 ) {
-    int rtn = Section3p3_InputValidation(f__ghz, theta__deg, p);
+    ReturnCode rtn = Section3p3_InputValidation(f__ghz, theta__deg, p);
     if (rtn != SUCCESS)
         return rtn;
 
-    const double A_1 = 0.05;
-    const double K_1 = 93 * pow(f__ghz, 0.175);
+    constexpr double A_1 = 0.05;
+    const double K_1 = 93 * std::pow(f__ghz, 0.175);
 
-    const double part1 = log(1 - p / 100.0);
+    const double part1 = std::log(1 - p / 100.0);
     const double part2
         = A_1 * (1 - theta__deg / 90.0) + PI * theta__deg / 180.0;
     const double part3 = 0.5 * (90.0 - theta__deg) / 90.0;
     const double part4
         = 0.6 * InverseComplementaryCumulativeDistribution(p / 100);
 
-    L_ces__db = pow(-K_1 * part1 * cot(part2), part3) - 1 - part4;
-
-    return SUCCESS;
+    L_ces__db = std::pow(-K_1 * part1 * cot(part2), part3) - 1 - part4;
+    return rtn;
 }
 
 /*******************************************************************************
@@ -67,7 +68,7 @@ int AeronauticalStatisticalModel(
  * @param[in] p           Percentage of locations, in %
  * @return                Return code
  ******************************************************************************/
-int Section3p3_InputValidation(
+ReturnCode Section3p3_InputValidation(
     const double f__ghz, const double theta__deg, const double p
 ) {
     if (f__ghz < 10 || f__ghz > 100)
@@ -91,7 +92,7 @@ int Section3p3_InputValidation(
  * @return       Cotangent of the argument, @f$ \cot(x) @f$
  ******************************************************************************/
 double cot(const double x) {
-    return 1 / tan(x);
+    return 1 / std::tan(x);
 }
 
 }  // namespace P2108

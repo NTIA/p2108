@@ -1,6 +1,9 @@
 #include "TestUtils.h"
 
-#include <limits>  // For std::numeric_limits<T>::max()
+#include <cmath>          // for std::log10
+#include <gtest/gtest.h>  // GoogleTest
+#include <limits>         // for std::numeric_limits
+#include <vector>         // for std::vector
 
 // Test fixture for the unit tests
 class HeightGainTerminalCorrectionModelTest: public ::testing::Test {
@@ -23,7 +26,7 @@ TEST_F(
     // Ensure test data was loaded
     EXPECT_NE(static_cast<int>(testData.size()), 0);
     double A_h__db;
-    int rtn;
+    ReturnCode rtn;
     for (const auto &data : testData) {
         rtn = HeightGainTerminalCorrectionModel(
             data.f__ghz,
@@ -114,8 +117,8 @@ TEST(Section3p1_Equation_2aTest, Section3p1_NuAboveLimit) {
 TEST(Section3p1_Equation_2bTest, TestSection3p1_Equation_2b) {
     // Test a few values with separately-computed expected results for this
     // equation
-    EXPECT_DOUBLE_EQ(Equation_2b(1, 10, 5), -log10(2));
-    EXPECT_DOUBLE_EQ(Equation_2b(5, 1, 2), -5 * log10(0.5));
+    EXPECT_DOUBLE_EQ(Equation_2b(1, 10, 5), -std::log10(2));
+    EXPECT_DOUBLE_EQ(Equation_2b(5, 1, 2), -5 * std::log10(0.5));
     EXPECT_DOUBLE_EQ(Equation_2b(0, 100, 100), 0);
     EXPECT_DOUBLE_EQ(Equation_2b(-1, 10, 1), 1);
 }
