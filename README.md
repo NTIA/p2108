@@ -94,7 +94,7 @@ If you've configured tests when building the project, for example by using one o
 the "Release" or "Debug" CMake presets, you can run the included unit tests as follows:
 
 ```cmd
-ctest --preset release
+ctest --preset release64
 ```
 
 Additionally, the [Study Group Clutter Excel Workbook](https://www.itu.int/en/ITU-R/study-groups/rsg3/ionotropospheric/Clutter%20and%20BEL%20workbook_V2.xlsx)
