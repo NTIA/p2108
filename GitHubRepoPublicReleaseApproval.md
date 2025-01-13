@@ -28,5 +28,5 @@ your version of this Markdown document to that branch, and then create a pull re
 for that branch. The following must log in to GitHub and approve that pull request
 before the pull request can be merged and this repo made public:
 
-* Project Lead: Brian Lain
+* Project Lead: William Kozma, Jr.
 * Supervising Division Chief or Release Authority: Chris Anderson
