@@ -61,7 +61,6 @@ jobs:
       uses: lukka/run-cmake@v10
       with:
         configurePreset: debug64
-        configurePresetAdditionalArgs: "['-DBUILD_DOCS=OFF','-DRUN_DRIVER_TESTS=ON']"
         buildPreset: debug64
         testPreset: debug64
 
@@ -70,6 +69,5 @@ jobs:
       uses: lukka/run-cmake@v10
       with:
         configurePreset: debug32
-        configurePresetAdditionalArgs: "['-DBUILD_DOCS=OFF,'-DRUN_DRIVER_TESTS=ON'']"
         buildPreset: debug32
         testPreset: debug32
