@@ -14,6 +14,9 @@ add_executable(
     "TestUtils.h"
 )
 
+# Set PropLib compiler option defaults
+configure_proplib_target(${TEST_NAME})
+
 ###########################################
 ## SET UP AND DISCOVER TESTS
 ###########################################
