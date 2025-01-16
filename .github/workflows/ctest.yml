@@ -60,16 +60,16 @@ jobs:
       if: matrix.architecture != 'x86'
       uses: lukka/run-cmake@v10
       with:
-        configurePreset: release64
-        configurePresetAdditionalArgs: "['-DBUILD_DOCS=OFF']"
-        buildPreset: release64
-        testPreset: release64
+        configurePreset: debug64
+        configurePresetAdditionalArgs: "['-DBUILD_DOCS=OFF','-DRUN_DRIVER_TESTS=ON']"
+        buildPreset: debug64
+        testPreset: debug64
 
     - name: "CMake: Build and Test (32-bit)"
       if: matrix.architecture == 'x86'
       uses: lukka/run-cmake@v10
       with:
-        configurePreset: release32
-        configurePresetAdditionalArgs: "['-DBUILD_DOCS=OFF']"
-        buildPreset: release32
-        testPreset: release32
+        configurePreset: debug32
+        configurePresetAdditionalArgs: "['-DBUILD_DOCS=OFF,'-DRUN_DRIVER_TESTS=ON'']"
+        buildPreset: debug32
+        testPreset: debug32
