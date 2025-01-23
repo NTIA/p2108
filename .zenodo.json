@@ -1,7 +1,7 @@
 {
     "upload_type": "software",
-    "publication_date": "2022-09-26",
-    "title": "Recommendation ITU-R P.2108-1, Release 1.0",
+    "publication_date": "2025-01-23",
+    "title": "Recommendation ITU-R P.2108-1, Release 1.1",
     "creators": [
         {
             "name": "Kozma Jr, William",
@@ -54,5 +54,5 @@
             "resource_type": "publication-softwaredocumentation"
         }
     ],
-    "version": "1.0"
+    "version": "1.1"
 }
